@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "matedevdao-api",
+	"name": "api",
 	"main": "server/index.ts",
 	"compatibility_date": "2025-03-10",
 	"observability": {
