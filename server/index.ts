@@ -104,9 +104,7 @@ export default {
 				kind: "RGBA" as any,
 			});
 
-			image.paintMasks([image2]);
-
-			const buffer = image.toBuffer();
+			const buffer = image.paintMasks([image2]).toBuffer();
 
 			await env.NFT_IMAGES_BUCKET.put("test.png", buffer);
 
