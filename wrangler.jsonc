@@ -14,12 +14,18 @@
 		"crons": ["*/1 * * * *"]
 	},
 	"d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "matedevdao",
-      "database_id": "146cd05b-caed-4e15-9ffb-d91cfd37112b"
-    }
-  ]
+		{
+			"binding": "DB",
+			"database_name": "matedevdao",
+			"database_id": "146cd05b-caed-4e15-9ffb-d91cfd37112b"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "KV",
+			"id": "5749f69e842645db91f8b1a1a2dd8792"
+		}
+	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

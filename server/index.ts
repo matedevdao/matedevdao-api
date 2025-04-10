@@ -129,20 +129,10 @@ export default {
 	},
 
 	async scheduled(controller, env, ctx) {
-		const res = await env.DB.prepare(
-			`SELECT id, last_parsed_block FROM parsed_contract_event_blocks LIMIT 1`,
-		).all();
+		const lastParsedBlock = await env.KV.get("last-parsed-block");
+		if (!lastParsedBlock) throw new Error("Last parsed block not found");
 
-		if (res.results.length === 0) {
-			throw new Error("Last parsed block not found");
-		}
-		const row = res.results[0];
-		const data = {
-			id: row.id as number,
-			last_parsed_block: row.last_parsed_block as number,
-		};
-
-		let toBlock = BigInt(data.last_parsed_block) + SAFE_BLOCK_RANGE;
+		let toBlock = BigInt(lastParsedBlock) + SAFE_BLOCK_RANGE;
 
 		const currentBlock = await kaiaPublicClient.getBlockNumber();
 		if (toBlock > currentBlock) toBlock = currentBlock;
@@ -173,8 +163,6 @@ export default {
 			).bind(transfer.address, Number(transfer.tokenId), transfer.to).run();
 		}
 
-		await env.DB.prepare(
-			`UPDATE parsed_contract_event_blocks SET last_parsed_block = ? WHERE id = ?`,
-		).bind(Number(toBlock), data.id).run();
+		await env.KV.put("last-parsed-block", toBlock.toString());
 	},
 } satisfies ExportedHandler<Env>;
