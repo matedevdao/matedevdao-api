@@ -115,9 +115,7 @@ export default {
 				);
 			} catch (error) {
 				console.error(error);
-				return new Response(`Server error: ${JSON.stringify(error)}`, {
-					status: 500,
-				});
+				return new Response("Server error", { status: 500 });
 			}
 		}
 
