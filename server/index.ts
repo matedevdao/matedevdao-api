@@ -1,9 +1,7 @@
-import * as PImage from "pureimage";
 import { createPublicClient, getAddress, http, parseAbiItem } from "viem";
 import { kaia } from "viem/chains";
 import ParsingNFTDataArtifact from "./artifacts/ParsingNFTData.json";
 import LegacySparrowMetadata from "./legacy_sparrow_metadatas.json";
-import { PassThrough } from "stream";
 
 const SAFE_BLOCK_RANGE = 2500n;
 
@@ -73,24 +71,6 @@ async function getHolderListWithRetry({
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
-
-		if (url.pathname === "/test") {
-			const img1 = PImage.make(100, 100);
-			const ctx = img1.getContext("2d");
-			ctx.fillStyle = "red";
-			ctx.fillRect(0, 0, 100, 100);
-
-			const passThroughStream = new PassThrough();
-			const pngData: Uint8Array[] = [];
-			passThroughStream.on("data", (chunk) => pngData.push(chunk));
-			passThroughStream.on("end", () => {});
-			await PImage.encodePNGToStream(img1, passThroughStream);
-			const buffer = Buffer.concat(pngData);
-
-			await env.NFT_IMAGES_BUCKET.put("test.png", buffer);
-
-			return new Response("Image created and uploaded", { status: 200 });
-		}
 
 		if (url.pathname === "/restore-sparrow-metadatas") {
 			for (
