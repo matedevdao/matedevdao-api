@@ -1,4 +1,4 @@
-import { createPublicClient, http, parseAbiItem } from "viem";
+import { createPublicClient, getAddress, http, parseAbiItem } from "viem";
 import { kaia } from "viem/chains";
 import ParsingNFTDataArtifact from "./artifacts/ParsingNFTData.json";
 
@@ -11,9 +11,7 @@ const TransferEvent = parseAbiItem(
 const PARSING_NFT_DATA_CONTRACT_ADDRESS =
 	"0x8A98A038dcA75091225EE0a1A11fC20Aa23832A0";
 
-const kaiaPublicClient = createPublicClient({ chain: kaia, transport: http() });
-
-const tokenIdsRanges: { [address: string]: { from: number; to: number } } = {
+const TOKEN_IDS_RANGES: { [address: string]: { from: number; to: number } } = {
 	"0xE47E90C58F8336A2f24Bcd9bCB530e2e02E1E8ae": { from: 0, to: 9999 }, // DogeSoundClub Mates
 	"0x2B303fd0082E4B51e5A6C602F45545204bbbB4DC": { from: 0, to: 7999 }, // DogeSoundClub E-Mates
 	"0xDeDd727ab86bce5D416F9163B2448860BbDE86d4": { from: 0, to: 19999 }, // DogeSoundClub Biased Mates
@@ -23,6 +21,8 @@ const tokenIdsRanges: { [address: string]: { from: number; to: number } } = {
 	"0x81b5C41Bac33ea696D9684D9aFdB6cd9f6Ee5CFF": { from: 1, to: 10000 }, // KCD Pixel Kongz
 	"0x595b299Db9d83279d20aC37A85D36489987d7660": { from: 0, to: 2999 }, // BabyPing
 };
+
+const kaiaPublicClient = createPublicClient({ chain: kaia, transport: http() });
 
 function wait(ms: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms));
@@ -78,7 +78,7 @@ export default {
 				>();
 				if (!address) return new Response("Invalid request", { status: 400 });
 
-				const range = tokenIdsRanges[address];
+				const range = TOKEN_IDS_RANGES[address];
 				if (!range) {
 					return new Response("Token ID range not found", { status: 404 });
 				}
@@ -129,6 +129,52 @@ export default {
 	},
 
 	async scheduled(controller, env, ctx) {
-		//TODO:
+		const res = await env.DB.prepare(
+			`SELECT id, last_parsed_block FROM parsed_contract_event_blocks LIMIT 1`,
+		).all();
+
+		if (res.results.length === 0) {
+			throw new Error("Last parsed block not found");
+		}
+		const row = res.results[0];
+		const data = {
+			id: row.id as number,
+			last_parsed_block: row.last_parsed_block as number,
+		};
+
+		let toBlock = BigInt(data.last_parsed_block) + SAFE_BLOCK_RANGE;
+
+		const currentBlock = await kaiaPublicClient.getBlockNumber();
+		if (toBlock > currentBlock) toBlock = currentBlock;
+
+		let fromBlock = toBlock - SAFE_BLOCK_RANGE * 2n;
+		if (fromBlock < 0) fromBlock = 0n;
+
+		const logs = await kaiaPublicClient.getLogs({
+			address: Object.keys(TOKEN_IDS_RANGES) as `0x${string}`[],
+			event: TransferEvent,
+			fromBlock,
+			toBlock,
+		});
+
+		const transfers = logs.map((log) => ({
+			address: getAddress(log.address),
+			from: log.args.from,
+			to: log.args.to,
+			tokenId: log.args.tokenId,
+			blockNumber: log.blockNumber,
+			transactionHash: log.transactionHash,
+			logIndex: log.logIndex,
+		}));
+
+		for (const transfer of transfers) {
+			await env.DB.prepare(
+				`INSERT OR REPLACE INTO nft_holders (nft_address, token_id, holder) VALUES (?, ?, ?)`,
+			).bind(transfer.address, Number(transfer.tokenId), transfer.to).run();
+		}
+
+		await env.DB.prepare(
+			`UPDATE parsed_contract_event_blocks SET last_parsed_block = ? WHERE id = ?`,
+		).bind(Number(toBlock), data.id).run();
 	},
 } satisfies ExportedHandler<Env>;
