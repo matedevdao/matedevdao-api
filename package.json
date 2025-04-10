@@ -17,7 +17,7 @@
 		"wrangler": "^4.9.1"
 	},
 	"dependencies": {
-		"sharp": "^0.34.1",
+		"image-js": "^0.36.1",
 		"viem": "^2.26.2"
 	}
 }

@@ -2,7 +2,7 @@ import { createPublicClient, getAddress, http, parseAbiItem } from "viem";
 import { kaia } from "viem/chains";
 import ParsingNFTDataArtifact from "./artifacts/ParsingNFTData.json";
 import LegacySparrowMetadata from "./legacy_sparrow_metadatas.json";
-import sharp from "sharp";
+import { Image, ImageKind } from "image-js";
 
 const SAFE_BLOCK_RANGE = 2500n;
 
@@ -74,14 +74,13 @@ export default {
 		const url = new URL(request.url);
 
 		if (url.pathname === "/test") {
-			const buffer = await sharp({
-				create: {
-					width: 1000,
-					height: 1000,
-					channels: 4,
-					background: { r: 0, g: 0, b: 0, alpha: 0 },
-				},
-			}).png().toBuffer();
+			const image = new Image({
+				width: 1000,
+				height: 1000,
+				kind: ImageKind.RGBA,
+			});
+
+			const buffer = image.toBuffer();
 
 			await env.NFT_IMAGES_BUCKET.put("test.png", buffer);
 
