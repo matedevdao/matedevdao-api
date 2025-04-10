@@ -74,11 +74,37 @@ export default {
 		const url = new URL(request.url);
 
 		if (url.pathname === "/test") {
+			const data: number[] = [];
+			for (let i = 0; i < 1000 * 1000; i += 4) {
+				data[i] = 0; // R
+				data[i + 1] = 0; // G
+				data[i + 2] = 0; // B
+				data[i + 3] = 0; // A
+			}
+
 			const image = new Image({
 				width: 1000,
 				height: 1000,
+				data,
 				kind: "RGBA" as any,
 			});
+
+			const data2: number[] = [];
+			for (let i = 0; i < 1000 * 100; i += 4) {
+				data2[i] = 0; // R
+				data2[i + 1] = 0; // G
+				data2[i + 2] = 0; // B
+				data2[i + 3] = 255; // A
+			}
+
+			const image2 = new Image({
+				width: 1000,
+				height: 1000,
+				data: data2,
+				kind: "RGBA" as any,
+			});
+
+			image.paintMasks([image2]);
 
 			const buffer = image.toBuffer();
 
