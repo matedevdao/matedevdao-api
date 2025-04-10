@@ -24,6 +24,49 @@ const tokenIdsRanges: { [address: string]: { from: number; to: number } } = {
 	"0x595b299Db9d83279d20aC37A85D36489987d7660": { from: 0, to: 2999 }, // BabyPing
 };
 
+function wait(ms: number): Promise<void> {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function getHolderListWithRetry({
+	nftAddress,
+	tokenIds,
+	retries = 3,
+	delayMs = 1000,
+}: {
+	nftAddress: string;
+	tokenIds: bigint[];
+	retries?: number;
+	delayMs?: number;
+}): Promise<string[]> {
+	let attempt = 0;
+
+	while (attempt <= retries) {
+		try {
+			const holderList = await kaiaPublicClient.readContract({
+				address: PARSING_NFT_DATA_CONTRACT_ADDRESS,
+				abi: ParsingNFTDataArtifact.abi,
+				functionName: "getERC721HolderList",
+				args: [nftAddress, tokenIds],
+			}) as string[];
+
+			return holderList;
+		} catch (error) {
+			console.warn(
+				`Attempt ${attempt + 1} failed for tokens ${tokenIds[0]}~${
+					tokenIds[tokenIds.length - 1]
+				}:`,
+				error,
+			);
+			if (attempt === retries) throw error;
+			await wait(delayMs);
+			attempt++;
+		}
+	}
+
+	throw new Error("Max retries reached");
+}
+
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
@@ -45,19 +88,17 @@ export default {
 					: { from: fromTokenId, to: range.to };
 				let holderList: string[] = [];
 
-				for (let start = from; start <= to; start += 100) {
-					const end = Math.min(start + 99, to);
+				for (let start = from; start <= to; start += 500) {
+					const end = Math.min(start + 499, to);
 					const tokenIds: bigint[] = [];
 					for (let i = start; i <= end; i++) {
 						tokenIds.push(BigInt(i));
 					}
 
-					const batchHolderList = await kaiaPublicClient.readContract({
-						address: PARSING_NFT_DATA_CONTRACT_ADDRESS,
-						abi: ParsingNFTDataArtifact.abi,
-						functionName: "getERC721HolderList",
-						args: [address, tokenIds],
-					}) as string[];
+					const batchHolderList = await getHolderListWithRetry({
+						nftAddress: address,
+						tokenIds,
+					});
 
 					holderList = holderList.concat(batchHolderList);
 
