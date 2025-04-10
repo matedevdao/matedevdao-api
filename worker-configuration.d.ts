@@ -2,5 +2,6 @@
 
 interface Env {
 	KV: KVNamespace;
+	NFT_IMAGES_BUCKET: R2Bucket;
 	DB: D1Database;
 }

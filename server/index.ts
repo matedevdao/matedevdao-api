@@ -73,6 +73,21 @@ export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
 
+		if (url.pathname === "/test") {
+			const buffer = await sharp({
+				create: {
+					width: 1000,
+					height: 1000,
+					channels: 4,
+					background: { r: 0, g: 0, b: 0, alpha: 0 },
+				},
+			}).png().toBuffer();
+
+			await env.NFT_IMAGES_BUCKET.put("test.png", buffer);
+
+			return new Response("Image created and uploaded", { status: 200 });
+		}
+
 		if (url.pathname === "/restore-sparrow-metadatas") {
 			for (
 				const metadata of LegacySparrowMetadata as {
