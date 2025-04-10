@@ -64,6 +64,13 @@ export default {
 					),
 				);
 			}
+
+			return new Response(
+				JSON.stringify({ success: true, total: holderList.length }),
+				{
+					headers: { "Content-Type": "application/json" },
+				},
+			);
 		}
 
 		return new Response(JSON.stringify({ name: "Cloudflare" }), {
