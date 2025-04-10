@@ -1,8 +1,9 @@
-import { Image } from "image-js";
+import * as PImage from "pureimage";
 import { createPublicClient, getAddress, http, parseAbiItem } from "viem";
 import { kaia } from "viem/chains";
 import ParsingNFTDataArtifact from "./artifacts/ParsingNFTData.json";
 import LegacySparrowMetadata from "./legacy_sparrow_metadatas.json";
+import { PassThrough } from "stream";
 
 const SAFE_BLOCK_RANGE = 2500n;
 
@@ -74,37 +75,17 @@ export default {
 		const url = new URL(request.url);
 
 		if (url.pathname === "/test") {
-			const data: number[] = [];
-			for (let i = 0; i < 4 * 1000 * 1000; i += 4) {
-				data[i] = 0; // R
-				data[i + 1] = 0; // G
-				data[i + 2] = 0; // B
-				data[i + 3] = 0; // A
-			}
+			const img1 = PImage.make(100, 100);
+			const ctx = img1.getContext("2d");
+			ctx.fillStyle = "red";
+			ctx.fillRect(0, 0, 100, 100);
 
-			const image = new Image({
-				width: 1000,
-				height: 1000,
-				data,
-				kind: "RGBA" as any,
-			});
-
-			const data2: number[] = [];
-			for (let i = 0; i < 4 * 1000 * 1000; i += 4) {
-				data2[i] = 0; // R
-				data2[i + 1] = 0; // G
-				data2[i + 2] = 0; // B
-				data2[i + 3] = i < 1000 * 100 ? 255 : 0; // A
-			}
-
-			const image2 = new Image({
-				width: 1000,
-				height: 1000,
-				data: data2,
-				kind: "RGBA" as any,
-			});
-
-			const buffer = image.paintMasks([image2]).toBuffer();
+			const passThroughStream = new PassThrough();
+			const pngData: Uint8Array[] = [];
+			passThroughStream.on("data", (chunk) => pngData.push(chunk));
+			passThroughStream.on("end", () => {});
+			await PImage.encodePNGToStream(img1, passThroughStream);
+			const buffer = Buffer.concat(pngData);
 
 			await env.NFT_IMAGES_BUCKET.put("test.png", buffer);
 
