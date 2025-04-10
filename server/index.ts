@@ -73,7 +73,9 @@ export default {
 
 		if (url.pathname === "/fetch-all-nft-holders") {
 			try {
-				const { address } = await request.json<{ address?: string }>();
+				const { address, fromTokenId } = await request.json<
+					{ address?: string; fromTokenId?: number }
+				>();
 				if (!address) return new Response("Invalid request", { status: 400 });
 
 				const range = tokenIdsRanges[address];
@@ -81,7 +83,9 @@ export default {
 					return new Response("Token ID range not found", { status: 404 });
 				}
 
-				const { from, to } = range;
+				const { from, to } = fromTokenId === undefined
+					? range
+					: { from: fromTokenId, to: range.to };
 				let holderList: string[] = [];
 
 				for (let start = from; start <= to; start += 100) {
