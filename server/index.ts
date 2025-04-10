@@ -2,6 +2,7 @@ import { createPublicClient, getAddress, http, parseAbiItem } from "viem";
 import { kaia } from "viem/chains";
 import ParsingNFTDataArtifact from "./artifacts/ParsingNFTData.json";
 import LegacySparrowMetadata from "./legacy_sparrow_metadatas.json";
+import sharp from "sharp";
 
 const SAFE_BLOCK_RANGE = 2500n;
 
