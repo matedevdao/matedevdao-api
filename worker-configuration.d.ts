@@ -2,5 +2,6 @@
 
 interface Env {
 	KV: KVNamespace;
+	NFT_METADATA_KV: KVNamespace;
 	DB: D1Database;
 }
