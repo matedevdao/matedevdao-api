@@ -29,48 +29,55 @@ export default {
 		const url = new URL(request.url);
 
 		if (url.pathname === "/fetch-all-nft-holders") {
-			const { address } = await request.json<{ address?: string }>();
-			if (!address) return new Response("Invalid request", { status: 400 });
+			try {
+				const { address } = await request.json<{ address?: string }>();
+				if (!address) return new Response("Invalid request", { status: 400 });
 
-			const range = tokenIdsRanges[address];
-			if (!range) {
-				return new Response("Token ID range not found", { status: 404 });
-			}
-
-			const { from, to } = range;
-			let holderList: string[] = [];
-
-			for (let start = from; start <= to; start += 100) {
-				const end = Math.min(start + 99, to);
-				const tokenIds: bigint[] = [];
-				for (let i = start; i <= end; i++) {
-					tokenIds.push(BigInt(i));
+				const range = tokenIdsRanges[address];
+				if (!range) {
+					return new Response("Token ID range not found", { status: 404 });
 				}
 
-				const batchHolderList = await kaiaPublicClient.readContract({
-					address: PARSING_NFT_DATA_CONTRACT_ADDRESS,
-					abi: ParsingNFTDataArtifact.abi,
-					functionName: "getERC721HolderList",
-					args: [address, tokenIds],
-				}) as string[];
+				const { from, to } = range;
+				let holderList: string[] = [];
 
-				holderList = holderList.concat(batchHolderList);
+				for (let start = from; start <= to; start += 100) {
+					const end = Math.min(start + 99, to);
+					const tokenIds: bigint[] = [];
+					for (let i = start; i <= end; i++) {
+						tokenIds.push(BigInt(i));
+					}
 
-				await env.DB.batch(
-					batchHolderList.map((holder, index) =>
-						env.DB.prepare(
-							`INSERT OR REPLACE INTO nft_holders (nft_address, token_id, holder) VALUES (?, ?, ?)`,
-						).bind(address, start + index, holder)
-					),
+					const batchHolderList = await kaiaPublicClient.readContract({
+						address: PARSING_NFT_DATA_CONTRACT_ADDRESS,
+						abi: ParsingNFTDataArtifact.abi,
+						functionName: "getERC721HolderList",
+						args: [address, tokenIds],
+					}) as string[];
+
+					holderList = holderList.concat(batchHolderList);
+
+					await env.DB.batch(
+						batchHolderList.map((holder, index) =>
+							env.DB.prepare(
+								`INSERT OR REPLACE INTO nft_holders (nft_address, token_id, holder) VALUES (?, ?, ?)`,
+							).bind(address, start + index, holder)
+						),
+					);
+				}
+
+				return new Response(
+					JSON.stringify({ success: true, total: holderList.length }),
+					{
+						headers: { "Content-Type": "application/json" },
+					},
 				);
+			} catch (error) {
+				console.error(error);
+				return new Response(`Server error: ${JSON.stringify(error)}`, {
+					status: 500,
+				});
 			}
-
-			return new Response(
-				JSON.stringify({ success: true, total: holderList.length }),
-				{
-					headers: { "Content-Type": "application/json" },
-				},
-			);
 		}
 
 		return new Response(JSON.stringify({ name: "Cloudflare" }), {
