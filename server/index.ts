@@ -75,7 +75,7 @@ export default {
 
 		if (url.pathname === "/test") {
 			const data: number[] = [];
-			for (let i = 0; i < 1000 * 1000; i += 4) {
+			for (let i = 0; i < 4 * 1000 * 1000; i += 4) {
 				data[i] = 0; // R
 				data[i + 1] = 0; // G
 				data[i + 2] = 0; // B
@@ -90,7 +90,7 @@ export default {
 			});
 
 			const data2: number[] = [];
-			for (let i = 0; i < 1000 * 1000; i += 4) {
+			for (let i = 0; i < 4 * 1000 * 1000; i += 4) {
 				data2[i] = 0; // R
 				data2[i + 1] = 0; // G
 				data2[i + 2] = 0; // B
