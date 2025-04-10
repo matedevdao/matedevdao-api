@@ -1,8 +1,8 @@
+import { Image } from "image-js";
 import { createPublicClient, getAddress, http, parseAbiItem } from "viem";
 import { kaia } from "viem/chains";
 import ParsingNFTDataArtifact from "./artifacts/ParsingNFTData.json";
 import LegacySparrowMetadata from "./legacy_sparrow_metadatas.json";
-import { Image, ImageKind } from "image-js";
 
 const SAFE_BLOCK_RANGE = 2500n;
 
@@ -77,7 +77,7 @@ export default {
 			const image = new Image({
 				width: 1000,
 				height: 1000,
-				kind: ImageKind.RGBA,
+				kind: "RGBA" as any,
 			});
 
 			const buffer = image.toBuffer();
