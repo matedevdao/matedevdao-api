@@ -90,11 +90,11 @@ export default {
 			});
 
 			const data2: number[] = [];
-			for (let i = 0; i < 1000 * 100; i += 4) {
+			for (let i = 0; i < 1000 * 1000; i += 4) {
 				data2[i] = 0; // R
 				data2[i + 1] = 0; // G
 				data2[i + 2] = 0; // B
-				data2[i + 3] = 255; // A
+				data2[i + 3] = i < 1000 * 100 ? 255 : 0; // A
 			}
 
 			const image2 = new Image({
