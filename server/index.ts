@@ -80,14 +80,14 @@ export default {
 					ment: string;
 				}[]
 			) {
-				await env.NFT_METADATA_KV.put(
+				/*await env.NFT_METADATA_KV.put(
 					`0x7340a44AbD05280591377345d21792Cdc916A388:${metadata.id}`,
 					JSON.stringify({
 						id: metadata.id,
 						parts: metadata.parts,
 						dialogue: metadata.ment,
 					}),
-				);
+				);*/
 			}
 
 			return new Response("Restored successfully", {
