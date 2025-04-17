@@ -2,21 +2,20 @@ import fs from "fs";
 import { createPublicClient, http } from "viem";
 import { kaia } from "viem/chains";
 import BiasArtifact from "./artifacts/Bias.json" with { type: "json" };
-import deepseaMetadatas from "./bmcs-metadatas/metadata-deepsea-legacy.json" with {
+import deepseaMetadatas from "./bmcs-metadatas-legacy/metadata-deepsea-legacy.json" with {
   type: "json",
 };
-import poisonMetadatas from "./bmcs-metadatas/metadata-poison-legacy.json" with {
+import poisonMetadatas from "./bmcs-metadatas-legacy/metadata-poison-legacy.json" with {
   type: "json",
 };
-import rubyMetadatas from "./bmcs-metadatas/metadata-ruby-legacy.json" with {
+import rubyMetadatas from "./bmcs-metadatas-legacy/metadata-ruby-legacy.json" with {
   type: "json",
 };
-import sapphireMetadatas from "./bmcs-metadatas/metadata-sapphire-legacy.json" with {
+import sapphireMetadatas from "./bmcs-metadatas-legacy/metadata-sapphire-legacy.json" with {
   type: "json",
 };
 
 const kaiaPublicClient = createPublicClient({ chain: kaia, transport: http() });
-const result: any[] = [];
 
 for (let i = 0; i < 20000; i++) {
   console.log(`Token ID ${i} is being processed...`);
@@ -33,12 +32,36 @@ for (let i = 0; i < 20000; i++) {
     continue;
   }
 
-  const uri = await kaiaPublicClient.readContract({
-    address: "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
-    abi: BiasArtifact.abi,
-    functionName: "tokenURI",
-    args: [i],
-  }) as string;
+  let uri: string;
+
+  try {
+    uri = await kaiaPublicClient.readContract({
+      address: "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
+      abi: BiasArtifact.abi,
+      functionName: "tokenURI",
+      args: [i],
+    }) as string;
+  } catch (error) {
+    console.error(`Error fetching token URI for ID ${i}:`, error);
+
+    try {
+      uri = await kaiaPublicClient.readContract({
+        address: "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
+        abi: BiasArtifact.abi,
+        functionName: "tokenURI",
+        args: [i],
+      }) as string;
+    } catch (error) {
+      console.error(`Error fetching token URI for ID ${i}:`, error);
+
+      uri = await kaiaPublicClient.readContract({
+        address: "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
+        abi: BiasArtifact.abi,
+        functionName: "tokenURI",
+        args: [i],
+      }) as string;
+    }
+  }
 
   const base64 = uri.split(",")[1];
   const jsonString = atob(base64);
@@ -47,7 +70,7 @@ for (let i = 0; i < 20000; i++) {
   delete json.image;
 
   if (i >= 10000) {
-    const metadatas: any[] = [
+    let metadatas: any[] = [
       ["deepsea", deepseaMetadatas],
       ["poison", poisonMetadatas],
       ["ruby", rubyMetadatas],
@@ -62,20 +85,30 @@ for (let i = 0; i < 20000; i++) {
       },
     ).filter(Boolean);
 
+    if (i === 11443) {
+      metadatas = [
+        metadatas.find((metadata: any) => metadata.type === "sapphire"),
+      ];
+    }
+
     if (metadatas.length > 1) {
+      console.log(
+        `Token ID ${i} has multiple metadata. ${
+          JSON.stringify(json, null, 2)
+        }, ${JSON.stringify(metadatas, null, 2)}`,
+      );
       throw new Error(`Token ID ${i} has multiple metadata.`);
     }
 
     json.type = metadatas[0].type;
   }
 
-  result[i] = json;
-  console.log(`Token ID ${i} has metadata.`);
+  fs.writeFileSync(
+    `bmcs-metadatas/${i}.json`,
+    JSON.stringify(json, null, 2),
+  );
+
+  console.log(`Token ID ${i} processed successfully.`);
 }
 
-fs.writeFileSync(
-  "bmcs-metadatas.json",
-  JSON.stringify(result, null, 2),
-);
-
-console.log(`bmcs-metadatas.json generated.`);
+console.log("All token URIs have been processed.");
