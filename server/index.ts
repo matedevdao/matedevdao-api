@@ -1,7 +1,9 @@
 import { createPublicClient, getAddress, http, parseAbiItem } from "viem";
 import { kaia } from "viem/chains";
 import ParsingNFTDataArtifact from "./artifacts/ParsingNFTData.json";
-import LegacySparrowMetadata from "./legacy_sparrow_metadatas.json";
+import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
+import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
+import DogeSoundClubMatesMetadatas from "./static-metadatas/dogesoundclub-mates-metadatas.json";
 
 const SAFE_BLOCK_RANGE = 2500n;
 
@@ -72,25 +74,32 @@ export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
 
-		if (url.pathname === "/restore-sparrow-metadatas") {
-			for (
-				const metadata of LegacySparrowMetadata as {
-					id: number;
-					parts: any;
-					ment: string;
-				}[]
-			) {
-				/*await env.NFT_METADATA_KV.put(
-					`0x7340a44AbD05280591377345d21792Cdc916A388:${metadata.id}`,
-					JSON.stringify({
-						id: metadata.id,
-						parts: metadata.parts,
-						dialogue: metadata.ment,
-					}),
-				);*/
+		if (url.pathname.startsWith("/metadata/")) {
+			const collection = url.pathname.split("/")[2];
+			const tokenId = url.pathname.split("/")[3];
+			if (!collection || !tokenId) {
+				return new Response("Invalid request", { status: 400 });
+			}
+			let metadatas: any;
+			if (collection === "dogesoundclub-biased-mates") {
+				metadatas = DogeSoundClubBiasedMatesMetadatas;
+			} else if (collection === "dogesoundclub-e-mates") {
+				metadatas = DogeSoundClubEMatesMetadatas;
+			} else if (collection === "dogesoundclub-mates") {
+				metadatas = DogeSoundClubMatesMetadatas;
+			} else {
+				return new Response("Collection not found", { status: 404 });
 			}
 
-			return new Response("Restored successfully", {
+			const tokenIdNum = parseInt(tokenId);
+			if (isNaN(tokenIdNum) || tokenIdNum < 0) {
+				return new Response("Invalid token ID", { status: 400 });
+			}
+
+			const metadata = metadatas.find((item: any) => item.id === tokenIdNum);
+			if (!metadata) return new Response("Metadata not found", { status: 404 });
+
+			return new Response(JSON.stringify(metadata), {
 				headers: { "Content-Type": "application/json" },
 			});
 		}
