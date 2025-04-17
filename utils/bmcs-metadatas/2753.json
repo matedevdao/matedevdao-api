@@ -1,0 +1,68 @@
+{
+  "tokenId": 2753,
+  "name": "#2753 Ashley Pollard",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 6
+    },
+    {
+      "trait_type": "Background",
+      "value": "Mint"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Black Chiffon Bob"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "None"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "Airpods"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Denim-Cap-Back"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Green-Point-Jacket-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Monkey-Spanner"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Pollard"
+    }
+  ]
+}

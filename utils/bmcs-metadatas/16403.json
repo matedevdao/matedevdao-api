@@ -1,0 +1,73 @@
+{
+  "tokenId": 16403,
+  "name": "#16403 Dolores Goguen",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 8
+    },
+    {
+      "trait_type": "Background",
+      "value": "Greenish-Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Red-Clown-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Orange-Stripes"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "2-Color-Band"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Blonde With Wing"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Red-Lip"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Brown-Jacket B"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Bike-Chain-Whip"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Goguen"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 2"
+    }
+  ],
+  "type": "sapphire"
+}

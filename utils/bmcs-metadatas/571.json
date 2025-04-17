@@ -1,0 +1,68 @@
+{
+  "tokenId": 571,
+  "name": "#571 Ivan Morgan",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 4
+    },
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Red High Short Tail"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "None"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Dscrainbow-Back"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "Silver-Sunglass"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Orange&Black-Denim-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "None"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "None"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Morgan"
+    }
+  ]
+}

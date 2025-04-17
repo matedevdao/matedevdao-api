@@ -1,0 +1,69 @@
+{
+  "tokenId": 11235,
+  "name": "#11235 Ida Bond",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 6
+    },
+    {
+      "trait_type": "Background",
+      "value": "Greenish-Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Spots"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "None"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Smile"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Tiara"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "Vr-Jade-Led"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Tiger-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Hammer"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "None"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Bond"
+    }
+  ],
+  "type": "sapphire"
+}

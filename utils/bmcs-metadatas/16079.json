@@ -1,0 +1,73 @@
+{
+  "tokenId": 16079,
+  "name": "#16079 Amy Mccall",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 8
+    },
+    {
+      "trait_type": "Background",
+      "value": "Purple"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Red-Two-Spots"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "One-Eyeblinding Mint Bob"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Purple-Lip"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "Airpods"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Denim-Cap-Back"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Yellow-Padded-Vest"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Iphone"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Mccall"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 1"
+    }
+  ],
+  "type": "ruby"
+}

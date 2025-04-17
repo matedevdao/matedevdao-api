@@ -1,0 +1,68 @@
+{
+  "tokenId": 190,
+  "name": "#190 Sandra Everett",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 6
+    },
+    {
+      "trait_type": "Background",
+      "value": "Orange"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Green-Clown-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Red-Two-Spots"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Pink Long Hair"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "None"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Pastel-Pink-T"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Cross-Driver"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Gold-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Everett"
+    }
+  ]
+}

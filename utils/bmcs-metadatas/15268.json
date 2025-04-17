@@ -1,0 +1,73 @@
+{
+  "tokenId": 15268,
+  "name": "#15268 Cynthia Newsome",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 6
+    },
+    {
+      "trait_type": "Background",
+      "value": "Gray-Blue"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Green-Clown-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Red-Two-Spots"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Blonde Long Deathawk"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Smile"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Red-Collar-Street-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Hamburger"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "None"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Newsome"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 1"
+    }
+  ],
+  "type": "ruby"
+}

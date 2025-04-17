@@ -1,0 +1,73 @@
+{
+  "tokenId": 16091,
+  "name": "#16091 Lynda Obrien",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 8
+    },
+    {
+      "trait_type": "Background",
+      "value": "Greenish-Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Blonde Classical Straight"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Red-Lip"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "Buds"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "White-Bini"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "Gold-Sunglass"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Charcoal-T"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Monkey-Spanner"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Gold-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Obrien"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 1"
+    }
+  ],
+  "type": "ruby"
+}

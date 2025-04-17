@@ -1,0 +1,69 @@
+{
+  "tokenId": 13868,
+  "name": "#13868 Michael Macdonald",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 5
+    },
+    {
+      "trait_type": "Background",
+      "value": "Purple"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Man"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Asymmetrical Short Bang"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "None"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "Airpods"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Gray-Banana-T"
+    },
+    {
+      "trait_type": "Item",
+      "value": "E-Cigarette"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Macdonald"
+    }
+  ],
+  "type": "ruby"
+}

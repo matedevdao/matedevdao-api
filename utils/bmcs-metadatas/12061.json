@@ -1,0 +1,69 @@
+{
+  "tokenId": 12061,
+  "name": "#12061 Nancy Daniel",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 7
+    },
+    {
+      "trait_type": "Background",
+      "value": "Gray-Blue"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Orange-Stripes"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "2-Color-Band"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Schoolgirl Bob"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Purple-Lip"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Dsc-Maintenance-Suit"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Cross-Driver"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Daniel"
+    }
+  ],
+  "type": "sapphire"
+}

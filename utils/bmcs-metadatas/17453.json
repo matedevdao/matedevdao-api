@@ -1,0 +1,73 @@
+{
+  "tokenId": 17453,
+  "name": "#17453 Joyce Burch",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 7
+    },
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Blue-Clown-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Orange-Stripes"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Blonde In Ushanka"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Red-Lip"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Black-Rider-Vest"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Coke"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Burch"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 2"
+    }
+  ],
+  "type": "sapphire"
+}

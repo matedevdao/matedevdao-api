@@ -1,0 +1,73 @@
+{
+  "tokenId": 11852,
+  "name": "#11852 Jennifer Abbott",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 7
+    },
+    {
+      "trait_type": "Background",
+      "value": "Gray"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Green-Clown-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Red-Two-Spots"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Half Point Colors"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "None"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "Ski-Goggle 2"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Blue&Red-Raglan-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Cross-Driver"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Abbott"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 1"
+    }
+  ],
+  "type": "ruby"
+}

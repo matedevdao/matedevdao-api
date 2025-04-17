@@ -1,0 +1,73 @@
+{
+  "tokenId": 13984,
+  "name": "#13984 John Kelley",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 5
+    },
+    {
+      "trait_type": "Background",
+      "value": "Purple"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Green-Cyclops-Eye"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "None"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "None"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Red-Beanie"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "Vr-Rainbow-Led"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Red-Devil-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Hamburger"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "None"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Kelley"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 2"
+    }
+  ],
+  "type": "sapphire"
+}

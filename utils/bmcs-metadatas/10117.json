@@ -1,0 +1,73 @@
+{
+  "tokenId": 10117,
+  "name": "#10117 Becky Finley",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 6
+    },
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Orange-Eyebrow"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Rainbow Unicorn"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Smile"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Green-Baseball-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Hammer"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Diamond-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Finley"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 2"
+    }
+  ],
+  "type": "sapphire"
+}

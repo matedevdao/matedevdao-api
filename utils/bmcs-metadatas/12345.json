@@ -1,0 +1,73 @@
+{
+  "tokenId": 12345,
+  "name": "#12345 Theresa Mckinney",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 6
+    },
+    {
+      "trait_type": "Background",
+      "value": "Mint"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Red-Two-Spots"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Blonde Long Deathawk"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Purple-Lip"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Black-Bini"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Navy-Baseball-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Monkey-Spanner"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "None"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Mckinney"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 1"
+    }
+  ],
+  "type": "ruby"
+}

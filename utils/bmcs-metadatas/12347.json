@@ -1,0 +1,69 @@
+{
+  "tokenId": 12347,
+  "name": "#12347 Joseph Sanford",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 6
+    },
+    {
+      "trait_type": "Background",
+      "value": "Purple"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Man"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I-Dont-Know-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Beard With Braid"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Tease-Ya"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Red&Blue-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Cross-Driver"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Sanford"
+    }
+  ],
+  "type": "ruby"
+}

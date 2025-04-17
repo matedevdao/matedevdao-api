@@ -1,0 +1,68 @@
+{
+  "tokenId": 2885,
+  "name": "#2885 Austin Farris",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 9
+    },
+    {
+      "trait_type": "Background",
+      "value": "Greenish-Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Man"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Yellow-Clown-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Brown Messy Hair"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Make-Some-Noise"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "Airpods"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Denim-Cap-Back"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "Gold-Sunglass"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Black-Hoodie"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Winter-Scarf"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Gold-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Farris"
+    }
+  ]
+}

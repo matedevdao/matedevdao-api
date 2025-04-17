@@ -1,0 +1,73 @@
+{
+  "tokenId": 15150,
+  "name": "#15150 Diane Pierce",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 7
+    },
+    {
+      "trait_type": "Background",
+      "value": "Purple"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Girl"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "2-Color-Band"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Blonde In Ushanka"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Purple-Lip"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "Normal-Glasses"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Pastel-Green-T"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Cherry-Blossoms-Flower"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Pierce"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 2"
+    }
+  ],
+  "type": "sapphire"
+}

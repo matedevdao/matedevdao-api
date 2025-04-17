@@ -1,0 +1,73 @@
+{
+  "tokenId": 11185,
+  "name": "#11185 Norman Estes",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 8
+    },
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Man"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Green-Clown-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "Brown Straight Bob"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Make-Some-Noise"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "White-Bucket-Hat"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "Gold-Sunglass"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Green-Apple-T"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Coke"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Diamond-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Estes"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 1"
+    }
+  ],
+  "type": "ruby"
+}

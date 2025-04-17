@@ -1,0 +1,73 @@
+{
+  "tokenId": 16939,
+  "name": "#16939 Glenn Collins",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 7
+    },
+    {
+      "trait_type": "Background",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Man"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Blue-Clown-Eyes"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "Orange-Stripes"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "2-Color-Band"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "None"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "None"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "Doge-Hat"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Red&Blue-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Radio-Speaker2"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "Silver-Necklace"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Collins"
+    },
+    {
+      "trait_type": "Crafting Speed",
+      "value": "Level 2"
+    }
+  ],
+  "type": "sapphire"
+}

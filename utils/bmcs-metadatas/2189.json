@@ -1,0 +1,68 @@
+{
+  "tokenId": 2189,
+  "name": "#2189 Dusty Locke",
+  "external_url": "https://dogesound.club/",
+  "description": "Biased Mate Cycle Shop, we sell bikes and time.",
+  "attributes": [
+    {
+      "trait_type": "Level",
+      "value": 4
+    },
+    {
+      "trait_type": "Background",
+      "value": "Greenish-Yellow"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Man"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "None"
+    },
+    {
+      "trait_type": "Face Detail",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hair Band",
+      "value": "Pupler-Band"
+    },
+    {
+      "trait_type": "Hair color",
+      "value": "None"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Gold-Tooth"
+    },
+    {
+      "trait_type": "Earring",
+      "value": "None"
+    },
+    {
+      "trait_type": "Hat",
+      "value": "None"
+    },
+    {
+      "trait_type": "Glasses",
+      "value": "None"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Black&White-Jacket"
+    },
+    {
+      "trait_type": "Item",
+      "value": "Daisy-Flower"
+    },
+    {
+      "trait_type": "Necklace",
+      "value": "None"
+    },
+    {
+      "trait_type": "Last Name",
+      "value": "Locke"
+    }
+  ]
+}

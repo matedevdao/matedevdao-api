@@ -1,5 +1,5 @@
 import fs from "fs";
-import { createPublicClient, http } from "viem";
+import { createPublicClient, http, webSocket } from "viem";
 import { kaia } from "viem/chains";
 import BiasArtifact from "./artifacts/Bias.json" with { type: "json" };
 import deepseaMetadatas from "./bmcs-metadatas-legacy/metadata-deepsea-legacy.json" with {
@@ -17,7 +17,7 @@ import sapphireMetadatas from "./bmcs-metadatas-legacy/metadata-sapphire-legacy.
 
 const kaiaPublicClient = createPublicClient({ chain: kaia, transport: http() });
 
-for (let i = 0; i < 20000; i++) {
+for (let i = 19175; i < 20000; i++) {
   console.log(`Token ID ${i} is being processed...`);
 
   const exists = await kaiaPublicClient.readContract({
@@ -85,9 +85,21 @@ for (let i = 0; i < 20000; i++) {
       },
     ).filter(Boolean);
 
-    if (i === 11443) {
+    if (
+      i === 11443 || i === 12425 || i === 13051 || i === 14324 || i === 14422 ||
+      i === 17303
+    ) {
       metadatas = [
         metadatas.find((metadata: any) => metadata.type === "sapphire"),
+      ];
+    }
+
+    if (
+      i === 12470 || i === 12661 || i === 15123 || i === 16007 || i === 16229 ||
+      i === 16753 || i === 16759 || i === 18909 || i === 19061 || i === 19175
+    ) {
+      metadatas = [
+        metadatas.find((metadata: any) => metadata.type === "ruby"),
       ];
     }
 
