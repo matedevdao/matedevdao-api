@@ -25,7 +25,7 @@
 			"binding": "NFT_IMAGES_BUCKET",
 			"bucket_name": "nft-images"
 		}
-	]
+	],
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
@@ -53,7 +53,7 @@
 	 * Static Assets
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
 	 */
-	// "assets": { "directory": "./public/", "binding": "ASSETS" }
+	"assets": { "directory": "./assets/", "binding": "ASSETS" }
 	/**
 	 * Service Bindings (communicate between multiple Workers)
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings

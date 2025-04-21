@@ -1,7 +1,11 @@
 {
-  "type": "module",
+	"type": "module",
 	"devDependencies": {
 		"ts-node": "^10.9.2",
 		"typescript": "^5.5.2"
+	},
+	"dependencies": {
+		"cloudflare": "^4.2.0",
+		"upng-js": "^2.1.0"
 	}
 }

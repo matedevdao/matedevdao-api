@@ -2,6 +2,7 @@ import HolderListFetcher from "./HolderListFetcher.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
 import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
 import DogeSoundClubMatesMetadatas from "./static-metadatas/dogesoundclub-mates-metadatas.json";
+import KingCrownDAOPixelKongzMetadatas from "./static-metadatas/kingcrowndao-pixel-kongz-metadatas.json";
 import TransferEventSyncer from "./TransferEventSyncer.js";
 
 export default {
@@ -21,6 +22,8 @@ export default {
 				metadatas = DogeSoundClubEMatesMetadatas;
 			} else if (collection === "dogesoundclub-mates") {
 				metadatas = DogeSoundClubMatesMetadatas;
+			} else if (collection === "kingcrowndao-pixel-kongz") {
+				metadatas = KingCrownDAOPixelKongzMetadatas;
 			} else {
 				return new Response("Collection not found", { status: 404 });
 			}
