@@ -1,0 +1,387 @@
+[
+  {
+    "name": "backgrounds",
+    "parts": [
+      {
+        "name": "blue",
+        "images": [
+          {
+            "path": "backgrounds/1 blue.jpg",
+            "order": 0
+          }
+        ]
+      },
+      {
+        "name": "green",
+        "images": [
+          {
+            "path": "backgrounds/2 green.jpg",
+            "order": 0
+          }
+        ]
+      },
+      {
+        "name": "yellow",
+        "images": [
+          {
+            "path": "backgrounds/3 yellow.jpg",
+            "order": 0
+          }
+        ]
+      },
+      {
+        "name": "pink",
+        "images": [
+          {
+            "path": "backgrounds/4 pink.jpg",
+            "order": 0
+          }
+        ]
+      },
+      {
+        "name": "purple",
+        "images": [
+          {
+            "path": "backgrounds/5 purple.jpg",
+            "order": 0
+          }
+        ]
+      },
+      {
+        "name": "orange",
+        "images": [
+          {
+            "path": "backgrounds/6 orange.jpg",
+            "order": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "character",
+    "parts": [
+      {
+        "name": "character",
+        "images": [
+          {
+            "path": "character.png",
+            "order": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "outfits",
+    "parts": [
+      {
+        "name": "empty"
+      },
+      {
+        "name": "suit",
+        "images": [
+          {
+            "path": "outfits/1 suit.png",
+            "order": 2
+          }
+        ]
+      },
+      {
+        "name": "indian clothes",
+        "images": [
+          {
+            "path": "outfits/2 indian clothes.png",
+            "order": 2
+          }
+        ]
+      },
+      {
+        "name": "superhero",
+        "images": [
+          {
+            "path": "outfits/3 superhero.png",
+            "order": 2
+          }
+        ]
+      },
+      {
+        "name": "tanktop",
+        "images": [
+          {
+            "path": "outfits/4 tanktop.png",
+            "order": 2
+          }
+        ]
+      },
+      {
+        "name": "doctor outfit",
+        "images": [
+          {
+            "path": "outfits/5 doctor outfit.png",
+            "order": 2
+          }
+        ]
+      },
+      {
+        "name": "chinese man outfit",
+        "images": [
+          {
+            "path": "outfits/6 chinese man outfit.png",
+            "order": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "eyes",
+    "parts": [
+      {
+        "name": "closed eyes",
+        "images": [
+          {
+            "path": "eyes/1 closed eyes.png",
+            "order": 3
+          }
+        ]
+      },
+      {
+        "name": "open eyes",
+        "images": [
+          {
+            "path": "eyes/2 open eyes.png",
+            "order": 3
+          }
+        ]
+      },
+      {
+        "name": "smile eyes",
+        "images": [
+          {
+            "path": "eyes/3 smile eyes.png",
+            "order": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "eyewears",
+    "parts": [
+      {
+        "name": "empty"
+      },
+      {
+        "name": "sunglasses",
+        "images": [
+          {
+            "path": "eyewears/1 sunglasses.png",
+            "order": 4
+          }
+        ]
+      },
+      {
+        "name": "red glasses",
+        "images": [
+          {
+            "path": "eyewears/2 red glasses.png",
+            "order": 4
+          }
+        ]
+      },
+      {
+        "name": "study glasses",
+        "images": [
+          {
+            "path": "eyewears/3 study glasses.png",
+            "order": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "accesories",
+    "parts": [
+      {
+        "name": "empty"
+      },
+      {
+        "name": "bow",
+        "images": [
+          {
+            "path": "accesories/1 bow.png",
+            "order": 5
+          }
+        ]
+      },
+      {
+        "name": "neck band",
+        "images": [
+          {
+            "path": "accesories/2 neck band.png",
+            "order": 5
+          }
+        ]
+      },
+      {
+        "name": "camera",
+        "images": [
+          {
+            "path": "accesories/3 camera.png",
+            "order": 5
+          }
+        ]
+      },
+      {
+        "name": "superhero necklacepng",
+        "images": [
+          {
+            "path": "accesories/4 superhero necklacepng.png",
+            "order": 5
+          }
+        ]
+      },
+      {
+        "name": "doctor scope",
+        "images": [
+          {
+            "path": "accesories/5 doctor scope.png",
+            "order": 5
+          }
+        ]
+      },
+      {
+        "name": "necklace",
+        "images": [
+          {
+            "path": "accesories/6 necklace.png",
+            "order": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "headwears",
+    "parts": [
+      {
+        "name": "empty"
+      },
+      {
+        "name": "cowboy hat",
+        "images": [
+          {
+            "path": "headwears/1 cowboy hat.png",
+            "order": 6
+          }
+        ]
+      },
+      {
+        "name": "chef hat",
+        "images": [
+          {
+            "path": "headwears/2 chef hat.png",
+            "order": 6
+          }
+        ]
+      },
+      {
+        "name": "top hat",
+        "images": [
+          {
+            "path": "headwears/3 top hat.png",
+            "order": 6
+          }
+        ]
+      },
+      {
+        "name": "baseball hat",
+        "images": [
+          {
+            "path": "headwears/4 baseball hat.png",
+            "order": 6
+          }
+        ]
+      },
+      {
+        "name": "nurse hat",
+        "images": [
+          {
+            "path": "headwears/5 nurse hat.png",
+            "order": 6
+          }
+        ]
+      },
+      {
+        "name": "crown",
+        "images": [
+          {
+            "path": "headwears/6 crown.png",
+            "order": 6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "mouths",
+    "parts": [
+      {
+        "name": "meh mouthpng",
+        "images": [
+          {
+            "path": "mouths/1 meh mouthpng.png",
+            "order": 7
+          }
+        ]
+      },
+      {
+        "name": "teeth mouth",
+        "images": [
+          {
+            "path": "mouths/2 teeth mouth.png",
+            "order": 7
+          }
+        ]
+      },
+      {
+        "name": "happy mouth",
+        "images": [
+          {
+            "path": "mouths/3 happy mouth.png",
+            "order": 7
+          }
+        ]
+      },
+      {
+        "name": "sad mouth",
+        "images": [
+          {
+            "path": "mouths/4 sad mouth.png",
+            "order": 7
+          }
+        ]
+      },
+      {
+        "name": "closed mouth",
+        "images": [
+          {
+            "path": "mouths/5 closed mouth.png",
+            "order": 7
+          }
+        ]
+      },
+      {
+        "name": "o mouth",
+        "images": [
+          {
+            "path": "mouths/6 o mouth.png",
+            "order": 7
+          }
+        ]
+      }
+    ]
+  }
+]
