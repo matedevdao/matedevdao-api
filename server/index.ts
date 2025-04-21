@@ -162,10 +162,17 @@ export default {
 	},
 
 	async scheduled(controller, env, ctx) {
-		const lastParsedBlock = await env.KV.get("last-parsed-block");
+		const lastSyncedRow = await env.DB.prepare(
+			`SELECT last_synced_block_number FROM contract_event_sync_status WHERE contract_type = ?`,
+		).bind("ERC721").first<{ last_synced_block_number: number }>();
+
+		let lastParsedBlock = lastSyncedRow
+			? BigInt(lastSyncedRow.last_synced_block_number)
+			: undefined;
+
 		if (!lastParsedBlock) throw new Error("Last parsed block not found");
 
-		let toBlock = BigInt(lastParsedBlock) + SAFE_BLOCK_RANGE;
+		let toBlock = lastParsedBlock + SAFE_BLOCK_RANGE;
 
 		const currentBlock = await kaiaPublicClient.getBlockNumber();
 		if (toBlock > currentBlock) toBlock = currentBlock;
@@ -192,10 +199,14 @@ export default {
 
 		for (const transfer of transfers) {
 			await env.DB.prepare(
-				`INSERT OR REPLACE INTO nft_holders (nft_address, token_id, holder) VALUES (?, ?, ?)`,
+				`INSERT OR REPLACE INTO nfts (nft_address, token_id, holder) VALUES (?, ?, ?)`,
 			).bind(transfer.address, Number(transfer.tokenId), transfer.to).run();
 		}
 
-		await env.KV.put("last-parsed-block", toBlock.toString());
+		await env.DB.prepare(
+			`UPDATE contract_event_sync_status
+       SET last_synced_block_number = ?, last_synced_at = strftime('%s','now')
+       WHERE contract_type = ?`,
+		).bind(Number(toBlock), "ERC721").run();
 	},
 } satisfies ExportedHandler<Env>;

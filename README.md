@@ -1,8 +1,8 @@
 # matedevdao-api
 
 ```
-wrangler d1 execute matedevdao -y --remote --file=./schema/nft_holders.sql
-wrangler d1 execute matedevdao -y --remote --file=./schema/parsed_contract_event_blocks.sql
+wrangler d1 execute matedevdao -y --remote --file=./schema/nfts.sql
+wrangler d1 execute matedevdao -y --remote --file=./schema/contract_event_sync_status.sql
 ```
 
 ```

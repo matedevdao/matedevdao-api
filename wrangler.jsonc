@@ -20,12 +20,6 @@
 			"database_id": "146cd05b-caed-4e15-9ffb-d91cfd37112b"
 		}
 	],
-	"kv_namespaces": [
-		{
-			"binding": "KV",
-			"id": "5749f69e842645db91f8b1a1a2dd8792"
-		}
-	],
 	"r2_buckets": [
 		{
 			"binding": "NFT_IMAGES_BUCKET",
