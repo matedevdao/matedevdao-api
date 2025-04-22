@@ -747,7 +747,7 @@
       {
         "name": "Fighting",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -763,7 +763,7 @@
       {
         "name": "Greet",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -779,7 +779,7 @@
       {
         "name": "Hold item",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -795,7 +795,7 @@
       {
         "name": "Hug item",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -820,7 +820,7 @@
       {
         "name": "Scold",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -836,7 +836,7 @@
       {
         "name": "Fighting",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -852,7 +852,7 @@
       {
         "name": "Greet",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -868,7 +868,7 @@
       {
         "name": "Hold item",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -884,7 +884,7 @@
       {
         "name": "Hug item",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -900,7 +900,7 @@
       {
         "name": "Scold",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -918,7 +918,7 @@
   {
     "name": "Hold Item",
     "condition": {
-      "trait": "Wings",
+      "part": "Wings",
       "values": [
         "Hold item"
       ]
@@ -1055,7 +1055,7 @@
   {
     "name": "Hug Item",
     "condition": {
-      "trait": "Wings",
+      "part": "Wings",
       "values": [
         "Hug item"
       ]
@@ -1177,7 +1177,7 @@
       {
         "name": "A roasted chestnut hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1193,7 +1193,7 @@
       {
         "name": "Ant hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1209,7 +1209,7 @@
       {
         "name": "Blue ribbon",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1225,7 +1225,7 @@
       {
         "name": "Bump",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1241,7 +1241,7 @@
       {
         "name": "Camellia",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1257,7 +1257,7 @@
       {
         "name": "Chef's hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1273,7 +1273,7 @@
       {
         "name": "Chestnut haircut",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1289,7 +1289,7 @@
       {
         "name": "Cockscomb",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1305,7 +1305,7 @@
       {
         "name": "Cone-gratulation",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1321,7 +1321,7 @@
       {
         "name": "Detective hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1337,7 +1337,7 @@
       {
         "name": "Disheveled hair",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1353,7 +1353,7 @@
       {
         "name": "Drunken tie",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1369,7 +1369,7 @@
       {
         "name": "Frog hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1385,7 +1385,7 @@
       {
         "name": "Gentleman hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1401,7 +1401,7 @@
       {
         "name": "Graduation cap",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1417,7 +1417,7 @@
       {
         "name": "Green ribbon",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1433,7 +1433,7 @@
       {
         "name": "Hair point",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1449,7 +1449,7 @@
       {
         "name": "Horn",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1465,7 +1465,7 @@
       {
         "name": "Jokduri",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1481,7 +1481,7 @@
       {
         "name": "Katydid hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1497,7 +1497,7 @@
       {
         "name": "Kindergarten hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1513,7 +1513,7 @@
       {
         "name": "Korea perm",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1529,7 +1529,7 @@
       {
         "name": "None",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1545,7 +1545,7 @@
       {
         "name": "Police hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1561,7 +1561,7 @@
       {
         "name": "Powdered soybean",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1577,7 +1577,7 @@
       {
         "name": "Rabbit hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1593,7 +1593,7 @@
       {
         "name": "Red hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1609,7 +1609,7 @@
       {
         "name": "Red ribbon",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1625,7 +1625,7 @@
       {
         "name": "Rice bowl",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1641,7 +1641,7 @@
       {
         "name": "Satgat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1657,7 +1657,7 @@
       {
         "name": "Straw hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Brown",
             "Brown without cheek"
@@ -1673,7 +1673,7 @@
       {
         "name": "A roasted chestnut hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1689,7 +1689,7 @@
       {
         "name": "Ant hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1705,7 +1705,7 @@
       {
         "name": "Blue ribbon",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1721,7 +1721,7 @@
       {
         "name": "Bump",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1737,7 +1737,7 @@
       {
         "name": "Camellia",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1753,7 +1753,7 @@
       {
         "name": "Chef's hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1769,7 +1769,7 @@
       {
         "name": "Chestnut haircut",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1785,7 +1785,7 @@
       {
         "name": "Cockscomb",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1801,7 +1801,7 @@
       {
         "name": "Cone-gratulation",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1817,7 +1817,7 @@
       {
         "name": "Detective hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1833,7 +1833,7 @@
       {
         "name": "Disheveled hair",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1849,7 +1849,7 @@
       {
         "name": "Drunken tie",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1865,7 +1865,7 @@
       {
         "name": "Frog hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1881,7 +1881,7 @@
       {
         "name": "Gentleman hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1897,7 +1897,7 @@
       {
         "name": "Graduation cap",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1913,7 +1913,7 @@
       {
         "name": "Green ribbon",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1929,7 +1929,7 @@
       {
         "name": "Hair point",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1945,7 +1945,7 @@
       {
         "name": "Horn",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1961,7 +1961,7 @@
       {
         "name": "Jokduri",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1977,7 +1977,7 @@
       {
         "name": "Katydid hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -1993,7 +1993,7 @@
       {
         "name": "Kindergarten hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2009,7 +2009,7 @@
       {
         "name": "Korea perm",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2025,7 +2025,7 @@
       {
         "name": "None",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2041,7 +2041,7 @@
       {
         "name": "Police hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2057,7 +2057,7 @@
       {
         "name": "Powdered soybean",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2073,7 +2073,7 @@
       {
         "name": "Rabbit hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2089,7 +2089,7 @@
       {
         "name": "Red hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2105,7 +2105,7 @@
       {
         "name": "Red ribbon",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2121,7 +2121,7 @@
       {
         "name": "Rice bowl",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2137,7 +2137,7 @@
       {
         "name": "Satgat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
@@ -2153,7 +2153,7 @@
       {
         "name": "Straw hat",
         "condition": {
-          "trait": "Body",
+          "part": "Body",
           "values": [
             "Dark brown",
             "Dark brown without cheek"
