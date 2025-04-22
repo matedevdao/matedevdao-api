@@ -1,16 +1,16 @@
 import fs from "fs";
 import path from "path";
 import sharp from "sharp";
-import parts from "../assets/shigor-sparrows/parts.json" with {
-  type: "json",
+import parts from "../assets/sigor-sparrows/parts.json" with {
+  type: "json"
 };
 
-const orders: { [path: string]: number } = {};
+const availableFiles: { [path: string]: boolean } = {};
 for (const p of parts) {
   for (const part of p.parts) {
     if (part.images) {
       for (const frame of part.images) {
-        orders[frame.path] = frame.order;
+        availableFiles[frame.path] = true;
       }
     }
   }
@@ -26,7 +26,7 @@ async function processImages() {
     const files = fs.readdirSync(directoryPath, { recursive: true });
     for (const file of files) {
       if (typeof file === "string") {
-        if (orders[file] !== undefined) {
+        if (availableFiles[file]) {
           const sharpImage = sharp(path.join(directoryPath, file));
 
           if (!fs.existsSync(path.join(outputPath, path.dirname(file)))) {
