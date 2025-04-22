@@ -135,7 +135,12 @@ async function processImages() {
         },
       };
 
-      const style = key.split("/").slice(3)[0];
+      let style = key.split("/").slice(3)[0];
+      if (style === "normal") {
+        style = "Illustration";
+      } else if (style === "pixel") {
+        style = "Pixel Art";
+      }
 
       if (!keyToFrame[style]) {
         keyToFrame[style] = {};
