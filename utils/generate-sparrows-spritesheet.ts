@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import sharp, { Metadata } from "sharp";
-import parts from "../assets/kingcrowndao-kongz/parts.json" with {
+import parts from "../assets/shigor-sparrows/parts.json" with {
   type: "json",
 };
 
@@ -26,14 +26,15 @@ for (const p of parts) {
   for (const part of p.parts) {
     if (part.images) {
       for (const frame of part.images) {
-        orders[frame.path] = frame.order;
+        orders["normal/" + frame.path] = frame.order;
+        orders["pixel/" + frame.path] = frame.order;
       }
     }
   }
 }
 
-const directoryPath = "../assets/kingcrowndao-kongz/parts-images-resized";
-const outputPath = "../assets/kingcrowndao-kongz/spritesheet";
+const directoryPath = "../assets/shigor-sparrows/parts-images-resized";
+const outputPath = "../assets/shigor-sparrows/spritesheet";
 const spritesheets: string[] = [];
 
 const keyToPart: {
@@ -45,9 +46,11 @@ const keyToPart: {
 } = {};
 
 const keyToSpritesheet: {
-  [filename: string]: {
-    frame: string;
-    zIndex: number;
+  [type: string]: {
+    [filename: string]: {
+      frame: string;
+      zIndex: number;
+    };
   };
 } = {};
 
@@ -74,7 +77,7 @@ async function createSpritesheetImage(
   const compositeOperations = files.map((file, index) => {
     const row = Math.floor(index / tilesPerRow);
     const col = index % tilesPerRow;
-    const fileId = file.split("/").slice(4).join("/");
+    const fileId = file.split("/").slice(1).join("/");
     keyToPart[fileId] = {
       row,
       col,
@@ -110,7 +113,7 @@ async function processImages() {
     const files = fs.readdirSync(directoryPath, { recursive: true });
     for (const file of files) {
       if (typeof file === "string") {
-        if (orders[file] !== undefined) {
+        if (orders[file] !== undefined || orders[file] !== undefined) {
           const sharpImage = sharp(path.join(directoryPath, file));
           const metadata = await sharpImage.metadata();
           metadataMap.set(file, metadata);
@@ -149,7 +152,13 @@ async function processImages() {
         },
       };
 
-      keyToSpritesheet[key] = {
+      const style = key.split("/").slice(3)[0];
+
+      if (!keyToSpritesheet[style]) {
+        keyToSpritesheet[style] = {};
+      }
+
+      keyToSpritesheet[style][key.split("/").slice(4).join("/")] = {
         frame: frameId,
         zIndex: part.zIndex,
       };

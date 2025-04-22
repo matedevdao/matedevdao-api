@@ -1,0 +1,1053 @@
+{
+  "normal": {
+    "1.BG/IJM beige.png": {
+      "frame": "part-0"
+    },
+    "1.BG/Light green.png": {
+      "frame": "part-1"
+    },
+    "1.BG/Light steel blue.png": {
+      "frame": "part-2"
+    },
+    "1.BG/Pastel green.png": {
+      "frame": "part-3"
+    },
+    "1.BG/Rainbow.png": {
+      "frame": "part-4"
+    },
+    "1.BG/Sky blue.png": {
+      "frame": "part-5"
+    },
+    "1.BG/White.png": {
+      "frame": "part-6"
+    },
+    "10.HOLD ITEM/A glass of water.png": {
+      "frame": "part-7"
+    },
+    "10.HOLD ITEM/Brush.png": {
+      "frame": "part-8"
+    },
+    "10.HOLD ITEM/Carrot.png": {
+      "frame": "part-9"
+    },
+    "10.HOLD ITEM/Corn.png": {
+      "frame": "part-10"
+    },
+    "10.HOLD ITEM/Lily of the valley.png": {
+      "frame": "part-11"
+    },
+    "10.HOLD ITEM/Magic wand.png": {
+      "frame": "part-12"
+    },
+    "10.HOLD ITEM/Microphone.png": {
+      "frame": "part-13"
+    },
+    "10.HOLD ITEM/Poop stick.png": {
+      "frame": "part-14"
+    },
+    "10.HOLD ITEM/Potato.png": {
+      "frame": "part-15"
+    },
+    "10.HOLD ITEM/Rice.png": {
+      "frame": "part-16"
+    },
+    "10.HOLD ITEM/Spoon.png": {
+      "frame": "part-17"
+    },
+    "10.HOLD ITEM/Spring onion.png": {
+      "frame": "part-18"
+    },
+    "10.HOLD ITEM/Sweet potato.png": {
+      "frame": "part-19"
+    },
+    "10.HOLD ITEM/Towel.png": {
+      "frame": "part-20"
+    },
+    "11.HUG ITEM/Beach ball.png": {
+      "frame": "part-21"
+    },
+    "11.HUG ITEM/Bouquet.png": {
+      "frame": "part-22"
+    },
+    "11.HUG ITEM/Camera.png": {
+      "frame": "part-23"
+    },
+    "11.HUG ITEM/Ethereum.png": {
+      "frame": "part-24"
+    },
+    "11.HUG ITEM/Gift box.png": {
+      "frame": "part-25"
+    },
+    "11.HUG ITEM/Injeolmi.png": {
+      "frame": "part-26"
+    },
+    "11.HUG ITEM/Kkultteok.png": {
+      "frame": "part-27"
+    },
+    "11.HUG ITEM/Klaytn.png": {
+      "frame": "part-28"
+    },
+    "11.HUG ITEM/Mujigaetteok.png": {
+      "frame": "part-29"
+    },
+    "11.HUG ITEM/Pencil and notebook.png": {
+      "frame": "part-30"
+    },
+    "11.HUG ITEM/Polygon ETH.png": {
+      "frame": "part-31"
+    },
+    "11.HUG ITEM/Pot-Injeolmi.png": {
+      "frame": "part-32"
+    },
+    "12.BROWN HAIR ACCESSORY/A roasted chestnut hat.png": {
+      "frame": "part-33"
+    },
+    "12.BROWN HAIR ACCESSORY/Ant hat.png": {
+      "frame": "part-34"
+    },
+    "12.BROWN HAIR ACCESSORY/Blue ribbon.png": {
+      "frame": "part-35"
+    },
+    "12.BROWN HAIR ACCESSORY/Bump.png": {
+      "frame": "part-36"
+    },
+    "12.BROWN HAIR ACCESSORY/Camellia.png": {
+      "frame": "part-37"
+    },
+    "12.BROWN HAIR ACCESSORY/Chef's hat.png": {
+      "frame": "part-38"
+    },
+    "12.BROWN HAIR ACCESSORY/Chestnut haircut.png": {
+      "frame": "part-39"
+    },
+    "12.BROWN HAIR ACCESSORY/Cockscomb.png": {
+      "frame": "part-40"
+    },
+    "12.BROWN HAIR ACCESSORY/Cone-gratulation.png": {
+      "frame": "part-41"
+    },
+    "12.BROWN HAIR ACCESSORY/Detective hat.png": {
+      "frame": "part-42"
+    },
+    "12.BROWN HAIR ACCESSORY/Disheveled hair.png": {
+      "frame": "part-43"
+    },
+    "12.BROWN HAIR ACCESSORY/Drunken tie.png": {
+      "frame": "part-44"
+    },
+    "12.BROWN HAIR ACCESSORY/Frog hat.png": {
+      "frame": "part-45"
+    },
+    "12.BROWN HAIR ACCESSORY/Gentleman hat.png": {
+      "frame": "part-46"
+    },
+    "12.BROWN HAIR ACCESSORY/Graduation cap.png": {
+      "frame": "part-47"
+    },
+    "12.BROWN HAIR ACCESSORY/Green ribbon.png": {
+      "frame": "part-48"
+    },
+    "12.BROWN HAIR ACCESSORY/Hair point.png": {
+      "frame": "part-49"
+    },
+    "12.BROWN HAIR ACCESSORY/Horn.png": {
+      "frame": "part-50"
+    },
+    "12.BROWN HAIR ACCESSORY/Jokduri.png": {
+      "frame": "part-51"
+    },
+    "12.BROWN HAIR ACCESSORY/Katydid hat.png": {
+      "frame": "part-52"
+    },
+    "12.BROWN HAIR ACCESSORY/Kindergarten hat.png": {
+      "frame": "part-53"
+    },
+    "12.BROWN HAIR ACCESSORY/Korea perm.png": {
+      "frame": "part-54"
+    },
+    "12.BROWN HAIR ACCESSORY/None.png": {
+      "frame": "part-55"
+    },
+    "12.BROWN HAIR ACCESSORY/Police hat.png": {
+      "frame": "part-56"
+    },
+    "12.BROWN HAIR ACCESSORY/Powdered soybean.png": {
+      "frame": "part-57"
+    },
+    "12.BROWN HAIR ACCESSORY/Rabbit hat.png": {
+      "frame": "part-58"
+    },
+    "12.BROWN HAIR ACCESSORY/Red hat.png": {
+      "frame": "part-59"
+    },
+    "12.BROWN HAIR ACCESSORY/Red ribbon.png": {
+      "frame": "part-60"
+    },
+    "12.BROWN HAIR ACCESSORY/Rice bowl.png": {
+      "frame": "part-61"
+    },
+    "12.BROWN HAIR ACCESSORY/Satgat.png": {
+      "frame": "part-62"
+    },
+    "12.BROWN HAIR ACCESSORY/Straw hat.png": {
+      "frame": "part-63"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/A roasted chestnut hat.png": {
+      "frame": "part-64"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Ant hat.png": {
+      "frame": "part-65"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Blue ribbon.png": {
+      "frame": "part-66"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Bump.png": {
+      "frame": "part-67"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Camellia.png": {
+      "frame": "part-68"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Chef's hat.png": {
+      "frame": "part-69"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Chestnut haircut.png": {
+      "frame": "part-70"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Cockscomb.png": {
+      "frame": "part-71"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Cone-gratulation.png": {
+      "frame": "part-72"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Detective hat.png": {
+      "frame": "part-73"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Disheveled hair.png": {
+      "frame": "part-74"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Drunken tie.png": {
+      "frame": "part-75"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Frog hat.png": {
+      "frame": "part-76"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Gentleman hat.png": {
+      "frame": "part-77"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Graduation cap.png": {
+      "frame": "part-78"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Green ribbon.png": {
+      "frame": "part-79"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Hair point.png": {
+      "frame": "part-80"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Horn.png": {
+      "frame": "part-81"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Jokduri.png": {
+      "frame": "part-82"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Katydid hat.png": {
+      "frame": "part-83"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Kindergarten hat.png": {
+      "frame": "part-84"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Korea perm.png": {
+      "frame": "part-85"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/None.png": {
+      "frame": "part-86"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Police hat.png": {
+      "frame": "part-87"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Powdered soybean.png": {
+      "frame": "part-88"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Rabbit hat.png": {
+      "frame": "part-89"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Red hat.png": {
+      "frame": "part-90"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Red ribbon.png": {
+      "frame": "part-91"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Rice bowl.png": {
+      "frame": "part-92"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Satgat.png": {
+      "frame": "part-93"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Straw hat.png": {
+      "frame": "part-94"
+    },
+    "2.TAIL/Cock.png": {
+      "frame": "part-95"
+    },
+    "2.TAIL/Duck.png": {
+      "frame": "part-96"
+    },
+    "2.TAIL/Eagle.png": {
+      "frame": "part-97"
+    },
+    "2.TAIL/Ostrich.png": {
+      "frame": "part-98"
+    },
+    "2.TAIL/Phoenix.png": {
+      "frame": "part-99"
+    },
+    "2.TAIL/Pigeon.png": {
+      "frame": "part-100"
+    },
+    "2.TAIL/Sparrow.png": {
+      "frame": "part-101"
+    },
+    "2.TAIL/Turkey.png": {
+      "frame": "part-102"
+    },
+    "3.BODY/Brown-without cheek.png": {
+      "frame": "part-103"
+    },
+    "3.BODY/Brown.png": {
+      "frame": "part-104"
+    },
+    "3.BODY/Dark brown-without cheek.png": {
+      "frame": "part-105"
+    },
+    "3.BODY/Dark brown.png": {
+      "frame": "part-106"
+    },
+    "4.BACK/A bag of rice.png": {
+      "frame": "part-107"
+    },
+    "4.BACK/Cracked egg.png": {
+      "frame": "part-108"
+    },
+    "4.BACK/Ddong Young Jae.png": {
+      "frame": "part-109"
+    },
+    "4.BACK/Dinosaur Egg.png": {
+      "frame": "part-110"
+    },
+    "4.BACK/Empty Basket.png": {
+      "frame": "part-111"
+    },
+    "4.BACK/Green apples.png": {
+      "frame": "part-112"
+    },
+    "4.BACK/JOKER.png": {
+      "frame": "part-113"
+    },
+    "4.BACK/None.png": {
+      "frame": "part-114"
+    },
+    "4.BACK/Powdered soybean.png": {
+      "frame": "part-115"
+    },
+    "4.BACK/Rock Young Jae.png": {
+      "frame": "part-116"
+    },
+    "4.BACK/Rock.png": {
+      "frame": "part-117"
+    },
+    "4.BACK/Sweet potato.png": {
+      "frame": "part-118"
+    },
+    "4.BACK/Tangerine.png": {
+      "frame": "part-119"
+    },
+    "4.BACK/Tomatos.png": {
+      "frame": "part-120"
+    },
+    "4.BACK/apples.png": {
+      "frame": "part-121"
+    },
+    "5.EYES/Brave eyes.png": {
+      "frame": "part-122"
+    },
+    "5.EYES/Cock.png": {
+      "frame": "part-123"
+    },
+    "5.EYES/Doge.png": {
+      "frame": "part-124"
+    },
+    "5.EYES/Duck.png": {
+      "frame": "part-125"
+    },
+    "5.EYES/Eagle.png": {
+      "frame": "part-126"
+    },
+    "5.EYES/Heart.png": {
+      "frame": "part-127"
+    },
+    "5.EYES/IJM.png": {
+      "frame": "part-128"
+    },
+    "5.EYES/Indifferent eyes.png": {
+      "frame": "part-129"
+    },
+    "5.EYES/Kind eye.png": {
+      "frame": "part-130"
+    },
+    "5.EYES/Mad eyes.png": {
+      "frame": "part-131"
+    },
+    "5.EYES/Naive eyes.png": {
+      "frame": "part-132"
+    },
+    "5.EYES/Ostrich.png": {
+      "frame": "part-133"
+    },
+    "5.EYES/Owl.png": {
+      "frame": "part-134"
+    },
+    "5.EYES/Parrot.png": {
+      "frame": "part-135"
+    },
+    "5.EYES/Penguin.png": {
+      "frame": "part-136"
+    },
+    "5.EYES/Pigeon.png": {
+      "frame": "part-137"
+    },
+    "5.EYES/Registered eyes.png": {
+      "frame": "part-138"
+    },
+    "5.EYES/Seagull.png": {
+      "frame": "part-139"
+    },
+    "5.EYES/Sparrow.png": {
+      "frame": "part-140"
+    },
+    "5.EYES/Tearful eyes.png": {
+      "frame": "part-141"
+    },
+    "5.EYES/Turkey.png": {
+      "frame": "part-142"
+    },
+    "6.BEAK/Bald Eagle.png": {
+      "frame": "part-143"
+    },
+    "6.BEAK/Cock.png": {
+      "frame": "part-144"
+    },
+    "6.BEAK/Duck.png": {
+      "frame": "part-145"
+    },
+    "6.BEAK/Eagle.png": {
+      "frame": "part-146"
+    },
+    "6.BEAK/Ostrich.png": {
+      "frame": "part-147"
+    },
+    "6.BEAK/Owl.png": {
+      "frame": "part-148"
+    },
+    "6.BEAK/Parrot.png": {
+      "frame": "part-149"
+    },
+    "6.BEAK/Penguin.png": {
+      "frame": "part-150"
+    },
+    "6.BEAK/Pigeon.png": {
+      "frame": "part-151"
+    },
+    "6.BEAK/Seagull.png": {
+      "frame": "part-152"
+    },
+    "6.BEAK/Sparrow.png": {
+      "frame": "part-153"
+    },
+    "6.BEAK/Turkey.png": {
+      "frame": "part-154"
+    },
+    "7.SHOES/2didas.png": {
+      "frame": "part-155"
+    },
+    "7.SHOES/Duck.png": {
+      "frame": "part-156"
+    },
+    "7.SHOES/Eagle.png": {
+      "frame": "part-157"
+    },
+    "7.SHOES/None.png": {
+      "frame": "part-158"
+    },
+    "7.SHOES/Rabbit.png": {
+      "frame": "part-159"
+    },
+    "7.SHOES/Rubber shoe B.png": {
+      "frame": "part-160"
+    },
+    "7.SHOES/Rubber shoe W.png": {
+      "frame": "part-161"
+    },
+    "7.SHOES/Sneakers.png": {
+      "frame": "part-162"
+    },
+    "8.TEXT BALLOON/Innermost feelings.png": {
+      "frame": "part-163"
+    },
+    "8.TEXT BALLOON/Shout out.png": {
+      "frame": "part-164"
+    },
+    "8.TEXT BALLOON/Talk.png": {
+      "frame": "part-165"
+    },
+    "9.BROWN WINGS/Fighting.png": {
+      "frame": "part-166"
+    },
+    "9.BROWN WINGS/Greet.png": {
+      "frame": "part-167"
+    },
+    "9.BROWN WINGS/Hold item.png": {
+      "frame": "part-168"
+    },
+    "9.BROWN WINGS/Hug item.png": {
+      "frame": "part-169"
+    },
+    "9.BROWN WINGS/None.png": {
+      "frame": "part-170"
+    },
+    "9.BROWN WINGS/Scold.png": {
+      "frame": "part-171"
+    },
+    "9.DARK BROWN WINGS/Fighting.png": {
+      "frame": "part-172"
+    },
+    "9.DARK BROWN WINGS/Greet.png": {
+      "frame": "part-173"
+    },
+    "9.DARK BROWN WINGS/Hold item.png": {
+      "frame": "part-174"
+    },
+    "9.DARK BROWN WINGS/Hug item.png": {
+      "frame": "part-175"
+    },
+    "9.DARK BROWN WINGS/Scold.png": {
+      "frame": "part-176"
+    }
+  },
+  "pixel": {
+    "1.BG/IJM beige.png": {
+      "frame": "part-177"
+    },
+    "1.BG/Light green.png": {
+      "frame": "part-178"
+    },
+    "1.BG/Light steel blue.png": {
+      "frame": "part-179"
+    },
+    "1.BG/Pastel green.png": {
+      "frame": "part-180"
+    },
+    "1.BG/Rainbow.png": {
+      "frame": "part-181"
+    },
+    "1.BG/Sky blue.png": {
+      "frame": "part-182"
+    },
+    "1.BG/White.png": {
+      "frame": "part-183"
+    },
+    "10.HOLD ITEM/A glass of water.png": {
+      "frame": "part-184"
+    },
+    "10.HOLD ITEM/Brush.png": {
+      "frame": "part-185"
+    },
+    "10.HOLD ITEM/Carrot.png": {
+      "frame": "part-186"
+    },
+    "10.HOLD ITEM/Corn.png": {
+      "frame": "part-187"
+    },
+    "10.HOLD ITEM/Lily of the valley.png": {
+      "frame": "part-188"
+    },
+    "10.HOLD ITEM/Magic wand.png": {
+      "frame": "part-189"
+    },
+    "10.HOLD ITEM/Microphone.png": {
+      "frame": "part-190"
+    },
+    "10.HOLD ITEM/Poop stick.png": {
+      "frame": "part-191"
+    },
+    "10.HOLD ITEM/Potato.png": {
+      "frame": "part-192"
+    },
+    "10.HOLD ITEM/Rice.png": {
+      "frame": "part-193"
+    },
+    "10.HOLD ITEM/Spoon.png": {
+      "frame": "part-194"
+    },
+    "10.HOLD ITEM/Spring onion.png": {
+      "frame": "part-195"
+    },
+    "10.HOLD ITEM/Sweet potato.png": {
+      "frame": "part-196"
+    },
+    "10.HOLD ITEM/Towel.png": {
+      "frame": "part-197"
+    },
+    "11.HUG ITEM/Beach ball.png": {
+      "frame": "part-198"
+    },
+    "11.HUG ITEM/Bouquet.png": {
+      "frame": "part-199"
+    },
+    "11.HUG ITEM/Camera.png": {
+      "frame": "part-200"
+    },
+    "11.HUG ITEM/Ethereum.png": {
+      "frame": "part-201"
+    },
+    "11.HUG ITEM/Gift box.png": {
+      "frame": "part-202"
+    },
+    "11.HUG ITEM/Injeolmi.png": {
+      "frame": "part-203"
+    },
+    "11.HUG ITEM/Kkultteok.png": {
+      "frame": "part-204"
+    },
+    "11.HUG ITEM/Klaytn.png": {
+      "frame": "part-205"
+    },
+    "11.HUG ITEM/Mujigaetteok.png": {
+      "frame": "part-206"
+    },
+    "11.HUG ITEM/Pencil and notebook.png": {
+      "frame": "part-207"
+    },
+    "11.HUG ITEM/Polygon ETH.png": {
+      "frame": "part-208"
+    },
+    "11.HUG ITEM/Pot-Injeolmi.png": {
+      "frame": "part-209"
+    },
+    "12.BROWN HAIR ACCESSORY/A roasted chestnut hat.png": {
+      "frame": "part-210"
+    },
+    "12.BROWN HAIR ACCESSORY/Ant hat.png": {
+      "frame": "part-211"
+    },
+    "12.BROWN HAIR ACCESSORY/Blue ribbon.png": {
+      "frame": "part-212"
+    },
+    "12.BROWN HAIR ACCESSORY/Bump.png": {
+      "frame": "part-213"
+    },
+    "12.BROWN HAIR ACCESSORY/Camellia.png": {
+      "frame": "part-214"
+    },
+    "12.BROWN HAIR ACCESSORY/Chef's hat.png": {
+      "frame": "part-215"
+    },
+    "12.BROWN HAIR ACCESSORY/Chestnut haircut.png": {
+      "frame": "part-216"
+    },
+    "12.BROWN HAIR ACCESSORY/Cockscomb.png": {
+      "frame": "part-217"
+    },
+    "12.BROWN HAIR ACCESSORY/Cone-gratulation.png": {
+      "frame": "part-218"
+    },
+    "12.BROWN HAIR ACCESSORY/Detective hat.png": {
+      "frame": "part-219"
+    },
+    "12.BROWN HAIR ACCESSORY/Disheveled hair.png": {
+      "frame": "part-220"
+    },
+    "12.BROWN HAIR ACCESSORY/Drunken tie.png": {
+      "frame": "part-221"
+    },
+    "12.BROWN HAIR ACCESSORY/Frog hat.png": {
+      "frame": "part-222"
+    },
+    "12.BROWN HAIR ACCESSORY/Gentleman hat.png": {
+      "frame": "part-223"
+    },
+    "12.BROWN HAIR ACCESSORY/Graduation cap.png": {
+      "frame": "part-224"
+    },
+    "12.BROWN HAIR ACCESSORY/Green ribbon.png": {
+      "frame": "part-225"
+    },
+    "12.BROWN HAIR ACCESSORY/Horn.png": {
+      "frame": "part-226"
+    },
+    "12.BROWN HAIR ACCESSORY/Jokduri.png": {
+      "frame": "part-227"
+    },
+    "12.BROWN HAIR ACCESSORY/Katydid hat.png": {
+      "frame": "part-228"
+    },
+    "12.BROWN HAIR ACCESSORY/Kindergarten hat.png": {
+      "frame": "part-229"
+    },
+    "12.BROWN HAIR ACCESSORY/Korea perm.png": {
+      "frame": "part-230"
+    },
+    "12.BROWN HAIR ACCESSORY/None.png": {
+      "frame": "part-231"
+    },
+    "12.BROWN HAIR ACCESSORY/Police hat.png": {
+      "frame": "part-232"
+    },
+    "12.BROWN HAIR ACCESSORY/Powdered soybean.png": {
+      "frame": "part-233"
+    },
+    "12.BROWN HAIR ACCESSORY/Rabbit hat.png": {
+      "frame": "part-234"
+    },
+    "12.BROWN HAIR ACCESSORY/Red hat.png": {
+      "frame": "part-235"
+    },
+    "12.BROWN HAIR ACCESSORY/Red ribbon.png": {
+      "frame": "part-236"
+    },
+    "12.BROWN HAIR ACCESSORY/Rice bowl.png": {
+      "frame": "part-237"
+    },
+    "12.BROWN HAIR ACCESSORY/Satgat.png": {
+      "frame": "part-238"
+    },
+    "12.BROWN HAIR ACCESSORY/Straw hat.png": {
+      "frame": "part-239"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/A roasted chestnut hat.png": {
+      "frame": "part-240"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Ant hat.png": {
+      "frame": "part-241"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Blue ribbon.png": {
+      "frame": "part-242"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Bump.png": {
+      "frame": "part-243"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Camellia.png": {
+      "frame": "part-244"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Chef's hat.png": {
+      "frame": "part-245"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Chestnut haircut.png": {
+      "frame": "part-246"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Cockscomb.png": {
+      "frame": "part-247"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Cone-gratulation.png": {
+      "frame": "part-248"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Detective hat.png": {
+      "frame": "part-249"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Disheveled hair.png": {
+      "frame": "part-250"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Drunken tie.png": {
+      "frame": "part-251"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Frog hat.png": {
+      "frame": "part-252"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Gentleman hat.png": {
+      "frame": "part-253"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Graduation cap.png": {
+      "frame": "part-254"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Green ribbon.png": {
+      "frame": "part-255"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Horn.png": {
+      "frame": "part-256"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Jokduri.png": {
+      "frame": "part-257"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Katydid hat.png": {
+      "frame": "part-258"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Kindergarten hat.png": {
+      "frame": "part-259"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Korea perm.png": {
+      "frame": "part-260"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/None.png": {
+      "frame": "part-261"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Police hat.png": {
+      "frame": "part-262"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Powdered soybean.png": {
+      "frame": "part-263"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Rabbit hat.png": {
+      "frame": "part-264"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Red hat.png": {
+      "frame": "part-265"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Red ribbon.png": {
+      "frame": "part-266"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Rice bowl.png": {
+      "frame": "part-267"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Satgat.png": {
+      "frame": "part-268"
+    },
+    "12.DARK BROWN HAIR ACCESSORY/Straw hat.png": {
+      "frame": "part-269"
+    },
+    "2.TAIL/Cock.png": {
+      "frame": "part-270"
+    },
+    "2.TAIL/Duck.png": {
+      "frame": "part-271"
+    },
+    "2.TAIL/Eagle.png": {
+      "frame": "part-272"
+    },
+    "2.TAIL/Ostrich.png": {
+      "frame": "part-273"
+    },
+    "2.TAIL/Phoenix.png": {
+      "frame": "part-274"
+    },
+    "2.TAIL/Pigeon.png": {
+      "frame": "part-275"
+    },
+    "2.TAIL/Sparrow.png": {
+      "frame": "part-276"
+    },
+    "2.TAIL/Turkey.png": {
+      "frame": "part-277"
+    },
+    "3.BODY/Brown-without cheek.png": {
+      "frame": "part-278"
+    },
+    "3.BODY/Brown.png": {
+      "frame": "part-279"
+    },
+    "3.BODY/Dark brown-without cheek.png": {
+      "frame": "part-280"
+    },
+    "3.BODY/Dark brown.png": {
+      "frame": "part-281"
+    },
+    "4.BACK/A bag of rice.png": {
+      "frame": "part-282"
+    },
+    "4.BACK/Cracked egg.png": {
+      "frame": "part-283"
+    },
+    "4.BACK/Ddong Young Jae.png": {
+      "frame": "part-284"
+    },
+    "4.BACK/Dinosaur Egg.png": {
+      "frame": "part-285"
+    },
+    "4.BACK/Empty Basket.png": {
+      "frame": "part-286"
+    },
+    "4.BACK/Green apples.png": {
+      "frame": "part-287"
+    },
+    "4.BACK/JOKER.png": {
+      "frame": "part-288"
+    },
+    "4.BACK/None.png": {
+      "frame": "part-289"
+    },
+    "4.BACK/Powdered soybean.png": {
+      "frame": "part-290"
+    },
+    "4.BACK/Rock Young Jae.png": {
+      "frame": "part-291"
+    },
+    "4.BACK/Rock.png": {
+      "frame": "part-292"
+    },
+    "4.BACK/Sweet potato.png": {
+      "frame": "part-293"
+    },
+    "4.BACK/Tangerine.png": {
+      "frame": "part-294"
+    },
+    "4.BACK/Tomatos.png": {
+      "frame": "part-295"
+    },
+    "4.BACK/apples.png": {
+      "frame": "part-296"
+    },
+    "5.EYES/Brave eyes.png": {
+      "frame": "part-297"
+    },
+    "5.EYES/Cock.png": {
+      "frame": "part-298"
+    },
+    "5.EYES/Doge.png": {
+      "frame": "part-299"
+    },
+    "5.EYES/Duck.png": {
+      "frame": "part-300"
+    },
+    "5.EYES/Eagle.png": {
+      "frame": "part-301"
+    },
+    "5.EYES/Heart.png": {
+      "frame": "part-302"
+    },
+    "5.EYES/IJM.png": {
+      "frame": "part-303"
+    },
+    "5.EYES/Indifferent eyes.png": {
+      "frame": "part-304"
+    },
+    "5.EYES/Kind eye.png": {
+      "frame": "part-305"
+    },
+    "5.EYES/Mad eyes.png": {
+      "frame": "part-306"
+    },
+    "5.EYES/Naive eyes.png": {
+      "frame": "part-307"
+    },
+    "5.EYES/Ostrich.png": {
+      "frame": "part-308"
+    },
+    "5.EYES/Owl.png": {
+      "frame": "part-309"
+    },
+    "5.EYES/Parrot.png": {
+      "frame": "part-310"
+    },
+    "5.EYES/Penguin.png": {
+      "frame": "part-311"
+    },
+    "5.EYES/Pigeon.png": {
+      "frame": "part-312"
+    },
+    "5.EYES/Registered eyes.png": {
+      "frame": "part-313"
+    },
+    "5.EYES/Seagull.png": {
+      "frame": "part-314"
+    },
+    "5.EYES/Sparrow.png": {
+      "frame": "part-315"
+    },
+    "5.EYES/Tearful eyes.png": {
+      "frame": "part-316"
+    },
+    "5.EYES/Turkey.png": {
+      "frame": "part-317"
+    },
+    "6.BEAK/Bald Eagle.png": {
+      "frame": "part-318"
+    },
+    "6.BEAK/Cock.png": {
+      "frame": "part-319"
+    },
+    "6.BEAK/Duck.png": {
+      "frame": "part-320"
+    },
+    "6.BEAK/Eagle.png": {
+      "frame": "part-321"
+    },
+    "6.BEAK/Ostrich.png": {
+      "frame": "part-322"
+    },
+    "6.BEAK/Owl.png": {
+      "frame": "part-323"
+    },
+    "6.BEAK/Parrot.png": {
+      "frame": "part-324"
+    },
+    "6.BEAK/Penguin.png": {
+      "frame": "part-325"
+    },
+    "6.BEAK/Pigeon.png": {
+      "frame": "part-326"
+    },
+    "6.BEAK/Seagull.png": {
+      "frame": "part-327"
+    },
+    "6.BEAK/Sparrow.png": {
+      "frame": "part-328"
+    },
+    "6.BEAK/Turkey.png": {
+      "frame": "part-329"
+    },
+    "7.SHOES/2didas.png": {
+      "frame": "part-330"
+    },
+    "7.SHOES/Duck.png": {
+      "frame": "part-331"
+    },
+    "7.SHOES/Eagle.png": {
+      "frame": "part-332"
+    },
+    "7.SHOES/None.png": {
+      "frame": "part-333"
+    },
+    "7.SHOES/Rabbit.png": {
+      "frame": "part-334"
+    },
+    "7.SHOES/Rubber shoe B.png": {
+      "frame": "part-335"
+    },
+    "7.SHOES/Rubber shoe W.png": {
+      "frame": "part-336"
+    },
+    "7.SHOES/Sneakers.png": {
+      "frame": "part-337"
+    },
+    "9.BROWN WINGS/Fighting.png": {
+      "frame": "part-338"
+    },
+    "9.BROWN WINGS/Greet.png": {
+      "frame": "part-339"
+    },
+    "9.BROWN WINGS/Hold item.png": {
+      "frame": "part-340"
+    },
+    "9.BROWN WINGS/Hug item.png": {
+      "frame": "part-341"
+    },
+    "9.BROWN WINGS/None.png": {
+      "frame": "part-342"
+    },
+    "9.BROWN WINGS/Scold.png": {
+      "frame": "part-343"
+    },
+    "9.DARK BROWN WINGS/Fighting.png": {
+      "frame": "part-344"
+    },
+    "9.DARK BROWN WINGS/Greet.png": {
+      "frame": "part-345"
+    },
+    "9.DARK BROWN WINGS/Hold item.png": {
+      "frame": "part-346"
+    },
+    "9.DARK BROWN WINGS/Hug item.png": {
+      "frame": "part-347"
+    },
+    "9.DARK BROWN WINGS/Scold.png": {
+      "frame": "part-348"
+    }
+  }
+}
