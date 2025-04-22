@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import sharp, { Metadata } from "sharp";
-import parts from "../assets/shigor-sparrows/parts.json" with {
+import parts from "../assets/sigor-sparrows/parts.json" with {
   type: "json",
 };
 
@@ -21,38 +21,24 @@ interface SpritesheetData {
   };
 }
 
-const orders: { [path: string]: number } = {};
+const availableFiles: { [path: string]: boolean } = {};
 for (const p of parts) {
   for (const part of p.parts) {
     if (part.images) {
       for (const frame of part.images) {
-        orders["normal/" + frame.path] = frame.order;
-        orders["pixel/" + frame.path] = frame.order;
+        availableFiles["normal/" + frame.path] = true;
+        availableFiles["pixel/" + frame.path] = true;
       }
     }
   }
 }
 
-const directoryPath = "../assets/shigor-sparrows/parts-images-resized";
-const outputPath = "../assets/shigor-sparrows/spritesheet";
+const directoryPath = "../assets/sigor-sparrows/parts-images-resized";
+const outputPath = "../assets/sigor-sparrows/spritesheet";
 const spritesheets: string[] = [];
 
-const keyToPart: {
-  [filename: string]: {
-    row: number;
-    col: number;
-    zIndex: number;
-  };
-} = {};
-
-const keyToSprite: {
-  [type: string]: {
-    [filename: string]: {
-      frame: string;
-      zIndex: number;
-    };
-  };
-} = {};
+const keyToPart: { [filename: string]: { row: number; col: number } } = {};
+const keyToFrame: { [type: string]: { [filename: string]: string } } = {};
 
 const partSize = 128;
 
@@ -79,11 +65,7 @@ async function createSpritesheetImage(
     const col = index % tilesPerRow;
     const fileId = file.split("/").slice(1).join("/");
 
-    keyToPart[fileId] = {
-      row,
-      col,
-      zIndex: orders[file.split("/").slice(4).join("/")],
-    };
+    keyToPart[fileId] = { row, col };
     return {
       input: file,
       top: row * partSize,
@@ -114,7 +96,7 @@ async function processImages() {
     const files = fs.readdirSync(directoryPath, { recursive: true });
     for (const file of files) {
       if (typeof file === "string") {
-        if (orders[file] !== undefined || orders[file] !== undefined) {
+        if (availableFiles[file]) {
           const sharpImage = sharp(path.join(directoryPath, file));
           const metadata = await sharpImage.metadata();
           metadataMap.set(file, metadata);
@@ -155,14 +137,11 @@ async function processImages() {
 
       const style = key.split("/").slice(3)[0];
 
-      if (!keyToSprite[style]) {
-        keyToSprite[style] = {};
+      if (!keyToFrame[style]) {
+        keyToFrame[style] = {};
       }
 
-      keyToSprite[style][key.split("/").slice(4).join("/")] = {
-        frame: frameId,
-        zIndex: part.zIndex,
-      };
+      keyToFrame[style][key.split("/").slice(4).join("/")] = frameId;
     }
 
     fs.writeFileSync(
@@ -171,8 +150,8 @@ async function processImages() {
     );
 
     fs.writeFileSync(
-      path.join(outputPath, "key-to-sprite.json"),
-      JSON.stringify(keyToSprite, null, 2),
+      path.join(outputPath, "key-to-frame.json"),
+      JSON.stringify(keyToFrame, null, 2),
     );
 
     console.log("All files have been processed and saved.");

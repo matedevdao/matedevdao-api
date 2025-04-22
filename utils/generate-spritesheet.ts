@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import sharp, { Metadata } from "sharp";
-import parts from "../assets/kingcrowndao-kongz/parts.json" with {
+import parts from "../assets/babyping/parts.json" with {
   type: "json",
 };
 
@@ -21,35 +21,23 @@ interface SpritesheetData {
   };
 }
 
-const orders: { [path: string]: number } = {};
+const availableFiles: { [path: string]: boolean } = {};
 for (const p of parts) {
   for (const part of p.parts) {
     if (part.images) {
       for (const frame of part.images) {
-        orders[frame.path] = frame.order;
+        availableFiles[frame.path] = true;
       }
     }
   }
 }
 
-const directoryPath = "../assets/kingcrowndao-kongz/parts-images-resized";
-const outputPath = "../assets/kingcrowndao-kongz/spritesheet";
+const directoryPath = "../assets/babyping/parts-images-resized";
+const outputPath = "../assets/babyping/spritesheet";
 const spritesheets: string[] = [];
 
-const keyToPart: {
-  [filename: string]: {
-    row: number;
-    col: number;
-    zIndex: number;
-  };
-} = {};
-
-const keyToSprite: {
-  [filename: string]: {
-    frame: string;
-    zIndex: number;
-  };
-} = {};
+const keyToPart: { [filename: string]: { row: number; col: number } } = {};
+const keyToFrame: { [filename: string]: string } = {};
 
 const partSize = 128;
 
@@ -75,11 +63,7 @@ async function createSpritesheetImage(
     const row = Math.floor(index / tilesPerRow);
     const col = index % tilesPerRow;
     const fileId = file.split("/").slice(4).join("/");
-    keyToPart[fileId] = {
-      row,
-      col,
-      zIndex: orders[fileId],
-    };
+    keyToPart[fileId] = { row, col };
     return {
       input: file,
       top: row * partSize,
@@ -110,7 +94,7 @@ async function processImages() {
     const files = fs.readdirSync(directoryPath, { recursive: true });
     for (const file of files) {
       if (typeof file === "string") {
-        if (orders[file] !== undefined) {
+        if (availableFiles[file]) {
           const sharpImage = sharp(path.join(directoryPath, file));
           const metadata = await sharpImage.metadata();
           metadataMap.set(file, metadata);
@@ -149,10 +133,7 @@ async function processImages() {
         },
       };
 
-      keyToSprite[key] = {
-        frame: frameId,
-        zIndex: part.zIndex,
-      };
+      keyToFrame[key] = frameId;
     }
 
     fs.writeFileSync(
@@ -161,8 +142,8 @@ async function processImages() {
     );
 
     fs.writeFileSync(
-      path.join(outputPath, "key-to-sprite.json"),
-      JSON.stringify(keyToSprite, null, 2),
+      path.join(outputPath, "key-to-frame.json"),
+      JSON.stringify(keyToFrame, null, 2),
     );
 
     console.log("All files have been processed and saved.");
