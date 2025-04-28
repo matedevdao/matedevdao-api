@@ -110,7 +110,7 @@ async function uploadToR2(key: string, body: Uint8Array) {
       ACL: "public-read", // 필요 시
     }),
   );
-  return `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.R2_BUCKET_NAME}/${key}`;
+  return `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/${key}`;
 }
 
 async function insertMetadataToD1(meta: typeof metadata, imageKey: string) {
