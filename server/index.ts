@@ -1,5 +1,5 @@
 import { Resvg } from "@cf-wasm/resvg";
-import font from "./fonts/chosungs.woff";
+import font from "./fonts/neodgm.woff2";
 import HolderListFetcher from "./HolderListFetcher.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
 import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
@@ -20,12 +20,12 @@ export default {
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="200">
   <style>
     @font-face {
-      font-family: "ChosunGs";
+      font-family: "neodgm";
       src: url('data:font/woff;base64,${
 				btoa(String.fromCharCode(...fontBytes))
 			}') format("woff");
     }
-    text { font-family:"ChosunGs"; font-size:64px; fill:#111; }
+    text { font-family:"neodgm"; font-size:64px; fill:#111; }
   </style>
   <rect width="100%" height="100%" fill="white"/>
   <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">${text}</text>
@@ -37,7 +37,7 @@ export default {
 					fitTo: { mode: "width", value: 800 },
 					font: {
 						fontBuffers: [fontBytes],
-						defaultFontFamily: "ChosunGs",
+						defaultFontFamily: "neodgm",
 						loadSystemFonts: false,
 					},
 				},
