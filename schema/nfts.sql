@@ -2,6 +2,7 @@ CREATE TABLE nfts (
   nft_address TEXT NOT NULL,
   token_id INTEGER NOT NULL,
   holder TEXT NOT NULL,
+  style TEXT,
   parts TEXT,
   dialogue TEXT,
   image TEXT,
