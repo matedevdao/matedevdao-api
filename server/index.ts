@@ -1,5 +1,5 @@
 import { Resvg } from "@cf-wasm/resvg";
-import font from "./fonts/ChosunGs.woff?buffer";
+import font from "./fonts/chosungs.woff?buffer";
 import HolderListFetcher from "./HolderListFetcher.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
 import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
