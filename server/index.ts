@@ -1,4 +1,4 @@
-import { Resvg } from "@cf-wasm/resvg";
+import { ImageCombiner } from "@commonmodule/image-combiner-cf";
 import font from "./fonts/neodgm.woff2";
 import HolderListFetcher from "./HolderListFetcher.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
@@ -12,36 +12,32 @@ export default {
 		const url = new URL(request.url);
 
 		if (url.pathname === "/test") {
-			const text = "안녕하세요, Workers 👋";
+			const bgUrl = new URL(
+				"/sigor-sparrows/parts-images/normal/1.BG/IJM beige.png",
+				request.url,
+			);
+
+			const [respBg] = await Promise.all([
+				env.ASSETS.fetch(bgUrl),
+			]);
+			if (!respBg.ok) {
+				throw new Error("Failed to fetch images from ASSETS");
+			}
+
+			const [buffBg] = await Promise.all([
+				respBg.arrayBuffer(),
+			]);
 
 			const fontBytes = new Uint8Array(font);
 
-			const svg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200">
-  <style>
-    @font-face {
-      font-family: "neodgm";
-      src: url('data:font/woff;base64,${
-				btoa(String.fromCharCode(...fontBytes))
-			}') format("woff");
-    }
-    text { font-family:"neodgm"; font-size:64px; fill:#000; }
-  </style>
-  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">${text}</text>
-</svg>`.trim();
-
-			const resvg = new Resvg(
-				svg,
-				{
-					fitTo: { mode: "width", value: 800 },
-					font: {
-						fontBuffers: [fontBytes],
-						defaultFontFamily: "neodgm",
-						loadSystemFonts: false,
-					},
-				},
-			);
-			const png = resvg.render().asPng();
+			const png = ImageCombiner.combine(800, 200, [buffBg], {
+				fontBytes,
+				x: 400,
+				y: 100,
+				text: "안녕하세요, Workers 👋",
+				fontSize: 64,
+				color: "#000000",
+			});
 
 			return new Response(png, {
 				status: 200,

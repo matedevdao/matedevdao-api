@@ -17,8 +17,7 @@
 		"wrangler": "^4.9.1"
 	},
 	"dependencies": {
-		"@cf-wasm/resvg": "^0.1.24",
-		"@resvg/resvg-wasm": "^2.6.2",
+		"@commonmodule/image-combiner-cf": "^0.0.3",
 		"viem": "^2.26.2"
 	}
 }
