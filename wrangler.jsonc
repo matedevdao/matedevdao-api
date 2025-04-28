@@ -59,11 +59,8 @@
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
 	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
-	"rules": [
-		{ "type": "CompiledWasm", "globs": ["**/*.wasm"] },
-		{
-			"type": "Data",
-			"globs": ["**/*.ttf", "**/*.otf", "**/*.woff", "**/*.woff2"]
-		}
-	]
+	"rules": [{
+		"type": "Data",
+		"globs": ["**/*.ttf", "**/*.otf", "**/*.woff", "**/*.woff2"]
+	}]
 }
