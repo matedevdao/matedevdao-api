@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import sharp, { Metadata } from "sharp";
-import parts from "../assets/babyping/parts.json" with {
+import parts from "../assets/kingcrowndao-kongz/parts.json" with {
   type: "json",
 };
 
@@ -32,8 +32,8 @@ for (const p of parts) {
   }
 }
 
-const directoryPath = "../assets/babyping/parts-images-resized";
-const outputPath = "../assets/babyping/spritesheet";
+const directoryPath = "../assets/kingcrowndao-kongz/parts-images-resized";
+const outputPath = "../assets/kingcrowndao-kongz/spritesheet";
 const spritesheets: string[] = [];
 
 const keyToPart: { [filename: string]: { row: number; col: number } } = {};

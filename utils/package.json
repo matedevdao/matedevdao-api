@@ -5,8 +5,7 @@
 		"typescript": "^5.5.2"
 	},
 	"dependencies": {
-		"cloudflare": "^4.2.0",
-		"resvg": "^1.6.4",
-		"upng-js": "^2.1.0"
+		"@commonmodule/image-combiner": "^0.0.3",
+		"cloudflare": "^4.2.0"
 	}
 }

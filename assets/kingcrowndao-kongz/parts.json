@@ -6,7 +6,7 @@
         "name": "blue",
         "images": [
           {
-            "path": "backgrounds/1 blue.jpg",
+            "path": "backgrounds/blue.png",
             "zIndex": 0
           }
         ]
@@ -15,7 +15,7 @@
         "name": "green",
         "images": [
           {
-            "path": "backgrounds/2 green.jpg",
+            "path": "backgrounds/green.png",
             "zIndex": 0
           }
         ]
@@ -24,7 +24,7 @@
         "name": "yellow",
         "images": [
           {
-            "path": "backgrounds/3 yellow.jpg",
+            "path": "backgrounds/yellow.png",
             "zIndex": 0
           }
         ]
@@ -33,7 +33,7 @@
         "name": "pink",
         "images": [
           {
-            "path": "backgrounds/4 pink.jpg",
+            "path": "backgrounds/pink.png",
             "zIndex": 0
           }
         ]
@@ -42,7 +42,7 @@
         "name": "purple",
         "images": [
           {
-            "path": "backgrounds/5 purple.jpg",
+            "path": "backgrounds/purple.png",
             "zIndex": 0
           }
         ]
@@ -51,7 +51,7 @@
         "name": "orange",
         "images": [
           {
-            "path": "backgrounds/6 orange.jpg",
+            "path": "backgrounds/orange.png",
             "zIndex": 0
           }
         ]
@@ -82,7 +82,7 @@
         "name": "suit",
         "images": [
           {
-            "path": "outfits/1 suit.png",
+            "path": "outfits/suit.png",
             "zIndex": 2
           }
         ]
@@ -91,7 +91,7 @@
         "name": "indian clothes",
         "images": [
           {
-            "path": "outfits/2 indian clothes.png",
+            "path": "outfits/indian clothes.png",
             "zIndex": 2
           }
         ]
@@ -100,7 +100,7 @@
         "name": "superhero",
         "images": [
           {
-            "path": "outfits/3 superhero.png",
+            "path": "outfits/superhero.png",
             "zIndex": 2
           }
         ]
@@ -109,7 +109,7 @@
         "name": "tanktop",
         "images": [
           {
-            "path": "outfits/4 tanktop.png",
+            "path": "outfits/tanktop.png",
             "zIndex": 2
           }
         ]
@@ -118,7 +118,7 @@
         "name": "doctor outfit",
         "images": [
           {
-            "path": "outfits/5 doctor outfit.png",
+            "path": "outfits/doctor outfit.png",
             "zIndex": 2
           }
         ]
@@ -127,7 +127,7 @@
         "name": "chinese man outfit",
         "images": [
           {
-            "path": "outfits/6 chinese man outfit.png",
+            "path": "outfits/chinese man outfit.png",
             "zIndex": 2
           }
         ]
@@ -141,7 +141,7 @@
         "name": "closed eyes",
         "images": [
           {
-            "path": "eyes/1 closed eyes.png",
+            "path": "eyes/closed eyes.png",
             "zIndex": 3
           }
         ]
@@ -150,7 +150,7 @@
         "name": "open eyes",
         "images": [
           {
-            "path": "eyes/2 open eyes.png",
+            "path": "eyes/open eyes.png",
             "zIndex": 3
           }
         ]
@@ -159,7 +159,7 @@
         "name": "smile eyes",
         "images": [
           {
-            "path": "eyes/3 smile eyes.png",
+            "path": "eyes/smile eyes.png",
             "zIndex": 3
           }
         ]
@@ -176,7 +176,7 @@
         "name": "sunglasses",
         "images": [
           {
-            "path": "eyewears/1 sunglasses.png",
+            "path": "eyewears/sunglasses.png",
             "zIndex": 4
           }
         ]
@@ -185,7 +185,7 @@
         "name": "red glasses",
         "images": [
           {
-            "path": "eyewears/2 red glasses.png",
+            "path": "eyewears/red glasses.png",
             "zIndex": 4
           }
         ]
@@ -194,7 +194,7 @@
         "name": "study glasses",
         "images": [
           {
-            "path": "eyewears/3 study glasses.png",
+            "path": "eyewears/study glasses.png",
             "zIndex": 4
           }
         ]
@@ -211,7 +211,7 @@
         "name": "bow",
         "images": [
           {
-            "path": "accesories/1 bow.png",
+            "path": "accesories/bow.png",
             "zIndex": 5
           }
         ]
@@ -220,7 +220,7 @@
         "name": "neck band",
         "images": [
           {
-            "path": "accesories/2 neck band.png",
+            "path": "accesories/neck band.png",
             "zIndex": 5
           }
         ]
@@ -229,7 +229,7 @@
         "name": "camera",
         "images": [
           {
-            "path": "accesories/3 camera.png",
+            "path": "accesories/camera.png",
             "zIndex": 5
           }
         ]
@@ -238,7 +238,7 @@
         "name": "superhero necklacepng",
         "images": [
           {
-            "path": "accesories/4 superhero necklacepng.png",
+            "path": "accesories/superhero necklacepng.png",
             "zIndex": 5
           }
         ]
@@ -247,7 +247,7 @@
         "name": "doctor scope",
         "images": [
           {
-            "path": "accesories/5 doctor scope.png",
+            "path": "accesories/doctor scope.png",
             "zIndex": 5
           }
         ]
@@ -256,7 +256,7 @@
         "name": "necklace",
         "images": [
           {
-            "path": "accesories/6 necklace.png",
+            "path": "accesories/necklace.png",
             "zIndex": 5
           }
         ]
@@ -273,7 +273,7 @@
         "name": "cowboy hat",
         "images": [
           {
-            "path": "headwears/1 cowboy hat.png",
+            "path": "headwears/cowboy hat.png",
             "zIndex": 6
           }
         ]
@@ -282,7 +282,7 @@
         "name": "chef hat",
         "images": [
           {
-            "path": "headwears/2 chef hat.png",
+            "path": "headwears/chef hat.png",
             "zIndex": 6
           }
         ]
@@ -291,7 +291,7 @@
         "name": "top hat",
         "images": [
           {
-            "path": "headwears/3 top hat.png",
+            "path": "headwears/top hat.png",
             "zIndex": 6
           }
         ]
@@ -300,7 +300,7 @@
         "name": "baseball hat",
         "images": [
           {
-            "path": "headwears/4 baseball hat.png",
+            "path": "headwears/baseball hat.png",
             "zIndex": 6
           }
         ]
@@ -309,7 +309,7 @@
         "name": "nurse hat",
         "images": [
           {
-            "path": "headwears/5 nurse hat.png",
+            "path": "headwears/nurse hat.png",
             "zIndex": 6
           }
         ]
@@ -318,7 +318,7 @@
         "name": "crown",
         "images": [
           {
-            "path": "headwears/6 crown.png",
+            "path": "headwears/crown.png",
             "zIndex": 6
           }
         ]
@@ -332,7 +332,7 @@
         "name": "meh mouthpng",
         "images": [
           {
-            "path": "mouths/1 meh mouthpng.png",
+            "path": "mouths/meh mouthpng.png",
             "zIndex": 7
           }
         ]
@@ -341,7 +341,7 @@
         "name": "teeth mouth",
         "images": [
           {
-            "path": "mouths/2 teeth mouth.png",
+            "path": "mouths/teeth mouth.png",
             "zIndex": 7
           }
         ]
@@ -350,7 +350,7 @@
         "name": "happy mouth",
         "images": [
           {
-            "path": "mouths/3 happy mouth.png",
+            "path": "mouths/happy mouth.png",
             "zIndex": 7
           }
         ]
@@ -359,7 +359,7 @@
         "name": "sad mouth",
         "images": [
           {
-            "path": "mouths/4 sad mouth.png",
+            "path": "mouths/sad mouth.png",
             "zIndex": 7
           }
         ]
@@ -368,7 +368,7 @@
         "name": "closed mouth",
         "images": [
           {
-            "path": "mouths/5 closed mouth.png",
+            "path": "mouths/closed mouth.png",
             "zIndex": 7
           }
         ]
@@ -377,7 +377,7 @@
         "name": "o mouth",
         "images": [
           {
-            "path": "mouths/6 o mouth.png",
+            "path": "mouths/o mouth.png",
             "zIndex": 7
           }
         ]
