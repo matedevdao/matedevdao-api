@@ -1,3 +1,5 @@
+import { Resvg } from "@cf-wasm/resvg";
+import font from "./fonts/ChosunGs.woff?buffer";
 import HolderListFetcher from "./HolderListFetcher.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
 import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
@@ -5,9 +7,48 @@ import DogeSoundClubMatesMetadatas from "./static-metadatas/dogesoundclub-mates-
 import KingCrownDAOPixelKongzMetadatas from "./static-metadatas/kingcrowndao-pixel-kongz-metadatas.json";
 import TransferEventSyncer from "./TransferEventSyncer.js";
 
+const fontBytes = new Uint8Array(font);
+
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
+
+		if (url.pathname === "/test") {
+			const text = "안녕하세요, Workers 👋";
+
+			const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200">
+  <style>
+    @font-face {
+      font-family: "ChosunGs";
+      src: url('data:font/ttf;base64,${
+				btoa(String.fromCharCode(...fontBytes))
+			}') format("truetype");
+    }
+    text { font-family:"ChosunGs"; font-size:64px; fill:#111; }
+  </style>
+  <rect width="100%" height="100%" fill="white"/>
+  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">${text}</text>
+</svg>`.trim();
+
+			const resvg = new Resvg(
+				svg,
+				{
+					fitTo: { mode: "width", value: 800 },
+					font: {
+						fontBuffers: [fontBytes],
+						defaultFontFamily: "ChosunGs",
+						loadSystemFonts: false,
+					},
+				},
+			);
+			const png = resvg.render().asPng();
+
+			return new Response(png, {
+				status: 200,
+				headers: { "Content-Type": "image/png" },
+			});
+		}
 
 		if (url.pathname.startsWith("/metadata/")) {
 			const collection = url.pathname.split("/")[2];
