@@ -1,6 +1,6 @@
 import { Resvg } from "@cf-wasm/resvg";
+import emojiFont from "./fonts/emoji.woff2";
 import font from "./fonts/neodgm.woff2";
-import emojiFont from "./fonts/emoji.ttf";
 import HolderListFetcher from "./HolderListFetcher.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
 import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
@@ -28,12 +28,12 @@ export default {
 			}') format("woff");
     }
 		@font-face {
-			font-family: "og-dcm-emoji";
-			src: url('data:font/ttf;base64,${
+			font-family: "emoji";
+			src: url('data:font/woff;base64,${
 				btoa(String.fromCharCode(...emojiFontBytes))
-			}') format("truetype");
+			}') format("woff");
 		}
-    text { font-family:"neodgm,og-dcm-emoji"; font-size:64px; fill:#000; }
+    text { font-family:"neodgm,emoji"; font-size:64px; fill:#000; }
   </style>
   <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">${text}</text>
 </svg>`.trim();
