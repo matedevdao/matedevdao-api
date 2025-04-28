@@ -1,5 +1,4 @@
 import { Resvg } from "@cf-wasm/resvg";
-import emojiFont from "./fonts/emoji.woff2";
 import font from "./fonts/neodgm.woff2";
 import HolderListFetcher from "./HolderListFetcher.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
@@ -16,7 +15,6 @@ export default {
 			const text = "안녕하세요, Workers 👋";
 
 			const fontBytes = new Uint8Array(font);
-			const emojiFontBytes = new Uint8Array(emojiFont);
 
 			const svg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="200">
@@ -27,13 +25,7 @@ export default {
 				btoa(String.fromCharCode(...fontBytes))
 			}') format("woff");
     }
-		@font-face {
-			font-family: "emoji";
-			src: url('data:font/woff;base64,${
-				btoa(String.fromCharCode(...emojiFontBytes))
-			}') format("woff");
-		}
-    text { font-family:"neodgm,emoji"; font-size:64px; fill:#000; }
+    text { font-family:"neodgm"; font-size:64px; fill:#000; }
   </style>
   <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">${text}</text>
 </svg>`.trim();
@@ -43,7 +35,7 @@ export default {
 				{
 					fitTo: { mode: "width", value: 800 },
 					font: {
-						fontBuffers: [fontBytes, emojiFontBytes],
+						fontBuffers: [fontBytes],
 						defaultFontFamily: "neodgm",
 						loadSystemFonts: false,
 					},
