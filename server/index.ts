@@ -1,5 +1,5 @@
 import { Resvg } from "@cf-wasm/resvg";
-import font from "./fonts/chosungs.woff?buffer";
+import font from "./fonts/chosungs.woff";
 import HolderListFetcher from "./HolderListFetcher.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
 import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
@@ -21,9 +21,9 @@ export default {
   <style>
     @font-face {
       font-family: "ChosunGs";
-      src: url('data:font/ttf;base64,${
+      src: url('data:font/woff;base64,${
 				btoa(String.fromCharCode(...fontBytes))
-			}') format("truetype");
+			}') format("woff");
     }
     text { font-family:"ChosunGs"; font-size:64px; fill:#111; }
   </style>
