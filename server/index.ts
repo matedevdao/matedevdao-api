@@ -33,9 +33,8 @@ export default {
 				btoa(String.fromCharCode(...emojiFontBytes))
 			}') format("woff");
 		}
-    text { font-family:"neodgm,og-dcm-emoji"; font-size:64px; fill:#111; }
+    text { font-family:"neodgm,og-dcm-emoji"; font-size:64px; fill:#000; }
   </style>
-  <rect width="100%" height="100%" fill="white"/>
   <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle">${text}</text>
 </svg>`.trim();
 
@@ -43,7 +42,11 @@ export default {
 				svg,
 				{
 					fitTo: { mode: "width", value: 800 },
-					font: { loadSystemFonts: false },
+					font: {
+						fontBuffers: [fontBytes, emojiFontBytes],
+						defaultFontFamily: "neodgm",
+						loadSystemFonts: false,
+					},
 				},
 			);
 			const png = resvg.render().asPng();
