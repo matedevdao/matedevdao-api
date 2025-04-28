@@ -30,10 +30,10 @@ export default {
 
 			const fontBytes = new Uint8Array(font);
 
-			const png = ImageCombiner.combine(800, 200, [buffBg], {
+			const png = ImageCombiner.combine(1000, 1000, [buffBg], {
 				fontBytes,
-				x: 400,
-				y: 100,
+				x: 500,
+				y: 500,
 				text: "안녕하세요, Workers 👋",
 				fontSize: 64,
 				color: "#000000",
