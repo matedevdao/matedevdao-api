@@ -20,7 +20,7 @@ await initWasm(
 const legacyMetadata = (legacyMetadatas as any)[0];
 const metadata = {
   id: legacyMetadata.id,
-  style: legacyMetadata.style ? "Illustration" : legacyMetadata.style,
+  style: !legacyMetadata.style ? "Illustration" : legacyMetadata.style,
   parts: legacyMetadata.parts,
   dialogue: legacyMetadata.ment,
 };
