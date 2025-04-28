@@ -6,6 +6,7 @@
 	},
 	"dependencies": {
 		"cloudflare": "^4.2.0",
+		"resvg": "^1.6.4",
 		"upng-js": "^2.1.0"
 	}
 }

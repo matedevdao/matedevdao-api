@@ -3,6 +3,7 @@ CREATE TABLE nfts (
   token_id INTEGER NOT NULL,
   holder TEXT NOT NULL,
   parts TEXT,
+  dialogue TEXT,
   image TEXT,
   created_at INTEGER NOT NULL DEFAULT (strftime('%s','now')),
   updated_at INTEGER,
