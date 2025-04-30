@@ -58,7 +58,7 @@ export default {
 				env.DB,
 				[{ collection, tokenId }],
 			);
-			const metadata = metadataMap.get(`${collection}:${tokenId}`);
+			const metadata = metadataMap[`${collection}:${tokenId}`];
 			if (!metadata) return new Response("Metadata not found", { status: 404 });
 
 			return new Response(JSON.stringify(metadata), {
@@ -66,20 +66,27 @@ export default {
 			});
 		}
 
-		if (url.pathname === "/metadata/bulk") {
-			const pairs = await request.json<
-				{ collection: string; tokenId: number }[]
-			>();
-			if (!pairs || !Array.isArray(pairs)) {
+		if (url.pathname.endsWith("/nfts")) {
+			const walletAddress = url.pathname.split("/")[2];
+			if (!walletAddress) {
 				return new Response("Invalid request", { status: 400 });
 			}
 
-			const metadataMap = await MetadataManager.fetchBulkMetadata(
+			const metadataMap = await MetadataManager.fetchHoldingNFTMetadatas(
 				env.DB,
-				pairs,
+				walletAddress,
 			);
 
-			return new Response(JSON.stringify(Object.fromEntries(metadataMap)), {
+			const metadatas = Object.entries(metadataMap).map(([key, metadata]) => {
+				const [collection, tokenId] = key.split(":");
+				return {
+					collection,
+					tokenId: parseInt(tokenId),
+					...metadata,
+				};
+			});
+
+			return new Response(JSON.stringify(metadatas), {
 				headers: { "Content-Type": "application/json" },
 			});
 		}

@@ -42,12 +42,97 @@ class MetadataManager {
     return metadatas?.find((item: any) => item.id === tokenId);
   }
 
+  private rowsToMetadatas(rows: NFTData[]) {
+    const metadatas: { [key: string]: any } = {};
+
+    for (const row of rows) {
+      const collection = Object.keys(collectionAddresses).find((key) =>
+        collectionAddresses[key] === row.nft_address
+      );
+      if (!collection) {
+        throw new Error(`Unknown collection address: ${row.nft_address}`);
+      }
+
+      const staticMetadata = this.getStaticMetadata(collection, row.token_id);
+      if (staticMetadata) {
+        metadatas[`${collection}:${row.token_id}`] = {
+          ...staticMetadata,
+          holder: row.holder,
+        };
+      } else {
+        let name;
+        let image;
+        let description;
+        let external_url;
+
+        const attributes: {
+          "display_type"?: string;
+          "trait_type": string;
+          "value": string | number;
+        }[] = [];
+
+        if (row.parts) {
+          const parts = JSON.parse(row.parts);
+          for (const partName of Object.keys(parts)) {
+            const value = parts[partName];
+            if (typeof value === "number") {
+              attributes.push({
+                display_type: "number",
+                trait_type: partName,
+                value,
+              });
+            } else {
+              attributes.push({ trait_type: partName, value });
+            }
+          }
+        }
+
+        if (collection === "sigor-sparrows") {
+          name = "Sigor Sparrow #" + row.token_id;
+          image =
+            `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/sigor-sparrows/${row.image}`;
+          if (row.style) {
+            attributes.unshift({
+              trait_type: "Style",
+              value: row.style,
+            });
+          }
+          if (row.dialogue) {
+            attributes.push({
+              trait_type: "Dialogue",
+              value: row.dialogue,
+            });
+          }
+        } else if (collection === "sigor-housedeeds") {
+          name = "Sigor House Deed #" + row.token_id;
+        } else if (collection === "kingcrowndao-kongz") {
+          name = "KCD Kong #" + row.token_id;
+          image =
+            `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/kingcrowndao-kongz/${row.image}`;
+        } else if (collection === "babyping") {
+          name = "BabyPing #" + row.token_id;
+          image =
+            `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/babyping/${row.image}`;
+        }
+
+        metadatas[`${collection}:${row.token_id}`] = {
+          name,
+          description,
+          image,
+          external_url,
+          attributes,
+          holder: row.holder,
+        };
+      }
+    }
+
+    return metadatas;
+  }
+
   public async fetchBulkMetadata(
     db: D1Database,
     tokens: { collection: string; tokenId: number }[],
   ) {
-    const metadataMap = new Map<string, any>();
-
     const pairs: { address: string; tokenId: number }[] = [];
     for (const { collection, tokenId } of tokens) {
       const address = collectionAddresses[collection];
@@ -70,89 +155,21 @@ class MetadataManager {
       const stmt = db.prepare(sql).bind(...bindValues);
       const { results } = await stmt.all<NFTData>();
 
-      for (const row of results) {
-        const collection = Object.keys(collectionAddresses).find((key) =>
-          collectionAddresses[key] === row.nft_address
-        );
-        if (!collection) {
-          throw new Error(`Unknown collection address: ${row.nft_address}`);
-        }
-
-        const staticMetadata = this.getStaticMetadata(collection, row.token_id);
-        if (staticMetadata) {
-          metadataMap.set(`${collection}:${row.token_id}`, {
-            ...staticMetadata,
-            holder: row.holder,
-          });
-        } else {
-          let name;
-          let image;
-          let description;
-          let external_url;
-
-          const attributes: {
-            "display_type"?: string;
-            "trait_type": string;
-            "value": string | number;
-          }[] = [];
-
-          if (row.parts) {
-            const parts = JSON.parse(row.parts);
-            for (const partName of Object.keys(parts)) {
-              const value = parts[partName];
-              if (typeof value === "number") {
-                attributes.push({
-                  display_type: "number",
-                  trait_type: partName,
-                  value,
-                });
-              } else {
-                attributes.push({ trait_type: partName, value });
-              }
-            }
-          }
-
-          if (collection === "sigor-sparrows") {
-            name = "Sigor Sparrow #" + row.token_id;
-            image =
-              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/sigor-sparrows/${row.image}`;
-            if (row.style) {
-              attributes.unshift({
-                trait_type: "Style",
-                value: row.style,
-              });
-            }
-            if (row.dialogue) {
-              attributes.push({
-                trait_type: "Dialogue",
-                value: row.dialogue,
-              });
-            }
-          } else if (collection === "sigor-housedeeds") {
-            name = "Sigor House Deed #" + row.token_id;
-          } else if (collection === "kingcrowndao-kongz") {
-            name = "KCD Kong #" + row.token_id;
-            image =
-              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/kingcrowndao-kongz/${row.image}`;
-          } else if (collection === "babyping") {
-            name = "BabyPing #" + row.token_id;
-            image =
-              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/babyping/${row.image}`;
-          }
-
-          metadataMap.set(`${collection}:${row.token_id}`, {
-            name,
-            description,
-            image,
-            external_url,
-            attributes,
-            holder: row.holder,
-          });
-        }
-      }
+      return this.rowsToMetadatas(results);
     }
+    return {};
+  }
 
-    return metadataMap;
+  public async fetchHoldingNFTMetadatas(db: D1Database, address: string) {
+    const sql =
+      `SELECT nft_address, token_id, holder, style, parts, dialogue, image \n` +
+      `FROM nfts \n` +
+      `WHERE holder = ?`;
+
+    const stmt = db.prepare(sql).bind(address);
+    const { results } = await stmt.all<NFTData>();
+
+    return this.rowsToMetadatas(results);
   }
 }
 
