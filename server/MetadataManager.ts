@@ -18,10 +18,10 @@ interface NFTData {
   nft_address: string;
   token_id: number;
   holder: string;
-  style: string;
-  parts: string;
-  dialogue: string;
-  image: string;
+  style?: string;
+  parts?: string;
+  dialogue?: string;
+  image?: string;
 }
 
 class MetadataManager {
@@ -83,7 +83,7 @@ class MetadataManager {
         metadataMap.set(`${collection}:${row.token_id}`, {
           holder: row.holder,
           style: row.style,
-          parts: JSON.parse(row.parts),
+          parts: row.parts ? JSON.parse(row.parts) : undefined,
           dialogue: row.dialogue,
           image: row.image,
         });
