@@ -82,10 +82,10 @@ class MetadataManager {
 
         metadataMap.set(`${collection}:${row.token_id}`, {
           holder: row.holder,
-          style: row.style,
+          style: row.style ?? undefined,
           parts: row.parts ? JSON.parse(row.parts) : undefined,
-          dialogue: row.dialogue,
-          image: row.image,
+          dialogue: row.dialogue ?? undefined,
+          image: row.image ?? undefined,
         });
       }
     }
