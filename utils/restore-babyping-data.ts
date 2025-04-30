@@ -83,6 +83,8 @@ for (let id = 0; id <= 2999; id++) {
   }
   const metadata = { id, parts };
 
+  console.log(`${metadata.id} 시작`);
+
   const imageParts: any[] = [];
   for (const [traitId, trait] of (partsInfo as any).entries()) {
     if (

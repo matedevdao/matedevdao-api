@@ -8,7 +8,7 @@ const collectionAddresses: Record<string, string> = {
   "dogesoundclub-e-mates": "0x2B303fd0082E4B51e5A6C602F45545204bbbB4DC",
   "dogesoundclub-biased-mates": "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
   "sigor-sparrows": "0x7340a44AbD05280591377345d21792Cdc916A388",
-  "sigor-houseDeeds": "0x455Ee7dD1fc5722A7882aD6B7B8c075655B8005B",
+  "sigor-housedeeds": "0x455Ee7dD1fc5722A7882aD6B7B8c075655B8005B",
   "kingcrowndao-kongz": "0xF967431fb8F5B4767567854dE5448D2EdC21a482",
   "kingcrowndao-pixel-kongz": "0x81b5C41Bac33ea696D9684D9aFdB6cd9f6Ee5CFF",
   "babyping": "0x595b299Db9d83279d20aC37A85D36489987d7660",
@@ -79,14 +79,64 @@ class MetadataManager {
         }
 
         const staticMetadata = this.getStaticMetadata(collection, row.token_id);
+        if (staticMetadata) {
+          metadataMap.set(`${collection}:${row.token_id}`, {
+            ...staticMetadata,
+            holder: row.holder,
+          });
+        } else {
+          let name;
+          let image;
+          let description;
+          let external_url;
 
-        metadataMap.set(`${collection}:${row.token_id}`, {
-          holder: row.holder,
-          style: row.style ?? undefined,
-          parts: row.parts ? JSON.parse(row.parts) : undefined,
-          dialogue: row.dialogue ?? undefined,
-          image: row.image ?? undefined,
-        });
+          const attributes: {
+            "display_type"?: string;
+            "trait_type": string;
+            "value": string | number;
+          }[] = [];
+
+          if (row.parts) {
+            const parts = JSON.parse(row.parts);
+            for (const partName of Object.keys(parts)) {
+              const value = parts[partName];
+              if (typeof value === "number") {
+                attributes.push({
+                  display_type: "number",
+                  trait_type: partName,
+                  value,
+                });
+              } else {
+                attributes.push({ trait_type: partName, value });
+              }
+            }
+          }
+
+          if (collection === "sigor-sparrows") {
+            name = "Sigor Sparrow #" + row.token_id;
+            image =
+              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/sigor-sparrows/${row.image}.png`;
+          } else if (collection === "sigor-housedeeds") {
+            name = "Sigor House Deed #" + row.token_id;
+          } else if (collection === "kingcrowndao-kongz") {
+            name = "KCD Kong #" + row.token_id;
+            image =
+              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/kingcrowndao-kongz/${row.image}.png`;
+          } else if (collection === "babyping") {
+            name = "BabyPing #" + row.token_id;
+            image =
+              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/babyping/${row.image}.png`;
+          }
+
+          metadataMap.set(`${collection}:${row.token_id}`, {
+            name,
+            description,
+            image,
+            external_url,
+            attributes,
+            holder: row.holder,
+          });
+        }
       }
     }
 
