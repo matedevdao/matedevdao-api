@@ -14,12 +14,6 @@ const collectionAddresses: Record<string, string> = {
   "babyping": "0x595b299Db9d83279d20aC37A85D36489987d7660",
 };
 
-const dynamicNFTCollections = [
-  "sigor-sparrows",
-  "kingcrowndao-kongz",
-  "babyping",
-];
-
 interface NFTData {
   nft_address: string;
   token_id: number;
@@ -80,6 +74,12 @@ class MetadataManager {
         const collection = Object.keys(collectionAddresses).find((key) =>
           collectionAddresses[key] === row.nft_address
         );
+        if (!collection) {
+          throw new Error(`Unknown collection address: ${row.nft_address}`);
+        }
+
+        const staticMetadata = this.getStaticMetadata(collection, row.token_id);
+
         metadataMap.set(`${collection}:${row.token_id}`, {
           holder: row.holder,
           style: row.style,

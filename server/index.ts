@@ -54,10 +54,11 @@ export default {
 				return new Response("Invalid token ID", { status: 400 });
 			}
 
-			const metadata = await MetadataManager.fetchBulkMetadata(
+			const metadataMap = await MetadataManager.fetchBulkMetadata(
 				env.DB,
 				[{ collection, tokenId }],
 			);
+			const metadata = metadataMap.get(`${collection}:${tokenId}`);
 			if (!metadata) return new Response("Metadata not found", { status: 404 });
 
 			return new Response(JSON.stringify(metadata), {
