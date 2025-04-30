@@ -43,7 +43,7 @@ class MetadataManager {
       }
       if (nftAddress) {
         const row = await db.prepare(
-          "SELECT holder, style, parts, dialogue, image FROM nfts WHERE collection = ? AND token_id = ?",
+          "SELECT holder, style, parts, dialogue, image FROM nfts WHERE nft_address = ? AND token_id = ?",
         ).bind(
           nftAddress,
           tokenId,
