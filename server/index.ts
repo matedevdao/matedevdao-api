@@ -81,7 +81,7 @@ export default {
 				const [collection, tokenId] = key.split(":");
 				return {
 					collection,
-					tokenId: parseInt(tokenId),
+					id: parseInt(tokenId),
 					...metadata,
 				};
 			});
@@ -89,6 +89,10 @@ export default {
 			return new Response(JSON.stringify(metadatas), {
 				headers: { "Content-Type": "application/json" },
 			});
+		}
+
+		if (url.pathname === "/save-metadata") {
+			//TODO:
 		}
 
 		if (url.pathname === "/fetch-all-nft-holders") {
