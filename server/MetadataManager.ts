@@ -115,17 +115,17 @@ class MetadataManager {
           if (collection === "sigor-sparrows") {
             name = "Sigor Sparrow #" + row.token_id;
             image =
-              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/sigor-sparrows/${row.image}.png`;
+              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/sigor-sparrows/${row.image}`;
           } else if (collection === "sigor-housedeeds") {
             name = "Sigor House Deed #" + row.token_id;
           } else if (collection === "kingcrowndao-kongz") {
             name = "KCD Kong #" + row.token_id;
             image =
-              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/kingcrowndao-kongz/${row.image}.png`;
+              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/kingcrowndao-kongz/${row.image}`;
           } else if (collection === "babyping") {
             name = "BabyPing #" + row.token_id;
             image =
-              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/babyping/${row.image}.png`;
+              `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/babyping/${row.image}`;
           }
 
           metadataMap.set(`${collection}:${row.token_id}`, {
