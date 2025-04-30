@@ -116,6 +116,18 @@ class MetadataManager {
             name = "Sigor Sparrow #" + row.token_id;
             image =
               `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/sigor-sparrows/${row.image}`;
+            if (row.style) {
+              attributes.unshift({
+                trait_type: "Style",
+                value: row.style,
+              });
+            }
+            if (row.dialogue) {
+              attributes.push({
+                trait_type: "Dialogue",
+                value: row.dialogue,
+              });
+            }
           } else if (collection === "sigor-housedeeds") {
             name = "Sigor House Deed #" + row.token_id;
           } else if (collection === "kingcrowndao-kongz") {
