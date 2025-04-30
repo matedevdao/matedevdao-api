@@ -67,7 +67,7 @@ export default {
 		}
 
 		if (url.pathname.endsWith("/nfts")) {
-			const walletAddress = url.pathname.split("/")[2];
+			const walletAddress = url.pathname.split("/")[1];
 			if (!walletAddress) {
 				return new Response("Invalid request", { status: 400 });
 			}
