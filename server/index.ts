@@ -1,10 +1,7 @@
 import { ImageCombiner } from "@commonmodule/image-combiner-cf";
 import font from "./fonts/neodgm.woff2";
 import HolderListFetcher from "./HolderListFetcher.js";
-import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
-import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
-import DogeSoundClubMatesMetadatas from "./static-metadatas/dogesoundclub-mates-metadatas.json";
-import KingCrownDAOPixelKongzMetadatas from "./static-metadatas/kingcrowndao-pixel-kongz-metadatas.json";
+import MetadataManager from "./MetadataManager.js";
 import TransferEventSyncer from "./TransferEventSyncer.js";
 
 export default {
@@ -51,25 +48,17 @@ export default {
 			if (!collection || !tokenId) {
 				return new Response("Invalid request", { status: 400 });
 			}
-			let metadatas: any;
-			if (collection === "dogesoundclub-biased-mates") {
-				metadatas = DogeSoundClubBiasedMatesMetadatas;
-			} else if (collection === "dogesoundclub-e-mates") {
-				metadatas = DogeSoundClubEMatesMetadatas;
-			} else if (collection === "dogesoundclub-mates") {
-				metadatas = DogeSoundClubMatesMetadatas;
-			} else if (collection === "kingcrowndao-pixel-kongz") {
-				metadatas = KingCrownDAOPixelKongzMetadatas;
-			} else {
-				return new Response("Collection not found", { status: 404 });
-			}
 
 			const tokenIdNum = parseInt(tokenId);
 			if (isNaN(tokenIdNum) || tokenIdNum < 0) {
 				return new Response("Invalid token ID", { status: 400 });
 			}
 
-			const metadata = metadatas.find((item: any) => item.id === tokenIdNum);
+			const metadata = await MetadataManager.getMetadata(
+				env.DB,
+				collection,
+				tokenIdNum,
+			);
 			if (!metadata) return new Response("Metadata not found", { status: 404 });
 
 			return new Response(JSON.stringify(metadata), {

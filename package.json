@@ -17,7 +17,7 @@
 		"wrangler": "^4.9.1"
 	},
 	"dependencies": {
-		"@commonmodule/image-combiner-cf": "^0.0.3",
+		"@commonmodule/image-combiner-cf": "^0.0.4",
 		"viem": "^2.26.2"
 	}
 }
