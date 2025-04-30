@@ -44,20 +44,19 @@ export default {
 
 		if (url.pathname.startsWith("/metadata/")) {
 			const collection = url.pathname.split("/")[2];
-			const tokenId = url.pathname.split("/")[3];
-			if (!collection || !tokenId) {
+			const tokenIdStr = url.pathname.split("/")[3];
+			if (!collection || !tokenIdStr) {
 				return new Response("Invalid request", { status: 400 });
 			}
 
-			const tokenIdNum = parseInt(tokenId);
-			if (isNaN(tokenIdNum) || tokenIdNum < 0) {
+			const tokenId = parseInt(tokenIdStr);
+			if (isNaN(tokenId) || tokenId < 0) {
 				return new Response("Invalid token ID", { status: 400 });
 			}
 
-			const metadata = await MetadataManager.getMetadata(
+			const metadata = await MetadataManager.fetchBulkMetadata(
 				env.DB,
-				collection,
-				tokenIdNum,
+				[{ collection, tokenId }],
 			);
 			if (!metadata) return new Response("Metadata not found", { status: 404 });
 

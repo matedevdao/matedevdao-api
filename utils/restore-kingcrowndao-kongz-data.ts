@@ -83,7 +83,7 @@ for (let id = 0; id <= 2999; id++) {
   }
   const metadata = { id, parts };
 
-  if (metadata.id < 2018) continue;
+  if (metadata.id < 2542) continue;
 
   console.log(`${metadata.id} 시작`);
 
