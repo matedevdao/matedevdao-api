@@ -66,6 +66,24 @@ export default {
 			});
 		}
 
+		if (url.pathname === "/metadata/bulk") {
+			const pairs = await request.json<
+				{ collection: string; tokenId: number }[]
+			>();
+			if (!pairs || !Array.isArray(pairs)) {
+				return new Response("Invalid request", { status: 400 });
+			}
+
+			const metadataMap = await MetadataManager.fetchBulkMetadata(
+				env.DB,
+				pairs,
+			);
+
+			return new Response(JSON.stringify(Object.fromEntries(metadataMap)), {
+				headers: { "Content-Type": "application/json" },
+			});
+		}
+
 		if (url.pathname === "/fetch-all-nft-holders") {
 			try {
 				const { address, fromTokenId } = await request.json<
