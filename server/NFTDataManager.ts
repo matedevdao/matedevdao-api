@@ -57,6 +57,8 @@ class NFTDataManager {
         data[`${collection}:${row.token_id}`] = {
           ...staticMetadata,
           ...OpenSeaMetadataConverter.convertToNFTData(staticMetadata),
+          collection,
+          id: row.token_id,
           holder: row.holder,
         };
       } else {
@@ -94,6 +96,8 @@ class NFTDataManager {
         }
 
         data[`${collection}:${row.token_id}`] = {
+          collection,
+          id: row.token_id,
           name: name ? name : `#${row.token_id}`,
           description: description ? description : `#${row.token_id}`,
           image: image ? image : "",

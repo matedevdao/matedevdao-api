@@ -1,4 +1,6 @@
 export default interface NFTData {
+  collection: string;
+  id: number;
   name: string;
   description: string;
   image: string;

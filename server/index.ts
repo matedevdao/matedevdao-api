@@ -93,14 +93,7 @@ export default {
 				walletAddress,
 			);
 
-			const metadatas = Object.entries(metadataMap).map(([key, metadata]) => {
-				const [collection, tokenId] = key.split(":");
-				return {
-					collection,
-					id: parseInt(tokenId),
-					...metadata,
-				};
-			});
+			const metadatas = Object.values(metadataMap);
 
 			return new Response(JSON.stringify(metadatas), {
 				headers: {
