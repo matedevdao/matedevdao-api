@@ -89,6 +89,8 @@ class NFTDataManager {
           external_url = "https://sigor.com/";
         } else if (collection === "sigor-housedeeds") {
           name = "Sigor House Deed #" + row.token_id;
+          image =
+            "https://matedevdao.github.io/static-kaia-nft-assets/sigor-housedeed-legacy.avif";
           external_url = "https://sigor.com/";
         } else if (collection === "kingcrowndao-kongz") {
           name = "KCD Kong #" + row.token_id;
