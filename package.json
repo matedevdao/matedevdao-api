@@ -18,6 +18,7 @@
 	},
 	"dependencies": {
 		"@commonmodule/image-combiner-cf": "^0.0.4",
+		"nft-data": "^0.0.4",
 		"viem": "^2.26.2"
 	}
 }

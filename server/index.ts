@@ -1,7 +1,8 @@
 import { ImageCombiner } from "@commonmodule/image-combiner-cf";
+import { OpenSeaMetadataConverter } from "nft-data";
 import font from "./fonts/neodgm.woff2";
 import HolderListFetcher from "./HolderListFetcher.js";
-import MetadataManager from "./MetadataManager.js";
+import NFTDataManager from "./NFTDataManager.js";
 import TransferEventSyncer from "./TransferEventSyncer.js";
 
 export default {
@@ -54,16 +55,17 @@ export default {
 				return new Response("Invalid token ID", { status: 400 });
 			}
 
-			const metadataMap = await MetadataManager.fetchBulkMetadata(
+			const data = await NFTDataManager.fetchBulkData(
 				env.DB,
 				[{ collection, tokenId }],
 			);
-			const metadata = metadataMap[`${collection}:${tokenId}`];
-			if (!metadata) return new Response("Metadata not found", { status: 404 });
+			const d = data[`${collection}:${tokenId}`];
+			if (!d) return new Response("Data not found", { status: 404 });
 
-			return new Response(JSON.stringify(metadata), {
-				headers: { "Content-Type": "application/json" },
-			});
+			return new Response(
+				JSON.stringify(OpenSeaMetadataConverter.convertToOpenSeaMetadata(d)),
+				{ headers: { "Content-Type": "application/json" } },
+			);
 		}
 
 		if (url.pathname.endsWith("/nfts")) {
@@ -72,7 +74,7 @@ export default {
 				return new Response("Invalid request", { status: 400 });
 			}
 
-			const metadataMap = await MetadataManager.fetchHoldingNFTMetadatas(
+			const metadataMap = await NFTDataManager.fetchHoldingNFTData(
 				env.DB,
 				walletAddress,
 			);

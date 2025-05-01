@@ -1,3 +1,4 @@
+import { OpenSeaMetadataConverter } from "nft-data";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
 import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
 import DogeSoundClubMatesMetadatas from "./static-metadatas/dogesoundclub-mates-metadatas.json";
@@ -14,7 +15,7 @@ const collectionAddresses: Record<string, string> = {
   "babyping": "0x595b299Db9d83279d20aC37A85D36489987d7660",
 };
 
-interface NFTData {
+interface NFTRow {
   nft_address: string;
   token_id: number;
   holder: string;
@@ -24,11 +25,19 @@ interface NFTData {
   image?: string;
 }
 
-class MetadataManager {
-  public getStaticMetadata(
-    collection: string,
-    tokenId: number,
-  ) {
+interface NFTData {
+  name: string;
+  description: string;
+  image: string;
+  external_url: string;
+  animation_url?: string;
+  traits?: { [traitName: string]: string | number };
+  parts: { [partName: string]: string | number };
+  holder: string;
+}
+
+class NFTDataManager {
+  private getStaticMetadata(collection: string, tokenId: number) {
     let metadatas: any;
     if (collection === "dogesoundclub-biased-mates") {
       metadatas = DogeSoundClubBiasedMatesMetadatas;
@@ -42,8 +51,8 @@ class MetadataManager {
     return metadatas?.find((item: any) => item.id === tokenId);
   }
 
-  private rowsToMetadatas(rows: NFTData[]) {
-    const metadatas: { [key: string]: any } = {};
+  private rowsToData(rows: NFTRow[]) {
+    const data: { [key: string]: NFTData } = {};
 
     for (const row of rows) {
       const collection = Object.keys(collectionAddresses).find((key) =>
@@ -55,8 +64,9 @@ class MetadataManager {
 
       const staticMetadata = this.getStaticMetadata(collection, row.token_id);
       if (staticMetadata) {
-        metadatas[`${collection}:${row.token_id}`] = {
+        data[`${collection}:${row.token_id}`] = {
           ...staticMetadata,
+          ...OpenSeaMetadataConverter.convertToNFTData(staticMetadata),
           holder: row.holder,
         };
       } else {
@@ -64,72 +74,49 @@ class MetadataManager {
         let image;
         let description;
         let external_url;
+        let traits: { [traitName: string]: string } | undefined;
 
-        const attributes: {
-          "display_type"?: string;
-          "trait_type": string;
-          "value": string | number;
-        }[] = [];
-
-        if (row.parts) {
-          const parts = JSON.parse(row.parts);
-          for (const partName of Object.keys(parts)) {
-            const value = parts[partName];
-            if (typeof value === "number") {
-              attributes.push({
-                display_type: "number",
-                trait_type: partName,
-                value,
-              });
-            } else {
-              attributes.push({ trait_type: partName, value });
-            }
-          }
-        }
+        let parts: { [partName: string]: string } = {};
+        if (row.parts) parts = JSON.parse(row.parts);
 
         if (collection === "sigor-sparrows") {
           name = "Sigor Sparrow #" + row.token_id;
           image =
             `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/sigor-sparrows/${row.image}`;
-          if (row.style) {
-            attributes.unshift({
-              trait_type: "Style",
-              value: row.style,
-            });
-          }
-          if (row.dialogue) {
-            attributes.push({
-              trait_type: "Dialogue",
-              value: row.dialogue,
-            });
-          }
+          traits = {};
+          if (row.style) traits["Style"] = row.style;
+          if (row.dialogue) traits["Dialogue"] = row.dialogue;
+          external_url = "https://sigor.com/";
         } else if (collection === "sigor-housedeeds") {
           name = "Sigor House Deed #" + row.token_id;
+          external_url = "https://sigor.com/";
         } else if (collection === "kingcrowndao-kongz") {
           name = "KCD Kong #" + row.token_id;
           image =
             `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/kingcrowndao-kongz/${row.image}`;
+          external_url = "https://kingcrowndao.github.io/";
         } else if (collection === "babyping") {
           name = "BabyPing #" + row.token_id;
           image =
             `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/babyping/${row.image}`;
         }
 
-        metadatas[`${collection}:${row.token_id}`] = {
-          name,
-          description,
-          image,
-          external_url,
-          attributes,
+        data[`${collection}:${row.token_id}`] = {
+          name: name ? name : `#${row.token_id}`,
+          description: description ? description : `#${row.token_id}`,
+          image: image ? image : "",
+          external_url: external_url ? external_url : "",
+          traits,
+          parts,
           holder: row.holder,
         };
       }
     }
 
-    return metadatas;
+    return data;
   }
 
-  public async fetchBulkMetadata(
+  public async fetchBulkData(
     db: D1Database,
     tokens: { collection: string; tokenId: number }[],
   ) {
@@ -153,24 +140,24 @@ class MetadataManager {
       }
 
       const stmt = db.prepare(sql).bind(...bindValues);
-      const { results } = await stmt.all<NFTData>();
+      const { results } = await stmt.all<NFTRow>();
 
-      return this.rowsToMetadatas(results);
+      return this.rowsToData(results);
     }
     return {};
   }
 
-  public async fetchHoldingNFTMetadatas(db: D1Database, address: string) {
+  public async fetchHoldingNFTData(db: D1Database, address: string) {
     const sql =
       `SELECT nft_address, token_id, holder, style, parts, dialogue, image \n` +
       `FROM nfts \n` +
       `WHERE holder = ?`;
 
     const stmt = db.prepare(sql).bind(address);
-    const { results } = await stmt.all<NFTData>();
+    const { results } = await stmt.all<NFTRow>();
 
-    return this.rowsToMetadatas(results);
+    return this.rowsToData(results);
   }
 }
 
-export default new MetadataManager();
+export default new NFTDataManager();
