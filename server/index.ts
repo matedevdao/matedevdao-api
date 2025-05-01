@@ -5,8 +5,22 @@ import HolderListFetcher from "./HolderListFetcher.js";
 import NFTDataManager from "./NFTDataManager.js";
 import TransferEventSyncer from "./TransferEventSyncer.js";
 
+const corsHeaders = {
+	"Access-Control-Allow-Origin": "*",
+	"Access-Control-Allow-Headers":
+		"authorization, x-client-info, apikey, content-type",
+	"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+};
+
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
+		if (request.method === "OPTIONS") {
+			return new Response(null, {
+				status: 204,
+				headers: corsHeaders,
+			});
+		}
+
 		const url = new URL(request.url);
 
 		if (url.pathname === "/test") {
@@ -89,7 +103,10 @@ export default {
 			});
 
 			return new Response(JSON.stringify(metadatas), {
-				headers: { "Content-Type": "application/json" },
+				headers: {
+					"Content-Type": "application/json",
+					...corsHeaders,
+				},
 			});
 		}
 

@@ -1,4 +1,5 @@
 import { OpenSeaMetadataConverter } from "nft-data";
+import NFTData from "./NFTData.js";
 import DogeSoundClubBiasedMatesMetadatas from "./static-metadatas/dogesoundclub-biased-mates-metadatas.json";
 import DogeSoundClubEMatesMetadatas from "./static-metadatas/dogesoundclub-e-mates-metadatas.json";
 import DogeSoundClubMatesMetadatas from "./static-metadatas/dogesoundclub-mates-metadatas.json";
@@ -23,17 +24,6 @@ interface NFTRow {
   parts?: string;
   dialogue?: string;
   image?: string;
-}
-
-interface NFTData {
-  name: string;
-  description: string;
-  image: string;
-  external_url: string;
-  animation_url?: string;
-  traits?: { [traitName: string]: string | number };
-  parts: { [partName: string]: string | number };
-  holder: string;
 }
 
 class NFTDataManager {
