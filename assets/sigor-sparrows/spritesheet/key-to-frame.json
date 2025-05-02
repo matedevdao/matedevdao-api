@@ -1,5 +1,5 @@
 {
-  "normal": {
+  "Illustration": {
     "1.BG/IJM beige.png": "part-0",
     "1.BG/Light green.png": "part-1",
     "1.BG/Light steel blue.png": "part-2",
@@ -178,7 +178,7 @@
     "9.DARK BROWN WINGS/Hug item.png": "part-175",
     "9.DARK BROWN WINGS/Scold.png": "part-176"
   },
-  "pixel": {
+  "Pixel Art": {
     "1.BG/IJM beige.png": "part-177",
     "1.BG/Light green.png": "part-178",
     "1.BG/Light steel blue.png": "part-179",
