@@ -102,7 +102,7 @@ export default {
 			if (!d) return new Response("Data not found", { status: 404 });
 
 			return new Response(JSON.stringify(d), {
-				headers: { "Content-Type": "application/json" },
+				headers: { "Content-Type": "application/json", ...corsHeaders },
 			});
 		}
 
@@ -120,10 +120,7 @@ export default {
 			const metadatas = Object.values(metadataMap);
 
 			return new Response(JSON.stringify(metadatas), {
-				headers: {
-					"Content-Type": "application/json",
-					...corsHeaders,
-				},
+				headers: { "Content-Type": "application/json", ...corsHeaders },
 			});
 		}
 
