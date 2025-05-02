@@ -82,6 +82,30 @@ export default {
 			);
 		}
 
+		if (url.pathname.startsWith("/nft/")) {
+			const collection = url.pathname.split("/")[2];
+			const tokenIdStr = url.pathname.split("/")[3];
+			if (!collection || !tokenIdStr) {
+				return new Response("Invalid request", { status: 400 });
+			}
+
+			const tokenId = parseInt(tokenIdStr);
+			if (isNaN(tokenId) || tokenId < 0) {
+				return new Response("Invalid token ID", { status: 400 });
+			}
+
+			const data = await NFTDataManager.fetchBulkData(
+				env.DB,
+				[{ collection, tokenId }],
+			);
+			const d = data[`${collection}:${tokenId}`];
+			if (!d) return new Response("Data not found", { status: 404 });
+
+			return new Response(JSON.stringify(d), {
+				headers: { "Content-Type": "application/json" },
+			});
+		}
+
 		if (url.pathname.endsWith("/nfts")) {
 			const walletAddress = url.pathname.split("/")[1];
 			if (!walletAddress) {
