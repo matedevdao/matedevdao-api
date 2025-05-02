@@ -125,6 +125,13 @@ export default {
 		}
 
 		if (url.pathname === "/save-metadata") {
+			const { collection, tokenId, traits, parts } = await request
+				.json<{
+					collection: string;
+					tokenId: number;
+					traits?: { [traitName: string]: string | number };
+					parts: { [partName: string]: string | number };
+				}>();
 			//TODO:
 		}
 
