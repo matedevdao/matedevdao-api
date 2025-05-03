@@ -4,6 +4,43 @@ import font from "./fonts/neodgm.woff2";
 import HolderListFetcher from "./HolderListFetcher.js";
 import NFTDataManager from "./NFTDataManager.js";
 import TransferEventSyncer from "./TransferEventSyncer.js";
+import { verifyMessage } from "viem";
+import { createSiweMessage } from "viem/siwe";
+
+function base64url(input: ArrayBuffer | Uint8Array): string {
+	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
+	return btoa(String.fromCharCode(...bytes))
+		.replace(/\+/g, "-")
+		.replace(/\//g, "_")
+		.replace(/=+$/, "");
+}
+
+async function signJwt(
+	payload: Record<string, unknown>,
+	secret: string,
+): Promise<string> {
+	const enc = new TextEncoder();
+	const header = { alg: "HS256", typ: "JWT" };
+	const headerB64 = base64url(enc.encode(JSON.stringify(header)));
+	const payloadB64 = base64url(enc.encode(JSON.stringify(payload)));
+
+	const key = await crypto.subtle.importKey(
+		"raw",
+		enc.encode(secret),
+		{ name: "HMAC", hash: "SHA-256" },
+		false,
+		["sign"],
+	);
+
+	const sigBuf = await crypto.subtle.sign(
+		"HMAC",
+		key,
+		enc.encode(`${headerB64}.${payloadB64}`),
+	);
+
+	const sigB64 = base64url(sigBuf);
+	return `${headerB64}.${payloadB64}.${sigB64}`;
+}
 
 const corsHeaders = {
 	"Access-Control-Allow-Origin": "*",
@@ -194,7 +231,86 @@ export default {
 		}
 
 		if (url.pathname === "/wallet-login") {
-			//TODO: Implement this
+			const { walletAddress, signedMessage } = await request.json<
+				{ walletAddress?: `0x${string}`; signedMessage?: `0x${string}` }
+			>();
+			if (!walletAddress || !signedMessage) {
+				return new Response("Missing parameters", {
+					status: 400,
+					headers: corsHeaders,
+				});
+			}
+
+			const nonceRow = await env.DB.prepare(
+				`SELECT nonce, domain, uri, issued_at
+				 FROM   wallet_login_nonces
+				 WHERE  wallet_address = ?`,
+			).bind(walletAddress).first<
+				{ nonce: string; domain: string; uri: string; issued_at: number }
+			>();
+
+			if (!nonceRow) {
+				return new Response("Invalid wallet address", {
+					status: 400,
+					headers: corsHeaders,
+				});
+			}
+
+			const siweMessage = createSiweMessage({
+				domain: nonceRow.domain,
+				address: walletAddress,
+				statement: "Login with Crypto Wallet",
+				uri: nonceRow.uri,
+				version: "1",
+				chainId: 1,
+				nonce: nonceRow.nonce,
+				issuedAt: new Date(nonceRow.issued_at * 1000),
+			});
+
+			const isValidSig = await verifyMessage({
+				address: walletAddress,
+				message: siweMessage,
+				signature: signedMessage,
+			});
+
+			if (!isValidSig) {
+				return new Response("Invalid signature", {
+					status: 400,
+					headers: corsHeaders,
+				});
+			}
+
+			await env.DB.prepare(
+				`DELETE FROM wallet_login_nonces WHERE wallet_address = ?`,
+			).bind(walletAddress).run();
+
+			const jwtToken = await signJwt(
+				{ wallet_address: walletAddress },
+				env.JWT_SECRET,
+			);
+
+			const hdr = request.headers;
+			await env.DB.prepare(
+				`INSERT INTO user_sessions
+				 (wallet_address, token, ip, real_ip, forwarded_for,
+					user_agent, origin, referer, accept_language)
+				 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+			).bind(
+				walletAddress,
+				jwtToken,
+				hdr.get("cf-connecting-ip"),
+				hdr.get("x-real-ip"),
+				hdr.get("x-forwarded-for"),
+				hdr.get("user-agent"),
+				hdr.get("origin"),
+				hdr.get("referer"),
+				hdr.get("accept-language"),
+			).run();
+
+			return Response.json(
+				{ token: jwtToken },
+				{ headers: { "Content-Type": "application/json", ...corsHeaders } },
+			);
 		}
 
 		return new Response("Not found", { status: 404 });
