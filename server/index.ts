@@ -225,7 +225,7 @@ export default {
 			}
 
 			return Response.json(
-				{ nonce: row.nonce, issuedAt: row.issued_at },
+				{ nonce: row.nonce, issuedAt: row.issued_at * 1000 },
 				{ headers: { "Content-Type": "application/json", ...corsHeaders } },
 			);
 		}
