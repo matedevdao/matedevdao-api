@@ -127,10 +127,10 @@ export default {
 		if (url.pathname === "/save-metadata") {
 			const { collection, tokenId, traits, parts } = await request
 				.json<{
-					collection: string;
-					tokenId: number;
+					collection?: string;
+					tokenId?: number;
 					traits?: { [traitName: string]: string | number };
-					parts: { [partName: string]: string | number };
+					parts?: { [partName: string]: string | number };
 				}>();
 			//TODO:
 		}
@@ -155,6 +155,46 @@ export default {
 				console.error(error);
 				return new Response("Server error", { status: 500 });
 			}
+		}
+
+		if (url.pathname === "/generate-wallet-login-nonce") {
+			const { walletAddress, domain, uri } = await request.json<
+				{ walletAddress?: string; domain?: string; uri?: string }
+			>();
+			if (!walletAddress || !domain || !uri) {
+				return new Response("Missing required parameters", { status: 400 });
+			}
+
+			const stmt = env.DB.prepare(`
+				INSERT INTO wallet_login_nonces (wallet_address, domain, uri, nonce)
+				VALUES (?, ?, ?, hex(randomblob(16)))
+				ON CONFLICT(wallet_address) DO UPDATE
+					SET domain     = excluded.domain,
+							uri        = excluded.uri,
+							issued_at  = strftime('%s','now'),
+							nonce      = hex(randomblob(16))
+				RETURNING nonce, issued_at
+			`);
+
+			const row = await stmt
+				.bind(walletAddress, domain, uri)
+				.first<{ nonce: string; issued_at: number }>();
+
+			if (!row) {
+				return new Response("Failed to upsert nonce", {
+					status: 500,
+					headers: corsHeaders,
+				});
+			}
+
+			return Response.json(
+				{ nonce: row.nonce, issuedAt: row.issued_at },
+				{ headers: { "Content-Type": "application/json", ...corsHeaders } },
+			);
+		}
+
+		if (url.pathname === "/wallet-login") {
+			//TODO: Implement this
 		}
 
 		return new Response("Not found", { status: 404 });
