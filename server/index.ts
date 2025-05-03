@@ -287,7 +287,7 @@ export default {
 			const jwtToken = await signJwt(
 				{ wallet_address: walletAddress },
 				env.JWT_SECRET,
-			);
+			); 
 
 			const hdr = request.headers;
 			await env.DB.prepare(
