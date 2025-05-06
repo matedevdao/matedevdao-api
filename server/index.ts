@@ -162,6 +162,17 @@ export default {
 		}
 
 		if (url.pathname === "/save-metadata") {
+			const authorization = request.headers.get("Authorization");
+			if (!authorization) {
+				return new Response("Unauthorized", { status: 401 });
+			}
+			if (!authorization.startsWith("Bearer ")) {
+				return new Response("Invalid authorization header", {
+					status: 401,
+				});
+			}
+			const token = authorization.split(" ")[1];
+
 			const { collection, tokenId, traits, parts } = await request
 				.json<{
 					collection?: string;
@@ -169,7 +180,10 @@ export default {
 					traits?: { [traitName: string]: string | number };
 					parts?: { [partName: string]: string | number };
 				}>();
-			//TODO:
+
+			console.log(token, collection, tokenId, traits, parts);
+
+			return new Response("Not implemented", { status: 501 });
 		}
 
 		if (url.pathname === "/fetch-all-nft-holders") {
