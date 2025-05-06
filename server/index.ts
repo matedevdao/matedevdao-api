@@ -237,7 +237,9 @@ export default {
 			const decoded = await verify(token, env.JWT_SECRET) as
 				| { wallet_address?: `0x${string}` }
 				| undefined;
-			if (!decoded?.wallet_address) throw new Error("Invalid token");
+			if (!decoded?.wallet_address) {
+				return new Response("Invalid token", { status: 401 });
+			}
 
 			const { collection, id, traits, parts } = await request.json<{
 				collection?: string;
