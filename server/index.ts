@@ -113,10 +113,7 @@ const corsHeaders = {
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		if (request.method === "OPTIONS") {
-			return new Response(null, {
-				status: 204,
-				headers: corsHeaders,
-			});
+			return new Response(null, { status: 204, headers: corsHeaders });
 		}
 
 		const url = new URL(request.url);
