@@ -42,6 +42,67 @@ async function signJwt(
 	return `${headerB64}.${payloadB64}.${sigB64}`;
 }
 
+async function verify<
+	T extends Record<string, unknown> = Record<string, unknown>,
+>(token: string, secret: string): Promise<T | undefined> {
+	const enc = new TextEncoder();
+
+	const [headerB64, payloadB64, sigB64] = token.split(".");
+	if (!headerB64 || !payloadB64 || !sigB64) return;
+
+	const headerJson = new TextDecoder().decode(base64urlDecode(headerB64));
+	let header: { alg?: string; typ?: string };
+	try {
+		header = JSON.parse(headerJson);
+	} catch {
+		return;
+	}
+	if (header.alg !== "HS256" || header.typ !== "JWT") return;
+
+	const key = await crypto.subtle.importKey(
+		"raw",
+		enc.encode(secret),
+		{ name: "HMAC", hash: "SHA-256" },
+		false,
+		["sign"],
+	);
+
+	const signingInput = `${headerB64}.${payloadB64}`;
+	const expectedSigBuf = await crypto.subtle.sign(
+		"HMAC",
+		key,
+		enc.encode(signingInput),
+	);
+	const expectedSigB64 = base64url(expectedSigBuf);
+
+	if (!timingSafeEqual(sigB64, expectedSigB64)) return;
+
+	try {
+		const payloadJson = new TextDecoder().decode(base64urlDecode(payloadB64));
+		return JSON.parse(payloadJson) as T;
+	} catch {
+		return;
+	}
+}
+
+function base64urlDecode(b64url: string): Uint8Array {
+	const pad = (4 - (b64url.length % 4)) % 4;
+	const b64 = (b64url + "=".repeat(pad)).replace(/-/g, "+").replace(/_/g, "/");
+	const binary = atob(b64);
+	const bytes = new Uint8Array(binary.length);
+	for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+	return bytes;
+}
+
+function timingSafeEqual(aB64: string, bB64: string): boolean {
+	if (aB64.length !== bB64.length) return false;
+	let diff = 0;
+	for (let i = 0; i < aB64.length; i++) {
+		diff |= aB64.charCodeAt(i) ^ bB64.charCodeAt(i);
+	}
+	return diff === 0;
+}
+
 const corsHeaders = {
 	"Access-Control-Allow-Origin": "*",
 	"Access-Control-Allow-Headers":
@@ -173,15 +234,19 @@ export default {
 			}
 			const token = authorization.split(" ")[1];
 
-			const { collection, tokenId, traits, parts } = await request
-				.json<{
-					collection?: string;
-					tokenId?: number;
-					traits?: { [traitName: string]: string | number };
-					parts?: { [partName: string]: string | number };
-				}>();
+			const decoded = await verify(token, env.JWT_SECRET) as
+				| { wallet_address?: `0x${string}` }
+				| undefined;
+			if (!decoded?.wallet_address) throw new Error("Invalid token");
 
-			console.log(token, collection, tokenId, traits, parts);
+			const { collection, id, traits, parts } = await request.json<{
+				collection?: string;
+				id?: number;
+				traits?: { [traitName: string]: string | number };
+				parts?: { [partName: string]: string | number };
+			}>();
+
+			console.log(decoded.wallet_address, collection, id, traits, parts);
 
 			return new Response("Not implemented", { status: 501 });
 		}
