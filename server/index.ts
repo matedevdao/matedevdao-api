@@ -223,11 +223,15 @@ export default {
 		if (url.pathname === "/save-metadata") {
 			const authorization = request.headers.get("Authorization");
 			if (!authorization) {
-				return new Response("Unauthorized", { status: 401 });
+				return new Response("Unauthorized", {
+					status: 401,
+					headers: corsHeaders,
+				});
 			}
 			if (!authorization.startsWith("Bearer ")) {
 				return new Response("Invalid authorization header", {
 					status: 401,
+					headers: corsHeaders,
 				});
 			}
 			const token = authorization.split(" ")[1];
@@ -236,7 +240,10 @@ export default {
 				| { wallet_address?: `0x${string}` }
 				| undefined;
 			if (!decoded?.wallet_address) {
-				return new Response("Invalid token", { status: 401 });
+				return new Response("Invalid token", {
+					status: 401,
+					headers: corsHeaders,
+				});
 			}
 
 			const { collection, id, traits, parts } = await request.json<{
@@ -246,11 +253,14 @@ export default {
 				parts?: { [partName: string]: string | number };
 			}>();
 
-			if (!collection || id === undefined || !parts) {
-				return new Response("Invalid request", { status: 400 });
-			}
-
 			console.log(collection, id, traits, parts);
+
+			if (!collection || id === undefined || !parts) {
+				return new Response("Invalid request", {
+					status: 400,
+					headers: corsHeaders,
+				});
+			}
 
 			const image = await SigorSparrowImageGenerator.generate(env, {
 				traits,
