@@ -263,10 +263,11 @@ export default {
 					});
 				}
 
-				const image = await SigorSparrowImageGenerator.generate(env, {
-					traits,
-					parts,
-				});
+				const image = await SigorSparrowImageGenerator.generate(
+					env,
+					request.url,
+					{ traits, parts },
+				);
 
 				return new Response(image, {
 					status: 200,

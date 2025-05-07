@@ -4,7 +4,7 @@ import font from "./fonts/neodgm.woff2";
 import parts from "./parts.json";
 
 export default class SigorSparrowImageGenerator {
-  public static async generate(env: Env, data: NFTData) {
+  public static async generate(env: Env, url: string, data: NFTData) {
     const skins: string[] = [];
     for (const [partName, part] of Object.entries(data.parts)) {
       skins.push(`${partName}/${part}`);
@@ -33,7 +33,7 @@ export default class SigorSparrowImageGenerator {
 
     const buffers = await Promise.all(
       images.map((image) =>
-        env.ASSETS.fetch(new URL(image.path)).then((response) =>
+        env.ASSETS.fetch(new URL(image.path, url)).then((response) =>
           response.arrayBuffer()
         )
       ),
