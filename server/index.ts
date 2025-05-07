@@ -246,9 +246,11 @@ export default {
 				parts?: { [partName: string]: string | number };
 			}>();
 
-			if (!collection || !id || !parts) {
+			if (!collection || id === undefined || !parts) {
 				return new Response("Invalid request", { status: 400 });
 			}
+
+			console.log(collection, id, traits, parts);
 
 			const image = await SigorSparrowImageGenerator.generate(env, {
 				traits,
