@@ -221,56 +221,61 @@ export default {
 		}
 
 		if (url.pathname === "/save-metadata") {
-			const authorization = request.headers.get("Authorization");
-			if (!authorization) {
-				return new Response("Unauthorized", {
-					status: 401,
-					headers: corsHeaders,
+			try {
+				const authorization = request.headers.get("Authorization");
+				if (!authorization) {
+					return new Response("Unauthorized", {
+						status: 401,
+						headers: corsHeaders,
+					});
+				}
+				if (!authorization.startsWith("Bearer ")) {
+					return new Response("Invalid authorization header", {
+						status: 401,
+						headers: corsHeaders,
+					});
+				}
+				const token = authorization.split(" ")[1];
+
+				const decoded = await verify(token, env.JWT_SECRET) as
+					| { wallet_address?: `0x${string}` }
+					| undefined;
+				if (!decoded?.wallet_address) {
+					return new Response("Invalid token", {
+						status: 401,
+						headers: corsHeaders,
+					});
+				}
+
+				const { collection, id, traits, parts } = await request.json<{
+					collection?: string;
+					id?: number;
+					traits?: { [traitName: string]: string | number };
+					parts?: { [partName: string]: string | number };
+				}>();
+
+				console.log(collection, id, traits, parts);
+
+				if (!collection || id === undefined || !parts) {
+					return new Response("Invalid request", {
+						status: 400,
+						headers: corsHeaders,
+					});
+				}
+
+				const image = await SigorSparrowImageGenerator.generate(env, {
+					traits,
+					parts,
 				});
-			}
-			if (!authorization.startsWith("Bearer ")) {
-				return new Response("Invalid authorization header", {
-					status: 401,
-					headers: corsHeaders,
+
+				return new Response(image, {
+					status: 200,
+					headers: { "Content-Type": "image/png", ...corsHeaders },
 				});
+			} catch (error) {
+				console.error(error);
+				return new Response("Server error", { status: 500, ...corsHeaders });
 			}
-			const token = authorization.split(" ")[1];
-
-			const decoded = await verify(token, env.JWT_SECRET) as
-				| { wallet_address?: `0x${string}` }
-				| undefined;
-			if (!decoded?.wallet_address) {
-				return new Response("Invalid token", {
-					status: 401,
-					headers: corsHeaders,
-				});
-			}
-
-			const { collection, id, traits, parts } = await request.json<{
-				collection?: string;
-				id?: number;
-				traits?: { [traitName: string]: string | number };
-				parts?: { [partName: string]: string | number };
-			}>();
-
-			console.log(collection, id, traits, parts);
-
-			if (!collection || id === undefined || !parts) {
-				return new Response("Invalid request", {
-					status: 400,
-					headers: corsHeaders,
-				});
-			}
-
-			const image = await SigorSparrowImageGenerator.generate(env, {
-				traits,
-				parts,
-			});
-
-			return new Response(image, {
-				status: 200,
-				headers: { "Content-Type": "image/png", ...corsHeaders },
-			});
 		}
 
 		if (url.pathname === "/fetch-all-nft-holders") {
