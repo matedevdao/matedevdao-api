@@ -6,6 +6,7 @@ import NFTDataManager from "./NFTDataManager.js";
 import TransferEventSyncer from "./TransferEventSyncer.js";
 import { verifyMessage } from "viem";
 import { createSiweMessage } from "viem/siwe";
+import SigorSparrowImageGenerator from "./sigor-sparrows/SigorSparrowImageGenerator.js";
 
 function base64url(input: ArrayBuffer | Uint8Array): string {
 	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
@@ -245,9 +246,19 @@ export default {
 				parts?: { [partName: string]: string | number };
 			}>();
 
-			console.log(decoded.wallet_address, collection, id, traits, parts);
+			if (!collection || !id || !parts) {
+				return new Response("Invalid request", { status: 400 });
+			}
 
-			return new Response("Not implemented", { status: 501 });
+			const image = await SigorSparrowImageGenerator.generate(env, {
+				traits,
+				parts,
+			});
+
+			return new Response(image, {
+				status: 200,
+				headers: { "Content-Type": "image/png" },
+			});
 		}
 
 		if (url.pathname === "/fetch-all-nft-holders") {
