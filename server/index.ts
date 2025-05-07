@@ -257,7 +257,7 @@ export default {
 
 			return new Response(image, {
 				status: 200,
-				headers: { "Content-Type": "image/png" },
+				headers: { "Content-Type": "image/png", ...corsHeaders },
 			});
 		}
 
