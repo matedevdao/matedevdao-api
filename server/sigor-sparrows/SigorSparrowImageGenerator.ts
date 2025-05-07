@@ -33,7 +33,9 @@ export default class SigorSparrowImageGenerator {
 
     const buffers = await Promise.all(
       images.map((image) =>
-        env.ASSETS.fetch(image.path).then((response) => response.arrayBuffer())
+        env.ASSETS.fetch(new URL(image.path)).then((response) =>
+          response.arrayBuffer()
+        )
       ),
     );
 
