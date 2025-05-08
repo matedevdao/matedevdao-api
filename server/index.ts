@@ -241,6 +241,7 @@ export default {
 				}
 				const token = authorization.split(" ")[1];
 
+				let time = Date.now();
 				console.log("JWT verify");
 
 				const decoded = await verify(token, env.JWT_SECRET) as
@@ -253,8 +254,9 @@ export default {
 					});
 				}
 
-				console.log("JWT verify");
+				console.log("JWT verify", Date.now() - time);
 
+				time = Date.now();
 				console.log("Request parse");
 
 				const { collection, id, traits, parts } = await request.json<{
@@ -271,7 +273,7 @@ export default {
 					});
 				}
 
-				console.log("Request parse");
+				console.log("Request parse", Date.now() - time);
 
 				let address: `0x${string}`;
 				let imageGenerator;
@@ -292,6 +294,7 @@ export default {
 					});
 				}
 
+				time = Date.now();
 				console.log("ownerOf");
 
 				const owner = await KaiaClientManager.getClient().readContract({
@@ -309,7 +312,7 @@ export default {
 					args: [BigInt(id)],
 				}) as `0x${string}`;
 
-				console.log("ownerOf");
+				console.log("ownerOf", Date.now() - time);
 
 				if (owner !== decoded.wallet_address) {
 					return new Response("Unauthorized", {
@@ -318,6 +321,7 @@ export default {
 					});
 				}
 
+				time = Date.now();
 				console.log("delete original image");
 
 				const originalData = await env.DB.prepare(
@@ -330,8 +334,9 @@ export default {
 					);
 				}
 
-				console.log("delete original image");
+				console.log("delete original image", Date.now() - time);
 
+				time = Date.now();
 				console.log("generate image");
 
 				const image = await imageGenerator.generate(env, request.url, {
@@ -339,19 +344,21 @@ export default {
 					parts,
 				});
 
-				console.log("generate image");
+				console.log("generate image", Date.now() - time);
 
 				const fileName = `${uuidv4()}.png`;
 				const imageKey = `${collection}/${fileName}`;
 
+				time = Date.now();
 				console.log("upload image");
 
 				await env.NFT_IMAGES_BUCKET.put(imageKey, image, {
 					httpMetadata: { contentType: "image/png" },
 				});
 
-				console.log("upload image");
+				console.log("upload image", Date.now() - time);
 
+				time = Date.now();
 				console.log("save metadata");
 
 				await env.DB.prepare(
@@ -367,7 +374,7 @@ export default {
 					imageKey,
 				).run();
 
-				console.log("save metadata");
+				console.log("save metadata", Date.now() - time);
 
 				return new Response(undefined, {
 					status: 200,
