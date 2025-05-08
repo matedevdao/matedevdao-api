@@ -37,12 +37,12 @@ export default class SigorSparrowImageGenerator {
       ),
     );
 
-    return ImageCombiner.combine(1000, 1000, bytes, {
+    return ImageCombiner.combine(1000, 1000, bytes/*, {
       x: 500,
       y: 190,
       text: data.traits!["Dialogue"] as string,
       fontSize: 64,
       color: "#000",
-    });
+    }*/);
   }
 }
