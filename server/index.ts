@@ -338,7 +338,7 @@ export default {
 					id,
 					decoded.wallet_address,
 					traits?.["Style"] ?? null,
-					parts,
+					JSON.stringify(parts),
 					traits?.["Dialogue"] ?? null,
 					newImageUrl,
 				).run();
