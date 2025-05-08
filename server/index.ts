@@ -371,7 +371,7 @@ export default {
 					traits?.["Style"] ?? null,
 					JSON.stringify(parts),
 					traits?.["Dialogue"] ?? null,
-					imageKey,
+					fileName,
 				).run();
 
 				if (!row) {
