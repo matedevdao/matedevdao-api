@@ -361,7 +361,7 @@ export default {
 				time = Date.now();
 				console.log("save metadata");
 
-				await env.DB.prepare(
+				const row = await env.DB.prepare(
 					`INSERT OR REPLACE INTO nfts (nft_address, token_id, holder, style, parts, dialogue, image)
 					 VALUES (?, ?, ?, ?, ?, ?, ?)`,
 				).bind(
@@ -373,6 +373,13 @@ export default {
 					traits?.["Dialogue"] ?? null,
 					imageKey,
 				).run();
+
+				if (!row) {
+					return new Response("Failed to save metadata", {
+						status: 500,
+						headers: corsHeaders,
+					});
+				}
 
 				console.log("save metadata", Date.now() - time);
 
