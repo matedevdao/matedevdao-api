@@ -1,12 +1,14 @@
 import { ImageCombiner } from "@commonmodule/image-combiner-cf";
 import { OpenSeaMetadataConverter } from "nft-data";
-import font from "./fonts/neodgm.woff2";
-import HolderListFetcher from "./HolderListFetcher.js";
-import NFTDataManager from "./NFTDataManager.js";
-import TransferEventSyncer from "./TransferEventSyncer.js";
 import { verifyMessage } from "viem";
 import { createSiweMessage } from "viem/siwe";
+import BabyPingImageGenerator from "./babyping/BabyPingImageGenerator.js";
+import font from "./fonts/neodgm.woff2";
+import HolderListFetcher from "./HolderListFetcher.js";
+import KCDKongImageGenerator from "./kingcrowndao-kongz/KCDKongImageGenerator.js";
+import NFTDataManager from "./NFTDataManager.js";
 import SigorSparrowImageGenerator from "./sigor-sparrows/SigorSparrowImageGenerator.js";
+import TransferEventSyncer from "./TransferEventSyncer.js";
 
 function base64url(input: ArrayBuffer | Uint8Array): string {
 	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
@@ -263,11 +265,24 @@ export default {
 					});
 				}
 
-				const image = await SigorSparrowImageGenerator.generate(
-					env,
-					request.url,
-					{ traits, parts },
-				);
+				let imageGenerator;
+				if (collection === "sigor-sparrows") {
+					imageGenerator = SigorSparrowImageGenerator;
+				} else if (collection === "kingcrowndao-kongz") {
+					imageGenerator = KCDKongImageGenerator;
+				} else if (collection === "babyping") {
+					imageGenerator = BabyPingImageGenerator;
+				} else {
+					return new Response("Invalid collection", {
+						status: 400,
+						headers: corsHeaders,
+					});
+				}
+
+				const image = await imageGenerator.generate(env, request.url, {
+					traits,
+					parts,
+				});
 
 				return new Response(image, {
 					status: 200,
