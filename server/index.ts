@@ -350,7 +350,7 @@ export default {
 				const imageKey = `${collection}/${fileName}`;
 
 				time = Date.now();
-				console.log("upload image");
+				console.log("upload image", imageKey);
 
 				await env.NFT_IMAGES_BUCKET.put(imageKey, image, {
 					httpMetadata: { contentType: "image/png" },
