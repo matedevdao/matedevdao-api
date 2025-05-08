@@ -337,9 +337,9 @@ export default {
 					address,
 					id,
 					decoded.wallet_address,
-					traits?.["Style"],
+					traits?.["Style"] ?? null,
 					parts,
-					traits?.["Dialogue"],
+					traits?.["Dialogue"] ?? null,
 					newImageUrl,
 				).run();
 
