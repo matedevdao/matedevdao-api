@@ -19,6 +19,7 @@
 	"dependencies": {
 		"@commonmodule/image-combiner-cf": "^0.0.4",
 		"nft-data": "^0.0.4",
+		"uuid": "^11.1.0",
 		"viem": "^2.26.2"
 	}
 }

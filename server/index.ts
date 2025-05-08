@@ -1,10 +1,12 @@
 import { ImageCombiner } from "@commonmodule/image-combiner-cf";
 import { OpenSeaMetadataConverter } from "nft-data";
+import { v4 as uuidv4 } from "uuid";
 import { verifyMessage } from "viem";
 import { createSiweMessage } from "viem/siwe";
 import BabyPingImageGenerator from "./babyping/BabyPingImageGenerator.js";
 import font from "./fonts/neodgm.woff2";
 import HolderListFetcher from "./HolderListFetcher.js";
+import KaiaClientManager from "./KaiaClientManager.js";
 import KCDKongImageGenerator from "./kingcrowndao-kongz/KCDKongImageGenerator.js";
 import NFTDataManager from "./NFTDataManager.js";
 import SigorSparrowImageGenerator from "./sigor-sparrows/SigorSparrowImageGenerator.js";
@@ -256,8 +258,6 @@ export default {
 					parts?: { [partName: string]: string | number };
 				}>();
 
-				console.log(collection, id, traits, parts);
-
 				if (!collection || id === undefined || !parts) {
 					return new Response("Invalid request", {
 						status: 400,
@@ -265,12 +265,17 @@ export default {
 					});
 				}
 
+				let address: `0x${string}`;
 				let imageGenerator;
+
 				if (collection === "sigor-sparrows") {
+					address = "0x7340a44AbD05280591377345d21792Cdc916A388";
 					imageGenerator = SigorSparrowImageGenerator;
 				} else if (collection === "kingcrowndao-kongz") {
+					address = "0xF967431fb8F5B4767567854dE5448D2EdC21a482";
 					imageGenerator = KCDKongImageGenerator;
 				} else if (collection === "babyping") {
+					address = "0x595b299Db9d83279d20aC37A85D36489987d7660";
 					imageGenerator = BabyPingImageGenerator;
 				} else {
 					return new Response("Invalid collection", {
@@ -279,14 +284,68 @@ export default {
 					});
 				}
 
+				const owner = await KaiaClientManager.getClient().readContract({
+					address,
+					abi: [
+						{
+							name: "ownerOf",
+							type: "function",
+							stateMutability: "view",
+							inputs: [{ name: "tokenId", type: "uint256" }],
+							outputs: [{ name: "", type: "address" }],
+						},
+					],
+					functionName: "ownerOf",
+					args: [BigInt(id)],
+				}) as `0x${string}`;
+
+				if (owner !== decoded.wallet_address) {
+					return new Response("Unauthorized", {
+						status: 401,
+						headers: corsHeaders,
+					});
+				}
+
+				const originalData = await env.DB.prepare(
+					`SELECT image FROM nfts WHERE nft_address = ? AND token_id = ?`,
+				).bind(address, id).first<{ image: string }>();
+
+				if (originalData?.image) {
+					await env.NFT_IMAGES_BUCKET.delete(
+						`${collection}/${originalData.image}`,
+					);
+				}
+
 				const image = await imageGenerator.generate(env, request.url, {
 					traits,
 					parts,
 				});
 
-				return new Response(image, {
+				const fileName = `${uuidv4()}.png`;
+				const key = `${collection}/${fileName}`;
+				await env.NFT_IMAGES_BUCKET.put(key, image, {
+					httpMetadata: { contentType: "image/png" },
+				});
+
+				const newImageUrl =
+					`https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/${key}`;
+
+				await env.DB.prepare(
+					`INSERT OR REPLACE INTO nfts (nft_address, token_id, holder, style, parts, dialogue, image)
+					 VALUES (?, ?, ?, ?, ?, ?, ?)`,
+				).bind(
+					address,
+					id,
+					decoded.wallet_address,
+					traits?.["Style"],
+					parts,
+					traits?.["Dialogue"],
+					newImageUrl,
+				).run();
+
+				return new Response(undefined, {
 					status: 200,
-					headers: { "Content-Type": "image/png", ...corsHeaders },
+					headers: { ...corsHeaders },
 				});
 			} catch (error) {
 				console.error(error);
