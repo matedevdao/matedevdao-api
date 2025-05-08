@@ -241,6 +241,8 @@ export default {
 				}
 				const token = authorization.split(" ")[1];
 
+				console.time("JWT verify");
+
 				const decoded = await verify(token, env.JWT_SECRET) as
 					| { wallet_address?: `0x${string}` }
 					| undefined;
@@ -250,6 +252,10 @@ export default {
 						headers: corsHeaders,
 					});
 				}
+
+				console.timeEnd("JWT verify");
+
+				console.time("Request parse");
 
 				const { collection, id, traits, parts } = await request.json<{
 					collection?: string;
@@ -264,6 +270,8 @@ export default {
 						headers: corsHeaders,
 					});
 				}
+
+				console.timeEnd("Request parse");
 
 				let address: `0x${string}`;
 				let imageGenerator;
@@ -284,6 +292,8 @@ export default {
 					});
 				}
 
+				console.time("ownerOf");
+
 				const owner = await KaiaClientManager.getClient().readContract({
 					address,
 					abi: [
@@ -299,12 +309,16 @@ export default {
 					args: [BigInt(id)],
 				}) as `0x${string}`;
 
+				console.timeEnd("ownerOf");
+
 				if (owner !== decoded.wallet_address) {
 					return new Response("Unauthorized", {
 						status: 401,
 						headers: corsHeaders,
 					});
 				}
+
+				console.time("delete original image");
 
 				const originalData = await env.DB.prepare(
 					`SELECT image FROM nfts WHERE nft_address = ? AND token_id = ?`,
@@ -316,19 +330,32 @@ export default {
 					);
 				}
 
+				console.timeEnd("delete original image");
+
+				console.time("generate image");
+
 				const image = await imageGenerator.generate(env, request.url, {
 					traits,
 					parts,
 				});
 
+				console.timeEnd("generate image");
+
 				const fileName = `${uuidv4()}.png`;
 				const key = `${collection}/${fileName}`;
+
+				console.time("upload image");
+
 				await env.NFT_IMAGES_BUCKET.put(key, image, {
 					httpMetadata: { contentType: "image/png" },
 				});
 
+				console.timeEnd("upload image");
+
 				const newImageUrl =
 					`https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/${key}`;
+
+				console.time("save metadata");
 
 				await env.DB.prepare(
 					`INSERT OR REPLACE INTO nfts (nft_address, token_id, holder, style, parts, dialogue, image)
@@ -342,6 +369,8 @@ export default {
 					traits?.["Dialogue"] ?? null,
 					newImageUrl,
 				).run();
+
+				console.timeEnd("save metadata");
 
 				return new Response(undefined, {
 					status: 200,
