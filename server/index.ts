@@ -241,9 +241,6 @@ export default {
 				}
 				const token = authorization.split(" ")[1];
 
-				let time = Date.now();
-				console.log("JWT verify");
-
 				const decoded = await verify(token, env.JWT_SECRET) as
 					| { wallet_address?: `0x${string}` }
 					| undefined;
@@ -253,11 +250,6 @@ export default {
 						headers: corsHeaders,
 					});
 				}
-
-				console.log("JWT verify", Date.now() - time);
-
-				time = Date.now();
-				console.log("Request parse");
 
 				const { collection, id, traits, parts } = await request.json<{
 					collection?: string;
@@ -272,8 +264,6 @@ export default {
 						headers: corsHeaders,
 					});
 				}
-
-				console.log("Request parse", Date.now() - time);
 
 				let address: `0x${string}`;
 				let imageGenerator;
@@ -294,9 +284,6 @@ export default {
 					});
 				}
 
-				time = Date.now();
-				console.log("ownerOf");
-
 				const owner = await KaiaClientManager.getClient().readContract({
 					address,
 					abi: [
@@ -312,8 +299,6 @@ export default {
 					args: [BigInt(id)],
 				}) as `0x${string}`;
 
-				console.log("ownerOf", Date.now() - time);
-
 				if (owner !== decoded.wallet_address) {
 					return new Response("Unauthorized", {
 						status: 401,
@@ -321,8 +306,10 @@ export default {
 					});
 				}
 
-				time = Date.now();
-				console.log("delete original image");
+				const image = await imageGenerator.generate(env, request.url, {
+					traits,
+					parts,
+				});
 
 				const originalData = await env.DB.prepare(
 					`SELECT image FROM nfts WHERE nft_address = ? AND token_id = ?`,
@@ -334,32 +321,12 @@ export default {
 					);
 				}
 
-				console.log("delete original image", Date.now() - time);
-
-				time = Date.now();
-				console.log("generate image");
-
-				const image = await imageGenerator.generate(env, request.url, {
-					traits,
-					parts,
-				});
-
-				console.log("generate image", Date.now() - time);
-
 				const fileName = `${uuidv4()}.png`;
 				const imageKey = `${collection}/${fileName}`;
-
-				time = Date.now();
-				console.log("upload image", imageKey);
 
 				await env.NFT_IMAGES_BUCKET.put(imageKey, image, {
 					httpMetadata: { contentType: "image/png" },
 				});
-
-				console.log("upload image", Date.now() - time);
-
-				time = Date.now();
-				console.log("save metadata");
 
 				const row = await env.DB.prepare(
 					`INSERT OR REPLACE INTO nfts (nft_address, token_id, holder, style, parts, dialogue, image)
@@ -380,8 +347,6 @@ export default {
 						headers: corsHeaders,
 					});
 				}
-
-				console.log("save metadata", Date.now() - time);
 
 				return new Response(undefined, {
 					status: 200,
