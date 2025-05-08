@@ -1,5 +1,6 @@
+import { ImageCombiner } from "@commonmodule/image-combiner-cf";
 import { NFTData } from "nft-data";
-import ImageCombiner from "../ImageCombiner.js";
+import font from "./fonts/neodgm.woff2";
 import parts from "./parts.json";
 
 export default class SigorSparrowImageGenerator {
@@ -29,20 +30,23 @@ export default class SigorSparrowImageGenerator {
       }
     }
 
-    const bytes = await Promise.all(
+    const buffers = await Promise.all(
       images.map((image) =>
         env.ASSETS.fetch(new URL(image.path, url)).then((response) =>
-          response.bytes()
+          response.arrayBuffer()
         )
       ),
     );
 
-    return ImageCombiner.combine(1000, 1000, bytes/*, {
+    const fontBytes = new Uint8Array(font);
+
+    return ImageCombiner.combine(1000, 1000, buffers, {
+      fontBytes,
       x: 500,
       y: 190,
       text: data.traits!["Dialogue"] as string,
       fontSize: 64,
       color: "#000",
-    }*/);
+    });
   }
 }
