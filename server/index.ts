@@ -499,6 +499,42 @@ export default {
 			);
 		}
 
+		if (url.pathname === "/wallet-logout") {
+			const authorization = request.headers.get("Authorization");
+			if (!authorization) {
+				return new Response("Unauthorized", {
+					status: 401,
+					headers: corsHeaders,
+				});
+			}
+			if (!authorization.startsWith("Bearer ")) {
+				return new Response("Invalid authorization header", {
+					status: 401,
+					headers: corsHeaders,
+				});
+			}
+			const token = authorization.split(" ")[1];
+
+			const decoded = await verify(token, env.JWT_SECRET) as
+				| { wallet_address?: `0x${string}`; nonce?: string }
+				| undefined;
+			if (!decoded?.wallet_address || !decoded?.nonce) {
+				return new Response("Invalid token", {
+					status: 401,
+					headers: corsHeaders,
+				});
+			}
+
+			await env.DB.prepare(
+				`DELETE FROM user_sessions WHERE wallet_address = ? AND token = ?`,
+			).bind(decoded.wallet_address, token).run();
+
+			return new Response(undefined, {
+				status: 200,
+				headers: { ...corsHeaders },
+			});
+		}
+
 		return new Response("Not found", { status: 404 });
 	},
 
