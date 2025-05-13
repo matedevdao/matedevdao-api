@@ -471,7 +471,7 @@ export default {
 			).bind(walletAddress).run();
 
 			const jwtToken = await signJwt(
-				{ wallet_address: walletAddress },
+				{ wallet_address: walletAddress, nonce: nonceRow.nonce },
 				env.JWT_SECRET,
 			);
 
