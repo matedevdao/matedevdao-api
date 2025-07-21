@@ -1,11 +1,11 @@
-import KaiaClientManager from "./KaiaClientManager.js";
-import TOKEN_IDS_RANGES from "./TOKEN_IDS_RANGES.js";
-import ParsingNFTDataArtifact from "./artifacts/ParsingNFTData.json";
+import { kaiaClient } from '../kaia';
+import { TOKEN_IDS_RANGES } from './nft-constants';
+import ParsingNFTDataArtifact from './ParsingNFTData.json';
 
 const PARSING_NFT_DATA_CONTRACT_ADDRESS =
-  "0x8A98A038dcA75091225EE0a1A11fC20Aa23832A0";
+  '0x8A98A038dcA75091225EE0a1A11fC20Aa23832A0';
 
-class HolderListFetcher {
+class NFTHolderFetcher {
   private async fetchWithRetry({
     nftAddress,
     tokenIds,
@@ -21,18 +21,17 @@ class HolderListFetcher {
 
     while (attempt <= retries) {
       try {
-        const holderList = await KaiaClientManager.getClient().readContract({
+        const holderList = await kaiaClient.readContract({
           address: PARSING_NFT_DATA_CONTRACT_ADDRESS,
           abi: ParsingNFTDataArtifact.abi,
-          functionName: "getERC721HolderList",
+          functionName: 'getERC721HolderList',
           args: [nftAddress, tokenIds],
         }) as string[];
 
         return holderList;
       } catch (error) {
         console.warn(
-          `Attempt ${attempt + 1} failed for tokens ${tokenIds[0]}~${
-            tokenIds[tokenIds.length - 1]
+          `Attempt ${attempt + 1} failed for tokens ${tokenIds[0]}~${tokenIds[tokenIds.length - 1]
           }:`,
           error,
         );
@@ -42,13 +41,13 @@ class HolderListFetcher {
       }
     }
 
-    throw new Error("Max retries reached");
+    throw new Error('Max retries reached');
   }
 
   public async fetchAll(env: Env, address: string, fromTokenId?: number) {
     const range = TOKEN_IDS_RANGES[address];
     if (!range) {
-      return new Response("Token ID range not found", { status: 404 });
+      return new Response('Token ID range not found', { status: 404 });
     }
 
     const { from, to } = fromTokenId === undefined
@@ -83,4 +82,6 @@ class HolderListFetcher {
   }
 }
 
-export default new HolderListFetcher();
+const nftHolderFetcher = new NFTHolderFetcher();
+
+export { nftHolderFetcher };

@@ -2,11 +2,11 @@ import {
   DeleteObjectsCommand,
   ListObjectsV2Command,
   S3Client,
-} from "@aws-sdk/client-s3";
-import "dotenv/config";
+} from '@aws-sdk/client-s3';
+import 'dotenv/config';
 
 const s3 = new S3Client({
-  region: "auto",
+  region: 'auto',
   endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
     accessKeyId: process.env.R2_ACCESS_KEY_ID as string,
@@ -46,4 +46,4 @@ async function deleteFolder(bucketName: string, folderPrefix: string) {
   } while (ContinuationToken);
 }
 
-await deleteFolder(process.env.R2_BUCKET_NAME!, "sigor-sparrows/");
+await deleteFolder(process.env.R2_BUCKET_NAME!, 'sigor-sparrows/');

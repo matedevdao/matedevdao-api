@@ -1,25 +1,25 @@
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { ImageCombiner } from "@commonmodule/image-combiner";
-import { initWasm } from "@resvg/resvg-wasm";
-import "dotenv/config";
-import fs from "fs";
-import { v4 as uuidv4 } from "uuid";
-import partsInfo from "../assets/babyping/parts.json" with {
-  type: "json",
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { ImageCombiner } from '@commonmodule/image-combiner';
+import { initWasm } from '@resvg/resvg-wasm';
+import 'dotenv/config';
+import fs from 'fs';
+import { v4 as uuidv4 } from 'uuid';
+import partsInfo from '../assets/babyping/parts.json' with {
+  type: 'json',
 };
-import legacyMetadatas from "./legacy-metadatas/babyping-metadatas-legacy.json" with {
-  type: "json",
+import legacyMetadatas from './legacy-metadatas/babyping-metadatas-legacy.json' with {
+  type: 'json',
 };
 
-const NFT_ADDRESS = "0x595b299Db9d83279d20aC37A85D36489987d7660";
+const NFT_ADDRESS = '0x595b299Db9d83279d20aC37A85D36489987d7660';
 
 await initWasm(
-  fs.readFileSync("./node_modules/@resvg/resvg-wasm/index_bg.wasm"),
+  fs.readFileSync('./node_modules/@resvg/resvg-wasm/index_bg.wasm'),
 );
 
 async function uploadToR2(key: string, body: Uint8Array) {
   const s3 = new S3Client({
-    region: "auto",
+    region: 'auto',
     endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
     credentials: {
       accessKeyId: process.env.R2_ACCESS_KEY_ID as string,
@@ -32,7 +32,7 @@ async function uploadToR2(key: string, body: Uint8Array) {
       Bucket: process.env.R2_BUCKET_NAME!,
       Key: key,
       Body: body,
-      ContentType: "image/png",
+      ContentType: 'image/png',
     }),
   );
   return `https://pub-b5f5f68564ba4ce693328fe84e1a6c57.r2.dev/${key}`;
@@ -46,13 +46,13 @@ async function insertMetadataToD1(
     `https://api.cloudflare.com/client/v4/accounts/${process.env.D1_ACCOUNT_ID}/d1/database/${process.env.D1_DATABASE_ID}/query`;
 
   const sql =
-    "UPDATE nfts SET (nft_address, token_id, parts, image) = (?, ?, ?, ?) WHERE nft_address = ? AND token_id = ?";
+    'UPDATE nfts SET (nft_address, token_id, parts, image) = (?, ?, ?, ?) WHERE nft_address = ? AND token_id = ?';
 
   const res = await fetch(endpoint, {
-    method: "POST",
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.CF_API_TOKEN}`,
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       sql,
@@ -70,7 +70,7 @@ async function insertMetadataToD1(
 
   const out = (await res.json()) as { success: boolean; errors?: any };
   if (!out.success) {
-    throw new Error("D1 insert failed: " + JSON.stringify(out));
+    throw new Error('D1 insert failed: ' + JSON.stringify(out));
   }
 }
 
@@ -135,15 +135,15 @@ for (let id = 0; id <= 2999; id++) {
 
   const fileName = `${uuidv4()}.png`;
   const publicUrl = await uploadToR2(`babyping/${fileName}`, combined);
-  console.log("✅  R2 저장 완료 →", publicUrl);
+  console.log('✅  R2 저장 완료 →', publicUrl);
 
   try {
     await insertMetadataToD1(metadata, fileName);
   } catch (e) {
-    console.error("❌  D1 메타데이터 저장 실패 1회차", e);
+    console.error('❌  D1 메타데이터 저장 실패 1회차', e);
     await insertMetadataToD1(metadata, fileName);
   }
-  console.log("✅  D1 메타데이터 저장 완료");
+  console.log('✅  D1 메타데이터 저장 완료');
 
-  console.log("✅  완료", metadata.id);
+  console.log('✅  완료', metadata.id);
 }

@@ -42,5 +42,5 @@
 		"skipLibCheck": true
 	},
 	"exclude": ["app", "test", "legacy", "utils"],
-	"include": ["worker-configuration.d.ts", "server/**/*.ts"]
+	"include": ["worker-configuration.d.ts", "worker/**/*.ts"]
 }

@@ -1,23 +1,23 @@
-import { ImageCombiner } from "@commonmodule/image-combiner-cf";
-import { OpenSeaMetadataConverter } from "nft-data";
-import { v4 as uuidv4 } from "uuid";
-import { verifyMessage } from "viem";
-import { createSiweMessage } from "viem/siwe";
-import BabyPingImageGenerator from "./babyping/BabyPingImageGenerator.js";
-import font from "./fonts/neodgm.woff2";
-import HolderListFetcher from "./HolderListFetcher.js";
-import KaiaClientManager from "./KaiaClientManager.js";
-import KCDKongImageGenerator from "./kingcrowndao-kongz/KCDKongImageGenerator.js";
-import NFTDataManager from "./NFTDataManager.js";
-import SigorSparrowImageGenerator from "./sigor-sparrows/SigorSparrowImageGenerator.js";
-import TransferEventSyncer from "./TransferEventSyncer.js";
+import { ImageCombiner } from '@commonmodule/image-combiner-cf';
+import { OpenSeaMetadataConverter } from 'nft-data';
+import { v4 as uuidv4 } from 'uuid';
+import { verifyMessage } from 'viem';
+import { createSiweMessage } from 'viem/siwe';
+import font from './fonts/neodgm.woff2';
+import { kaiaClient } from './kaia';
+import BabyPingImageGenerator from './nft-image/babyping';
+import KCDKongImageGenerator from './nft-image/kingcrowndao-kongz';
+import SigorSparrowImageGenerator from './nft-image/sigor-sparrows';
+import { nftDataManager } from './nft/nft-data-manager';
+import { nftHolderFetcher } from './nft/nft-holder-fetcher';
+import { transferEventSyncer } from './nft/transfer-event-syncer';
 
 function base64url(input: ArrayBuffer | Uint8Array): string {
 	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
 	return btoa(String.fromCharCode(...bytes))
-		.replace(/\+/g, "-")
-		.replace(/\//g, "_")
-		.replace(/=+$/, "");
+		.replace(/\+/g, '-')
+		.replace(/\//g, '_')
+		.replace(/=+$/, '');
 }
 
 async function signJwt(
@@ -25,20 +25,20 @@ async function signJwt(
 	secret: string,
 ): Promise<string> {
 	const enc = new TextEncoder();
-	const header = { alg: "HS256", typ: "JWT" };
+	const header = { alg: 'HS256', typ: 'JWT' };
 	const headerB64 = base64url(enc.encode(JSON.stringify(header)));
 	const payloadB64 = base64url(enc.encode(JSON.stringify(payload)));
 
 	const key = await crypto.subtle.importKey(
-		"raw",
+		'raw',
 		enc.encode(secret),
-		{ name: "HMAC", hash: "SHA-256" },
+		{ name: 'HMAC', hash: 'SHA-256' },
 		false,
-		["sign"],
+		['sign'],
 	);
 
 	const sigBuf = await crypto.subtle.sign(
-		"HMAC",
+		'HMAC',
 		key,
 		enc.encode(`${headerB64}.${payloadB64}`),
 	);
@@ -52,7 +52,7 @@ async function verify<
 >(token: string, secret: string): Promise<T | undefined> {
 	const enc = new TextEncoder();
 
-	const [headerB64, payloadB64, sigB64] = token.split(".");
+	const [headerB64, payloadB64, sigB64] = token.split('.');
 	if (!headerB64 || !payloadB64 || !sigB64) return;
 
 	const headerJson = new TextDecoder().decode(base64urlDecode(headerB64));
@@ -62,19 +62,19 @@ async function verify<
 	} catch {
 		return;
 	}
-	if (header.alg !== "HS256" || header.typ !== "JWT") return;
+	if (header.alg !== 'HS256' || header.typ !== 'JWT') return;
 
 	const key = await crypto.subtle.importKey(
-		"raw",
+		'raw',
 		enc.encode(secret),
-		{ name: "HMAC", hash: "SHA-256" },
+		{ name: 'HMAC', hash: 'SHA-256' },
 		false,
-		["sign"],
+		['sign'],
 	);
 
 	const signingInput = `${headerB64}.${payloadB64}`;
 	const expectedSigBuf = await crypto.subtle.sign(
-		"HMAC",
+		'HMAC',
 		key,
 		enc.encode(signingInput),
 	);
@@ -92,7 +92,7 @@ async function verify<
 
 function base64urlDecode(b64url: string): Uint8Array {
 	const pad = (4 - (b64url.length % 4)) % 4;
-	const b64 = (b64url + "=".repeat(pad)).replace(/-/g, "+").replace(/_/g, "/");
+	const b64 = (b64url + '='.repeat(pad)).replace(/-/g, '+').replace(/_/g, '/');
 	const binary = atob(b64);
 	const bytes = new Uint8Array(binary.length);
 	for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
@@ -109,23 +109,23 @@ function timingSafeEqual(aB64: string, bB64: string): boolean {
 }
 
 const corsHeaders = {
-	"Access-Control-Allow-Origin": "*",
-	"Access-Control-Allow-Headers":
-		"authorization, x-client-info, apikey, content-type",
-	"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Headers':
+		'authorization, x-client-info, apikey, content-type',
+	'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
 };
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		if (request.method === "OPTIONS") {
+		if (request.method === 'OPTIONS') {
 			return new Response(null, { status: 204, headers: corsHeaders });
 		}
 
 		const url = new URL(request.url);
 
-		if (url.pathname === "/test") {
+		if (url.pathname === '/test') {
 			const bgUrl = new URL(
-				"/sigor-sparrows/parts-images/normal/1.BG/IJM beige.png",
+				'/sigor-sparrows/parts-images/normal/1.BG/IJM beige.png',
 				request.url,
 			);
 
@@ -133,7 +133,7 @@ export default {
 				env.ASSETS.fetch(bgUrl),
 			]);
 			if (!respBg.ok) {
-				throw new Error("Failed to fetch images from ASSETS");
+				throw new Error('Failed to fetch images from ASSETS');
 			}
 
 			const [buffBg] = await Promise.all([
@@ -146,73 +146,73 @@ export default {
 				fontBytes,
 				x: 500,
 				y: 500,
-				text: "안녕하세요, Workers 👋",
+				text: '안녕하세요, Workers 👋',
 				fontSize: 64,
-				color: "#000000",
+				color: '#000000',
 			});
 
 			return new Response(png, {
 				status: 200,
-				headers: { "Content-Type": "image/png" },
+				headers: { 'Content-Type': 'image/png' },
 			});
 		}
 
-		if (url.pathname.startsWith("/metadata/")) {
-			const collection = url.pathname.split("/")[2];
-			const tokenIdStr = url.pathname.split("/")[3];
+		if (url.pathname.startsWith('/metadata/')) {
+			const collection = url.pathname.split('/')[2];
+			const tokenIdStr = url.pathname.split('/')[3];
 			if (!collection || !tokenIdStr) {
-				return new Response("Invalid request", { status: 400 });
+				return new Response('Invalid request', { status: 400 });
 			}
 
 			const tokenId = parseInt(tokenIdStr);
 			if (isNaN(tokenId) || tokenId < 0) {
-				return new Response("Invalid token ID", { status: 400 });
+				return new Response('Invalid token ID', { status: 400 });
 			}
 
-			const data = await NFTDataManager.fetchBulkData(
+			const data = await nftDataManager.fetchBulkData(
 				env.DB,
 				[{ collection, tokenId }],
 			);
 			const d = data[`${collection}:${tokenId}`];
-			if (!d) return new Response("Data not found", { status: 404 });
+			if (!d) return new Response('Data not found', { status: 404 });
 
 			return new Response(
 				JSON.stringify(OpenSeaMetadataConverter.convertToOpenSeaMetadata(d)),
-				{ headers: { "Content-Type": "application/json" } },
+				{ headers: { 'Content-Type': 'application/json' } },
 			);
 		}
 
-		if (url.pathname.startsWith("/nft/")) {
-			const collection = url.pathname.split("/")[2];
-			const tokenIdStr = url.pathname.split("/")[3];
+		if (url.pathname.startsWith('/nft/')) {
+			const collection = url.pathname.split('/')[2];
+			const tokenIdStr = url.pathname.split('/')[3];
 			if (!collection || !tokenIdStr) {
-				return new Response("Invalid request", { status: 400 });
+				return new Response('Invalid request', { status: 400 });
 			}
 
 			const tokenId = parseInt(tokenIdStr);
 			if (isNaN(tokenId) || tokenId < 0) {
-				return new Response("Invalid token ID", { status: 400 });
+				return new Response('Invalid token ID', { status: 400 });
 			}
 
-			const data = await NFTDataManager.fetchBulkData(
+			const data = await nftDataManager.fetchBulkData(
 				env.DB,
 				[{ collection, tokenId }],
 			);
 			const d = data[`${collection}:${tokenId}`];
-			if (!d) return new Response("Data not found", { status: 404 });
+			if (!d) return new Response('Data not found', { status: 404 });
 
 			return new Response(JSON.stringify(d), {
-				headers: { "Content-Type": "application/json", ...corsHeaders },
+				headers: { 'Content-Type': 'application/json', ...corsHeaders },
 			});
 		}
 
-		if (url.pathname.endsWith("/nfts")) {
-			const walletAddress = url.pathname.split("/")[1];
+		if (url.pathname.endsWith('/nfts')) {
+			const walletAddress = url.pathname.split('/')[1];
 			if (!walletAddress) {
-				return new Response("Invalid request", { status: 400 });
+				return new Response('Invalid request', { status: 400 });
 			}
 
-			const metadataMap = await NFTDataManager.fetchHoldingNFTData(
+			const metadataMap = await nftDataManager.fetchHoldingNFTData(
 				env.DB,
 				walletAddress,
 			);
@@ -220,32 +220,32 @@ export default {
 			const metadatas = Object.values(metadataMap);
 
 			return new Response(JSON.stringify(metadatas), {
-				headers: { "Content-Type": "application/json", ...corsHeaders },
+				headers: { 'Content-Type': 'application/json', ...corsHeaders },
 			});
 		}
 
-		if (url.pathname === "/save-metadata") {
+		if (url.pathname === '/save-metadata') {
 			try {
-				const authorization = request.headers.get("Authorization");
+				const authorization = request.headers.get('Authorization');
 				if (!authorization) {
-					return new Response("Unauthorized", {
+					return new Response('Unauthorized', {
 						status: 401,
 						headers: corsHeaders,
 					});
 				}
-				if (!authorization.startsWith("Bearer ")) {
-					return new Response("Invalid authorization header", {
+				if (!authorization.startsWith('Bearer ')) {
+					return new Response('Invalid authorization header', {
 						status: 401,
 						headers: corsHeaders,
 					});
 				}
-				const token = authorization.split(" ")[1];
+				const token = authorization.split(' ')[1];
 
 				const decoded = await verify(token, env.JWT_SECRET) as
 					| { wallet_address?: `0x${string}` }
 					| undefined;
 				if (!decoded?.wallet_address) {
-					return new Response("Invalid token", {
+					return new Response('Invalid token', {
 						status: 401,
 						headers: corsHeaders,
 					});
@@ -259,7 +259,7 @@ export default {
 				}>();
 
 				if (!collection || id === undefined || !parts) {
-					return new Response("Invalid request", {
+					return new Response('Invalid request', {
 						status: 400,
 						headers: corsHeaders,
 					});
@@ -268,39 +268,39 @@ export default {
 				let address: `0x${string}`;
 				let imageGenerator;
 
-				if (collection === "sigor-sparrows") {
-					address = "0x7340a44AbD05280591377345d21792Cdc916A388";
+				if (collection === 'sigor-sparrows') {
+					address = '0x7340a44AbD05280591377345d21792Cdc916A388';
 					imageGenerator = SigorSparrowImageGenerator;
-				} else if (collection === "kingcrowndao-kongz") {
-					address = "0xF967431fb8F5B4767567854dE5448D2EdC21a482";
+				} else if (collection === 'kingcrowndao-kongz') {
+					address = '0xF967431fb8F5B4767567854dE5448D2EdC21a482';
 					imageGenerator = KCDKongImageGenerator;
-				} else if (collection === "babyping") {
-					address = "0x595b299Db9d83279d20aC37A85D36489987d7660";
+				} else if (collection === 'babyping') {
+					address = '0x595b299Db9d83279d20aC37A85D36489987d7660';
 					imageGenerator = BabyPingImageGenerator;
 				} else {
-					return new Response("Invalid collection", {
+					return new Response('Invalid collection', {
 						status: 400,
 						headers: corsHeaders,
 					});
 				}
 
-				const owner = await KaiaClientManager.getClient().readContract({
+				const owner = await kaiaClient.readContract({
 					address,
 					abi: [
 						{
-							name: "ownerOf",
-							type: "function",
-							stateMutability: "view",
-							inputs: [{ name: "tokenId", type: "uint256" }],
-							outputs: [{ name: "", type: "address" }],
+							name: 'ownerOf',
+							type: 'function',
+							stateMutability: 'view',
+							inputs: [{ name: 'tokenId', type: 'uint256' }],
+							outputs: [{ name: '', type: 'address' }],
 						},
 					],
-					functionName: "ownerOf",
+					functionName: 'ownerOf',
 					args: [BigInt(id)],
 				}) as `0x${string}`;
 
 				if (owner !== decoded.wallet_address) {
-					return new Response("Unauthorized", {
+					return new Response('Unauthorized', {
 						status: 401,
 						headers: corsHeaders,
 					});
@@ -325,7 +325,7 @@ export default {
 				const imageKey = `${collection}/${fileName}`;
 
 				await env.NFT_IMAGES_BUCKET.put(imageKey, image, {
-					httpMetadata: { contentType: "image/png" },
+					httpMetadata: { contentType: 'image/png' },
 				});
 
 				const row = await env.DB.prepare(
@@ -335,14 +335,14 @@ export default {
 					address,
 					id,
 					decoded.wallet_address,
-					traits?.["Style"] ?? null,
+					traits?.['Style'] ?? null,
 					JSON.stringify(parts),
-					traits?.["Dialogue"] ?? null,
+					traits?.['Dialogue'] ?? null,
 					fileName,
 				).run();
 
 				if (!row) {
-					return new Response("Failed to save metadata", {
+					return new Response('Failed to save metadata', {
 						status: 500,
 						headers: corsHeaders,
 					});
@@ -354,38 +354,38 @@ export default {
 				});
 			} catch (error) {
 				console.error(error);
-				return new Response("Server error", { status: 500, ...corsHeaders });
+				return new Response('Server error', { status: 500, ...corsHeaders });
 			}
 		}
 
-		if (url.pathname === "/fetch-all-nft-holders") {
+		if (url.pathname === '/fetch-all-nft-holders') {
 			try {
 				const { address, fromTokenId } = await request.json<
 					{ address?: string; fromTokenId?: number }
 				>();
-				if (!address) return new Response("Invalid request", { status: 400 });
+				if (!address) return new Response('Invalid request', { status: 400 });
 
-				const total = await HolderListFetcher.fetchAll(
+				const total = await nftHolderFetcher.fetchAll(
 					env,
 					address,
 					fromTokenId,
 				);
 
 				return new Response(JSON.stringify({ success: true, total }), {
-					headers: { "Content-Type": "application/json" },
+					headers: { 'Content-Type': 'application/json' },
 				});
 			} catch (error) {
 				console.error(error);
-				return new Response("Server error", { status: 500 });
+				return new Response('Server error', { status: 500 });
 			}
 		}
 
-		if (url.pathname === "/generate-wallet-login-nonce") {
+		if (url.pathname === '/generate-wallet-login-nonce') {
 			const { walletAddress, domain, uri } = await request.json<
 				{ walletAddress?: string; domain?: string; uri?: string }
 			>();
 			if (!walletAddress || !domain || !uri) {
-				return new Response("Missing required parameters", { status: 400 });
+				return new Response('Missing required parameters', { status: 400 });
 			}
 
 			const stmt = env.DB.prepare(`
@@ -404,7 +404,7 @@ export default {
 				.first<{ nonce: string; issued_at: number }>();
 
 			if (!row) {
-				return new Response("Failed to upsert nonce", {
+				return new Response('Failed to upsert nonce', {
 					status: 500,
 					headers: corsHeaders,
 				});
@@ -412,16 +412,16 @@ export default {
 
 			return Response.json(
 				{ nonce: row.nonce, issuedAt: row.issued_at * 1000 },
-				{ headers: { "Content-Type": "application/json", ...corsHeaders } },
+				{ headers: { 'Content-Type': 'application/json', ...corsHeaders } },
 			);
 		}
 
-		if (url.pathname === "/wallet-login") {
+		if (url.pathname === '/wallet-login') {
 			const { walletAddress, signedMessage } = await request.json<
 				{ walletAddress?: `0x${string}`; signedMessage?: `0x${string}` }
 			>();
 			if (!walletAddress || !signedMessage) {
-				return new Response("Missing parameters", {
+				return new Response('Missing parameters', {
 					status: 400,
 					headers: corsHeaders,
 				});
@@ -436,7 +436,7 @@ export default {
 			>();
 
 			if (!nonceRow) {
-				return new Response("Invalid wallet address", {
+				return new Response('Invalid wallet address', {
 					status: 400,
 					headers: corsHeaders,
 				});
@@ -445,9 +445,9 @@ export default {
 			const siweMessage = createSiweMessage({
 				domain: nonceRow.domain,
 				address: walletAddress,
-				statement: "Login with Crypto Wallet",
+				statement: 'Login with Crypto Wallet',
 				uri: nonceRow.uri,
-				version: "1",
+				version: '1',
 				chainId: 1,
 				nonce: nonceRow.nonce,
 				issuedAt: new Date(nonceRow.issued_at * 1000),
@@ -460,7 +460,7 @@ export default {
 			});
 
 			if (!isValidSig) {
-				return new Response("Invalid signature", {
+				return new Response('Invalid signature', {
 					status: 400,
 					headers: corsHeaders,
 				});
@@ -484,42 +484,42 @@ export default {
 			).bind(
 				walletAddress,
 				jwtToken,
-				hdr.get("cf-connecting-ip"),
-				hdr.get("x-real-ip"),
-				hdr.get("x-forwarded-for"),
-				hdr.get("user-agent"),
-				hdr.get("origin"),
-				hdr.get("referer"),
-				hdr.get("accept-language"),
+				hdr.get('cf-connecting-ip'),
+				hdr.get('x-real-ip'),
+				hdr.get('x-forwarded-for'),
+				hdr.get('user-agent'),
+				hdr.get('origin'),
+				hdr.get('referer'),
+				hdr.get('accept-language'),
 			).run();
 
 			return Response.json(
 				{ token: jwtToken },
-				{ headers: { "Content-Type": "application/json", ...corsHeaders } },
+				{ headers: { 'Content-Type': 'application/json', ...corsHeaders } },
 			);
 		}
 
-		if (url.pathname === "/wallet-logout") {
-			const authorization = request.headers.get("Authorization");
+		if (url.pathname === '/wallet-logout') {
+			const authorization = request.headers.get('Authorization');
 			if (!authorization) {
-				return new Response("Unauthorized", {
+				return new Response('Unauthorized', {
 					status: 401,
 					headers: corsHeaders,
 				});
 			}
-			if (!authorization.startsWith("Bearer ")) {
-				return new Response("Invalid authorization header", {
+			if (!authorization.startsWith('Bearer ')) {
+				return new Response('Invalid authorization header', {
 					status: 401,
 					headers: corsHeaders,
 				});
 			}
-			const token = authorization.split(" ")[1];
+			const token = authorization.split(' ')[1];
 
 			const decoded = await verify(token, env.JWT_SECRET) as
 				| { wallet_address?: `0x${string}`; nonce?: string }
 				| undefined;
 			if (!decoded?.wallet_address || !decoded?.nonce) {
-				return new Response("Invalid token", {
+				return new Response('Invalid token', {
 					status: 401,
 					headers: corsHeaders,
 				});
@@ -535,10 +535,10 @@ export default {
 			});
 		}
 
-		return new Response("Not found", { status: 404 });
+		return new Response('Not found', { status: 404 });
 	},
 
 	async scheduled(controller, env, ctx) {
-		await TransferEventSyncer.run(env);
+		await transferEventSyncer.run(env);
 	},
 } satisfies ExportedHandler<Env>;

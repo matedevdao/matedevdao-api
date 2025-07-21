@@ -1,8 +1,8 @@
-import fs from "fs";
-import path from "path";
-import sharp, { Metadata } from "sharp";
-import parts from "../assets/kingcrowndao-kongz/parts.json" with {
-  type: "json",
+import fs from 'fs';
+import path from 'path';
+import sharp, { Metadata } from 'sharp';
+import parts from '../assets/kingcrowndao-kongz/parts.json' with {
+  type: 'json',
 };
 
 interface SpritesheetData {
@@ -32,8 +32,8 @@ for (const p of parts) {
   }
 }
 
-const directoryPath = "../assets/kingcrowndao-kongz/parts-images-resized";
-const outputPath = "../assets/kingcrowndao-kongz/spritesheet";
+const directoryPath = '../assets/kingcrowndao-kongz/parts-images-resized';
+const outputPath = '../assets/kingcrowndao-kongz/spritesheet';
 const spritesheets: string[] = [];
 
 const keyToPart: { [filename: string]: { row: number; col: number } } = {};
@@ -44,7 +44,7 @@ const partSize = 128;
 async function createSpritesheetImage(
   files: string[],
   outputFileName: string,
-  format = "png",
+  format = 'png',
 ) {
   const tilesPerRow = Math.ceil(Math.sqrt(files.length));
   const outputWidth = partSize * tilesPerRow;
@@ -62,7 +62,7 @@ async function createSpritesheetImage(
   const compositeOperations = files.map((file, index) => {
     const row = Math.floor(index / tilesPerRow);
     const col = index % tilesPerRow;
-    const fileId = file.split("/").slice(4).join("/");
+    const fileId = file.split('/').slice(4).join('/');
     keyToPart[fileId] = { row, col };
     return {
       input: file,
@@ -71,7 +71,7 @@ async function createSpritesheetImage(
     };
   });
 
-  if (format === "jpeg") {
+  if (format === 'jpeg') {
     await background.composite(compositeOperations).jpeg({ quality: 60 })
       .toFile(path.join(outputPath, outputFileName));
   } else {
@@ -93,7 +93,7 @@ async function processImages() {
 
     const files = fs.readdirSync(directoryPath, { recursive: true });
     for (const file of files) {
-      if (typeof file === "string") {
+      if (typeof file === 'string') {
         if (availableFiles[file]) {
           const sharpImage = sharp(path.join(directoryPath, file));
           const metadata = await sharpImage.metadata();
@@ -105,11 +105,11 @@ async function processImages() {
       }
     }
 
-    console.log("Spritesheet images:", spritesheets.length);
+    console.log('Spritesheet images:', spritesheets.length);
 
     await createSpritesheetImage(
       spritesheets,
-      "spritesheet.png",
+      'spritesheet.png',
     );
 
     const spritesheetAtlas: SpritesheetData = {
@@ -137,18 +137,18 @@ async function processImages() {
     }
 
     fs.writeFileSync(
-      path.join(outputPath, "spritesheet.json"),
+      path.join(outputPath, 'spritesheet.json'),
       JSON.stringify(spritesheetAtlas, null, 2),
     );
 
     fs.writeFileSync(
-      path.join(outputPath, "key-to-frame.json"),
+      path.join(outputPath, 'key-to-frame.json'),
       JSON.stringify(keyToFrame, null, 2),
     );
 
-    console.log("All files have been processed and saved.");
+    console.log('All files have been processed and saved.');
   } catch (err) {
-    console.error("An error occurred:", err);
+    console.error('An error occurred:', err);
   }
 }
 

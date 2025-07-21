@@ -1,8 +1,8 @@
-import { ImageCombiner } from "@commonmodule/image-combiner-cf";
-import { NFTData } from "nft-data";
-import parts from "./parts.json";
+import { ImageCombiner } from '@commonmodule/image-combiner-cf';
+import { NFTData } from 'nft-data';
+import parts from './kingcrowndao-kongz-parts.json';
 
-export default class BabyPingImageGenerator {
+export default class KCDKongImageGenerator {
   public static async generate(env: Env, url: string, data: NFTData) {
     const skins: string[] = [];
     for (const [partName, part] of Object.entries(data.parts)) {
@@ -17,7 +17,7 @@ export default class BabyPingImageGenerator {
         if (part?.images) {
           for (const image of part.images) {
             images.push({
-              path: `/babyping/parts-images/${image.path}`,
+              path: `/kingcrowndao-kongz/parts-images/${image.path}`,
               drawingOrder: image.drawingOrder,
             });
           }

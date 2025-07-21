@@ -1,8 +1,8 @@
-import fs from "fs";
-import path from "path";
-import sharp from "sharp";
-import parts from "../assets/kingcrowndao-kongz/parts.json" with {
-  type: "json",
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
+import parts from '../assets/kingcrowndao-kongz/parts.json' with {
+  type: 'json',
 };
 
 const availableFiles: { [path: string]: boolean } = {};
@@ -16,8 +16,8 @@ for (const p of parts) {
   }
 }
 
-const directoryPath = "../assets/kingcrowndao-kongz/parts-images";
-const outputPath = "../assets/kingcrowndao-kongz/parts-images-resized";
+const directoryPath = '../assets/kingcrowndao-kongz/parts-images';
+const outputPath = '../assets/kingcrowndao-kongz/parts-images-resized';
 
 const partSize = 128;
 
@@ -25,7 +25,7 @@ async function processImages() {
   try {
     const files = fs.readdirSync(directoryPath, { recursive: true });
     for (const file of files) {
-      if (typeof file === "string") {
+      if (typeof file === 'string') {
         if (availableFiles[file]) {
           const sharpImage = sharp(path.join(directoryPath, file));
 
@@ -36,7 +36,7 @@ async function processImages() {
           }
 
           await sharpImage.resize(partSize, partSize, {
-            fit: "contain",
+            fit: 'contain',
             background: { r: 0, g: 0, b: 0, alpha: 0 },
           }).toFile(path.join(outputPath, file));
 
@@ -47,9 +47,9 @@ async function processImages() {
       }
     }
 
-    console.log("All files have been processed and saved.");
+    console.log('All files have been processed and saved.');
   } catch (err) {
-    console.error("An error occurred:", err);
+    console.error('An error occurred:', err);
   }
 }
 

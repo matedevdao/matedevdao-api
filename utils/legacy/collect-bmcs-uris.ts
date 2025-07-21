@@ -1,18 +1,18 @@
-import fs from "fs";
-import { createPublicClient, http, webSocket } from "viem";
-import { kaia } from "viem/chains";
-import BiasArtifact from "./artifacts/Bias.json" with { type: "json" };
-import deepseaMetadatas from "./bmcs-metadatas-legacy/metadata-deepsea-legacy.json" with {
-  type: "json",
+import fs from 'fs';
+import { createPublicClient, http, webSocket } from 'viem';
+import { kaia } from 'viem/chains';
+import BiasArtifact from './artifacts/Bias.json' with { type: 'json' };
+import deepseaMetadatas from './bmcs-metadatas-legacy/metadata-deepsea-legacy.json' with {
+  type: 'json',
 };
-import poisonMetadatas from "./bmcs-metadatas-legacy/metadata-poison-legacy.json" with {
-  type: "json",
+import poisonMetadatas from './bmcs-metadatas-legacy/metadata-poison-legacy.json' with {
+  type: 'json',
 };
-import rubyMetadatas from "./bmcs-metadatas-legacy/metadata-ruby-legacy.json" with {
-  type: "json",
+import rubyMetadatas from './bmcs-metadatas-legacy/metadata-ruby-legacy.json' with {
+  type: 'json',
 };
-import sapphireMetadatas from "./bmcs-metadatas-legacy/metadata-sapphire-legacy.json" with {
-  type: "json",
+import sapphireMetadatas from './bmcs-metadatas-legacy/metadata-sapphire-legacy.json' with {
+  type: 'json',
 };
 
 const kaiaPublicClient = createPublicClient({ chain: kaia, transport: http() });
@@ -21,9 +21,9 @@ for (let i = 19175; i < 20000; i++) {
   console.log(`Token ID ${i} is being processed...`);
 
   const exists = await kaiaPublicClient.readContract({
-    address: "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
+    address: '0xDeDd727ab86bce5D416F9163B2448860BbDE86d4',
     abi: BiasArtifact.abi,
-    functionName: "exists",
+    functionName: 'exists',
     args: [i],
   }) as boolean;
 
@@ -36,9 +36,9 @@ for (let i = 19175; i < 20000; i++) {
 
   try {
     uri = await kaiaPublicClient.readContract({
-      address: "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
+      address: '0xDeDd727ab86bce5D416F9163B2448860BbDE86d4',
       abi: BiasArtifact.abi,
-      functionName: "tokenURI",
+      functionName: 'tokenURI',
       args: [i],
     }) as string;
   } catch (error) {
@@ -46,24 +46,24 @@ for (let i = 19175; i < 20000; i++) {
 
     try {
       uri = await kaiaPublicClient.readContract({
-        address: "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
+        address: '0xDeDd727ab86bce5D416F9163B2448860BbDE86d4',
         abi: BiasArtifact.abi,
-        functionName: "tokenURI",
+        functionName: 'tokenURI',
         args: [i],
       }) as string;
     } catch (error) {
       console.error(`Error fetching token URI for ID ${i}:`, error);
 
       uri = await kaiaPublicClient.readContract({
-        address: "0xDeDd727ab86bce5D416F9163B2448860BbDE86d4",
+        address: '0xDeDd727ab86bce5D416F9163B2448860BbDE86d4',
         abi: BiasArtifact.abi,
-        functionName: "tokenURI",
+        functionName: 'tokenURI',
         args: [i],
       }) as string;
     }
   }
 
-  const base64 = uri.split(",")[1];
+  const base64 = uri.split(',')[1];
   const jsonString = atob(base64);
   const json = JSON.parse(jsonString);
 
@@ -71,10 +71,10 @@ for (let i = 19175; i < 20000; i++) {
 
   if (i >= 10000) {
     let metadatas: any[] = [
-      ["deepsea", deepseaMetadatas],
-      ["poison", poisonMetadatas],
-      ["ruby", rubyMetadatas],
-      ["sapphire", sapphireMetadatas],
+      ['deepsea', deepseaMetadatas],
+      ['poison', poisonMetadatas],
+      ['ruby', rubyMetadatas],
+      ['sapphire', sapphireMetadatas],
     ].map(
       ([metadataType, metadatas]) => {
         const metadata = (metadatas as any).find((metadata: any) =>
@@ -90,7 +90,7 @@ for (let i = 19175; i < 20000; i++) {
       i === 17303
     ) {
       metadatas = [
-        metadatas.find((metadata: any) => metadata.type === "sapphire"),
+        metadatas.find((metadata: any) => metadata.type === 'sapphire'),
       ];
     }
 
@@ -99,7 +99,7 @@ for (let i = 19175; i < 20000; i++) {
       i === 16753 || i === 16759 || i === 18909 || i === 19061 || i === 19175
     ) {
       metadatas = [
-        metadatas.find((metadata: any) => metadata.type === "ruby"),
+        metadatas.find((metadata: any) => metadata.type === 'ruby'),
       ];
     }
 
@@ -123,4 +123,4 @@ for (let i = 19175; i < 20000; i++) {
   console.log(`Token ID ${i} processed successfully.`);
 }
 
-console.log("All token URIs have been processed.");
+console.log('All token URIs have been processed.');
