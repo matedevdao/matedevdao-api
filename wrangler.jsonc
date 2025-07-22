@@ -47,6 +47,14 @@
 			"database_id": "146cd05b-caed-4e15-9ffb-d91cfd37112b"
 		}
 	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "CHATROOM",
+				"class_name": "ChatRoom"
+			}
+		]
+	},
 	"vars": {
 		"ALLOWED_DOMAIN": "matedevdao.github.io",
 		"ALLOWED_URI": "https://matedevdao.github.io",
@@ -74,6 +82,14 @@
 					"database_id": "146cd05b-caed-4e15-9ffb-d91cfd37112b"
 				}
 			],
+			"durable_objects": {
+				"bindings": [
+					{
+						"name": "CHATROOM",
+						"class_name": "ChatRoom"
+					}
+				]
+			},
 			"vars": {
 				"ALLOWED_DOMAIN": "localhost:8080",
 				"ALLOWED_URI": "http://localhost:8080",

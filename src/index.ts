@@ -2,6 +2,8 @@ import { OpenSeaMetadataConverter } from 'nft-data';
 import { v4 as uuidv4 } from 'uuid';
 import { verifyMessage } from 'viem';
 import { createSiweMessage } from 'viem/siwe';
+import { ChatRoom } from './do/chat-room';
+import { handleGetProfile } from './handlers/get-profile';
 import { handleLogin } from './handlers/login';
 import { handleNftOwnershipStats } from './handlers/nft-ownership-stats';
 import { handleNonce } from './handlers/nonce';
@@ -16,7 +18,8 @@ import { nftDataManager } from './nft/nft-data-manager';
 import { nftHolderFetcher } from './nft/nft-holder-fetcher';
 import { transferEventSyncer } from './nft/transfer-event-syncer';
 import { preflightResponse } from './services/cors';
-import { handleGetProfile } from './handlers/get-profile';
+
+export { ChatRoom };
 
 function base64url(input: ArrayBuffer | Uint8Array): string {
 	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
@@ -533,6 +536,17 @@ export default {
 
 		if (url.pathname === '/profile' && request.method === 'POST') {
 			return handleSetProfile(request, env);
+		}
+
+		const chatMatch = url.pathname.match(/^\/chat\/([^/]+)\/(stream|send)$/);
+		if (chatMatch) {
+			const [_, roomId, action] = chatMatch;
+
+			const id = env.CHATROOM.idFromName(roomId);
+			const obj = env.CHATROOM.get(id);
+
+			// DO에 요청 위임
+			return obj.fetch(request);
 		}
 
 		return new Response('Not found', { status: 404 });
