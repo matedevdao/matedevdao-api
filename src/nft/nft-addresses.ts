@@ -1,4 +1,4 @@
-const nftAddresses: Record<string, string> = {
+const nftAddresses: Record<string, `0x${string}`> = {
   'dogesoundclub-mates': '0xE47E90C58F8336A2f24Bcd9bCB530e2e02E1E8ae',
   'dogesoundclub-e-mates': '0x2B303fd0082E4B51e5A6C602F45545204bbbB4DC',
   'dogesoundclub-biased-mates': '0xDeDd727ab86bce5D416F9163B2448860BbDE86d4',

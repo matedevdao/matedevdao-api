@@ -23,16 +23,16 @@ async function handleChatAccess(request: Request): Promise<Response> {
 
     const { address } = parsedQuery.data;
 
-    const nfts = Object.entries(nftAddresses).map(([id, contract]) => ({
-      id,
-      contract: contract as `0x${string}`,
+    const nfts = Object.entries(nftAddresses).map(([collection, address]) => ({
+      collection,
+      address,
     }));
 
-    const contracts = nfts.map(c => c.contract);
+    const contracts = nfts.map(c => c.address);
     const balances = await getBalances(address as `0x${string}`, contracts);
 
     const result = nfts.map((c, idx) => ({
-      id: c.id,
+      collection: c.collection,
       canAccess: (balances[idx] ?? 0n) > 0n,
     }));
 
