@@ -60,6 +60,14 @@
 		"ALLOWED_URI": "https://matedevdao.github.io",
 		"MESSAGE_FOR_WALLET_LOGIN": "Mate에 로그인하려면 이 메시지에 서명해 주세요."
 	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": [
+				"ChatRoom"
+			]
+		}
+	],
 	"env": {
 		"development": {
 			"kv_namespaces": [
