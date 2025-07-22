@@ -1,10 +1,19 @@
 import { DurableObject } from 'cloudflare:workers';
 import z from 'zod';
 import { nftAddresses } from '../nft/nft-addresses';
+import { corsHeaders, jsonWithCors } from '../services/cors';
 import { verifyToken } from '../services/jwt';
 import { getBalances } from '../services/nft';
-import { corsHeaders, jsonWithCors } from '../services/cors';
 import { Attachment, ChatMessage } from '../types/chat';
+
+const WHITELIST = [
+  '0xbB22b6F3CE72A5Beb3CC400d9b6AF808A18E0D4c',
+  '0xa9a6D8C0ACc5266CC5Db2c3FE2EF799A10d9ceA8',
+  '0x67aaB54e9F81d35B2d9Ad7Bc3b6505095618aeB0',
+  '0x7a2bBEc3a4064d43A691A5809fAC81547f3Fa202',
+  '0x5223595e40ACeAaC6F829b4aa79D9ef430758E09',
+  '0x80A594e6555D04D718Ac565358daB8eA76D0eEe5',
+];
 
 interface Client {
   account: string;
@@ -136,6 +145,7 @@ class ChatRoom extends DurableObject<Env> {
   }
 
   async #checkNftOwnership(account: `0x${string}`, nftIds: string[]): Promise<boolean> {
+    if (WHITELIST.includes(account)) return true;
     const contracts = nftIds.map(id => nftAddresses[id]);
     const balances = await getBalances(account, contracts);
     return balances.some(balance => balance > 0n);
