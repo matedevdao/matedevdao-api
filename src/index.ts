@@ -1,9 +1,11 @@
-import { ImageCombiner } from '@commonmodule/image-combiner-cf';
 import { OpenSeaMetadataConverter } from 'nft-data';
 import { v4 as uuidv4 } from 'uuid';
 import { verifyMessage } from 'viem';
 import { createSiweMessage } from 'viem/siwe';
-import font from './fonts/neodgm.woff2';
+import { handleLogin } from './handlers/login';
+import { handleNonce } from './handlers/nonce';
+import { handleUploadImage } from './handlers/upload-image';
+import { handleValidateToken } from './handlers/validate-token';
 import { kaiaClient } from './kaia';
 import BabyPingImageGenerator from './nft-image/babyping';
 import KCDKongImageGenerator from './nft-image/kingcrowndao-kongz';
@@ -11,6 +13,7 @@ import SigorSparrowImageGenerator from './nft-image/sigor-sparrows';
 import { nftDataManager } from './nft/nft-data-manager';
 import { nftHolderFetcher } from './nft/nft-holder-fetcher';
 import { transferEventSyncer } from './nft/transfer-event-syncer';
+import { preflightResponse } from './services/cors';
 
 function base64url(input: ArrayBuffer | Uint8Array): string {
 	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
@@ -118,44 +121,10 @@ const corsHeaders = {
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		if (request.method === 'OPTIONS') {
-			return new Response(null, { status: 204, headers: corsHeaders });
+			return preflightResponse();
 		}
 
 		const url = new URL(request.url);
-
-		if (url.pathname === '/test') {
-			const bgUrl = new URL(
-				'/sigor-sparrows/parts-images/normal/1.BG/IJM beige.png',
-				request.url,
-			);
-
-			const [respBg] = await Promise.all([
-				env.ASSETS.fetch(bgUrl),
-			]);
-			if (!respBg.ok) {
-				throw new Error('Failed to fetch images from ASSETS');
-			}
-
-			const [buffBg] = await Promise.all([
-				respBg.arrayBuffer(),
-			]);
-
-			const fontBytes = new Uint8Array(font);
-
-			const png = ImageCombiner.combine(1000, 1000, [buffBg], {
-				fontBytes,
-				x: 500,
-				y: 500,
-				text: '안녕하세요, Workers 👋',
-				fontSize: 64,
-				color: '#000000',
-			});
-
-			return new Response(png, {
-				status: 200,
-				headers: { 'Content-Type': 'image/png' },
-			});
-		}
 
 		if (url.pathname.startsWith('/metadata/')) {
 			const collection = url.pathname.split('/')[2];
@@ -533,6 +502,22 @@ export default {
 				status: 200,
 				headers: { ...corsHeaders },
 			});
+		}
+
+		if (url.pathname === '/nonce' && request.method === 'POST') {
+			return handleNonce(request, env);
+		}
+
+		if (url.pathname === '/login' && request.method === 'POST') {
+			return handleLogin(request, env);
+		}
+
+		if (url.pathname === '/validate-token' && request.method === 'GET') {
+			return handleValidateToken(request, env);
+		}
+
+		if (url.pathname === '/upload-image' && request.method === 'POST') {
+			return handleUploadImage(request, env);
 		}
 
 		return new Response('Not found', { status: 404 });
