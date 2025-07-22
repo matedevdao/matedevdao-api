@@ -3,6 +3,10 @@ import { nftAddresses } from '../nft/nft-addresses';
 import { jsonWithCors } from '../services/cors';
 import { getBalances } from '../services/nft';
 
+const WHITELIST = [
+  '0xbB22b6F3CE72A5Beb3CC400d9b6AF808A18E0D4c'
+];
+
 // 쿼리 파라미터 검증 스키마
 const querySchema = z.object({
   address: z.string().regex(/^0x[a-fA-F0-9]{40}$/, '유효하지 않은 이더리움 주소'),
@@ -31,6 +35,12 @@ async function handleChatAccess(request: Request): Promise<Response> {
       id: c.id,
       canAccess: (balances[idx] ?? 0n) > 0n,
     }));
+
+    if (WHITELIST.includes(address)) {
+      for (const r of result) {
+        r.canAccess = true;
+      }
+    }
 
     return jsonWithCors(result);
   } catch (err) {
