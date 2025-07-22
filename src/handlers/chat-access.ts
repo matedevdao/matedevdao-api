@@ -17,7 +17,7 @@ async function handleChatAccess(request: Request): Promise<Response> {
     const parsedQuery = querySchema.safeParse(Object.fromEntries(url.searchParams));
 
     if (!parsedQuery.success) {
-      return jsonWithCors({ error: parsedQuery.error.format() }, 400);
+      return jsonWithCors({ error: parsedQuery.error.message }, 400);
     }
 
     const { address } = parsedQuery.data;
