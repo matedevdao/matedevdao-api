@@ -1,20 +1,10 @@
 import { OpenSeaMetadataConverter } from 'nft-data';
 import { NFTData } from '../types/nft';
+import { nftAddresses } from './nft-addresses';
 import DogeSoundClubBiasedMatesMetadata from './static-metadata/dogesoundclub-biased-mates-metadata.json';
 import DogeSoundClubEMatesMetadata from './static-metadata/dogesoundclub-e-mates-metadata.json';
 import DogeSoundClubMatesMetadata from './static-metadata/dogesoundclub-mates-metadata.json';
 import KingCrownDAOPixelKongzMetadata from './static-metadata/kingcrowndao-pixel-kongz-metadata.json';
-
-const collectionAddresses: Record<string, string> = {
-  'dogesoundclub-mates': '0xE47E90C58F8336A2f24Bcd9bCB530e2e02E1E8ae',
-  'dogesoundclub-e-mates': '0x2B303fd0082E4B51e5A6C602F45545204bbbB4DC',
-  'dogesoundclub-biased-mates': '0xDeDd727ab86bce5D416F9163B2448860BbDE86d4',
-  'sigor-sparrows': '0x7340a44AbD05280591377345d21792Cdc916A388',
-  'sigor-housedeeds': '0x455Ee7dD1fc5722A7882aD6B7B8c075655B8005B',
-  'kingcrowndao-kongz': '0xF967431fb8F5B4767567854dE5448D2EdC21a482',
-  'kingcrowndao-pixel-kongz': '0x81b5C41Bac33ea696D9684D9aFdB6cd9f6Ee5CFF',
-  'babyping': '0x595b299Db9d83279d20aC37A85D36489987d7660',
-};
 
 interface NFTRow {
   nft_address: string;
@@ -45,8 +35,8 @@ class NFTDataManager {
     const data: { [key: string]: NFTData } = {};
 
     for (const row of rows) {
-      const collection = Object.keys(collectionAddresses).find((key) =>
-        collectionAddresses[key] === row.nft_address
+      const collection = Object.keys(nftAddresses).find((key) =>
+        nftAddresses[key] === row.nft_address
       );
       if (!collection) {
         throw new Error(`Unknown collection address: ${row.nft_address}`);
@@ -118,7 +108,7 @@ class NFTDataManager {
   ) {
     const pairs: { address: string; tokenId: number }[] = [];
     for (const { collection, tokenId } of tokens) {
-      const address = collectionAddresses[collection];
+      const address = nftAddresses[collection];
       if (!address) throw new Error(`Unknown collection: ${collection}`);
       pairs.push({ address, tokenId });
     }

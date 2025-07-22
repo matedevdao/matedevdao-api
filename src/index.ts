@@ -14,6 +14,7 @@ import { nftDataManager } from './nft/nft-data-manager';
 import { nftHolderFetcher } from './nft/nft-holder-fetcher';
 import { transferEventSyncer } from './nft/transfer-event-syncer';
 import { preflightResponse } from './services/cors';
+import { handleChatAccess } from './handlers/chat-access';
 
 function base64url(input: ArrayBuffer | Uint8Array): string {
 	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
@@ -518,6 +519,10 @@ export default {
 
 		if (url.pathname === '/upload-image' && request.method === 'POST') {
 			return handleUploadImage(request, env);
+		}
+
+		if (url.pathname === '/chat-access' && request.method === 'GET') {
+			return handleChatAccess(request);
 		}
 
 		return new Response('Not found', { status: 404 });
