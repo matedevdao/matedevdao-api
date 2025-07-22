@@ -56,8 +56,8 @@
 		]
 	},
 	"vars": {
-		"ALLOWED_DOMAIN": "matedevdao.github.io",
-		"ALLOWED_URI": "https://matedevdao.github.io",
+		"ALLOWED_DOMAIN": "api.matedevdao.workers.dev",
+		"ALLOWED_URI": "https://api.matedevdao.workers.dev",
 		"MESSAGE_FOR_WALLET_LOGIN": "Mate에 로그인하려면 이 메시지에 서명해 주세요."
 	},
 	"migrations": [
