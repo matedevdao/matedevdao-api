@@ -5,6 +5,7 @@ import { createSiweMessage } from 'viem/siwe';
 import { handleLogin } from './handlers/login';
 import { handleNftOwnershipStats } from './handlers/nft-ownership-stats';
 import { handleNonce } from './handlers/nonce';
+import { handleSetProfile } from './handlers/set-profile';
 import { handleUploadImage } from './handlers/upload-image';
 import { handleValidateToken } from './handlers/validate-token';
 import { kaiaClient } from './kaia';
@@ -15,6 +16,7 @@ import { nftDataManager } from './nft/nft-data-manager';
 import { nftHolderFetcher } from './nft/nft-holder-fetcher';
 import { transferEventSyncer } from './nft/transfer-event-syncer';
 import { preflightResponse } from './services/cors';
+import { handleGetProfile } from './handlers/get-profile';
 
 function base64url(input: ArrayBuffer | Uint8Array): string {
 	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
@@ -523,6 +525,14 @@ export default {
 
 		if (url.pathname === '/nft-ownership-stats' && request.method === 'GET') {
 			return handleNftOwnershipStats(request, env);
+		}
+
+		if (url.pathname === '/profile' && request.method === 'GET') {
+			return handleGetProfile(request, env);
+		}
+
+		if (url.pathname === '/profile' && request.method === 'POST') {
+			return handleSetProfile(request, env);
 		}
 
 		return new Response('Not found', { status: 404 });
