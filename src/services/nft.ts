@@ -13,4 +13,23 @@ async function getBalances(address: `0x${string}`, contracts: `0x${string}`[]): 
   }) as bigint[];
 }
 
-export { getBalances };
+async function getHolderCounts(
+  env: Env,
+  collections: { collection: string, address: string }[],
+): Promise<Record<string, number>> {
+  const holderCounts: Record<string, number> = {};
+
+  for (const { collection, address } of collections) {
+    const row = await env.DB.prepare(`
+      SELECT COUNT(DISTINCT holder) as count
+      FROM nfts
+      WHERE nft_address = ?
+    `).bind(address).first<{ count: number }>();
+
+    holderCounts[collection] = row?.count ?? 0;
+  }
+
+  return holderCounts;
+}
+
+export { getBalances, getHolderCounts };

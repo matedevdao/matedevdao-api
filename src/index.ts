@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { verifyMessage } from 'viem';
 import { createSiweMessage } from 'viem/siwe';
 import { handleLogin } from './handlers/login';
+import { handleNftOwnershipStats } from './handlers/nft-ownership-stats';
 import { handleNonce } from './handlers/nonce';
 import { handleUploadImage } from './handlers/upload-image';
 import { handleValidateToken } from './handlers/validate-token';
@@ -14,7 +15,6 @@ import { nftDataManager } from './nft/nft-data-manager';
 import { nftHolderFetcher } from './nft/nft-holder-fetcher';
 import { transferEventSyncer } from './nft/transfer-event-syncer';
 import { preflightResponse } from './services/cors';
-import { handleChatAccess } from './handlers/chat-access';
 
 function base64url(input: ArrayBuffer | Uint8Array): string {
 	const bytes = input instanceof ArrayBuffer ? new Uint8Array(input) : input;
@@ -521,8 +521,8 @@ export default {
 			return handleUploadImage(request, env);
 		}
 
-		if (url.pathname === '/chat-access' && request.method === 'GET') {
-			return handleChatAccess(request);
+		if (url.pathname === '/nft-ownership-stats' && request.method === 'GET') {
+			return handleNftOwnershipStats(request, env);
 		}
 
 		return new Response('Not found', { status: 404 });
