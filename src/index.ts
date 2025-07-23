@@ -355,6 +355,29 @@ export default {
 			}
 		}
 
+		if (url.pathname === '/nft-holder-count') {
+			try {
+				const { address } = await request.json<{ address?: string }>();
+				if (!address) {
+					return new Response('Invalid request', { status: 400 });
+				}
+
+				const rows = await env.DB.prepare(
+					`SELECT COUNT(DISTINCT holder) as count
+					 FROM nfts
+					 WHERE nft_address = ?`
+				).bind(address).first<{ count: number }>();
+
+				return new Response(
+					JSON.stringify({ success: true, holderCount: rows?.count ?? 0 }),
+					{ headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+				);
+			} catch (error) {
+				console.error(error);
+				return new Response('Server error', { status: 500, headers: corsHeaders });
+			}
+		}
+
 		if (url.pathname === '/generate-wallet-login-nonce') {
 			const { walletAddress, domain, uri } = await request.json<
 				{ walletAddress?: string; domain?: string; uri?: string }
