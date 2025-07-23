@@ -357,7 +357,8 @@ export default {
 
 		if (url.pathname === '/nft-holder-count') {
 			try {
-				const { address } = await request.json<{ address?: string }>();
+				// GET 쿼리 파라미터에서 address를 읽음
+				const address = url.searchParams.get('address');
 				if (!address) {
 					return new Response('Invalid request', { status: 400 });
 				}
