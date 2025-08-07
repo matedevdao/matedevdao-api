@@ -1,10 +1,10 @@
 import { OpenSeaMetadataConverter } from 'nft-data';
 import { NFTData } from '../types/nft';
 import { nftAddresses } from './nft-addresses';
-import DogeSoundClubBiasedMatesMetadata from './static-metadata/dogesoundclub-biased-mates-metadata.json' assert { type: 'json' };
+/*import DogeSoundClubBiasedMatesMetadata from './static-metadata/dogesoundclub-biased-mates-metadata.json' assert { type: 'json' };
 import DogeSoundClubEMatesMetadata from './static-metadata/dogesoundclub-e-mates-metadata.json' assert { type: 'json' };
 import DogeSoundClubMatesMetadata from './static-metadata/dogesoundclub-mates-metadata.json' assert { type: 'json' };
-import KingCrownDAOPixelKongzMetadata from './static-metadata/kingcrowndao-pixel-kongz-metadata.json' assert { type: 'json' };
+import KingCrownDAOPixelKongzMetadata from './static-metadata/kingcrowndao-pixel-kongz-metadata.json' assert { type: 'json' };*/
 
 interface NFTRow {
   nft_address: string;
@@ -19,7 +19,7 @@ interface NFTRow {
 class NFTDataManager {
   private getStaticMetadata(collection: string, tokenId: number) {
     let metadatas: any;
-    if (collection === 'dogesoundclub-biased-mates') {
+    /*if (collection === 'dogesoundclub-biased-mates') {
       metadatas = DogeSoundClubBiasedMatesMetadata;
     } else if (collection === 'dogesoundclub-e-mates') {
       metadatas = DogeSoundClubEMatesMetadata;
@@ -27,7 +27,7 @@ class NFTDataManager {
       metadatas = DogeSoundClubMatesMetadata;
     } else if (collection === 'kingcrowndao-pixel-kongz') {
       metadatas = KingCrownDAOPixelKongzMetadata;
-    }
+    }*/
     return metadatas?.find((item: any) => item.id === tokenId);
   }
 
