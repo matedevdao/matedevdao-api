@@ -1,9 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
-import parts from '../assets/kingcrowndao-kongz/parts.json' with {
-  type: 'json',
-};
+import parts from '../assets/kingcrowndao-kongz/parts.json' assert { type: 'json' };
 
 const availableFiles: { [path: string]: boolean } = {};
 for (const p of parts) {

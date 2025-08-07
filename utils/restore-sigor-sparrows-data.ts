@@ -4,12 +4,8 @@ import { initWasm } from '@resvg/resvg-wasm';
 import 'dotenv/config';
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
-import partsInfo from '../assets/sigor-sparrows/parts.json' with {
-  type: 'json',
-};
-import legacyMetadatas from './legacy-metadatas/sigor-sparrows-metadatas-legacy.json' with {
-  type: 'json',
-};
+import partsInfo from '../assets/sigor-sparrows/parts.json' assert { type: 'json' };
+import legacyMetadatas from './legacy-metadatas/sigor-sparrows-metadatas-legacy.json' assert { type: 'json' };
 
 const NFT_ADDRESS = '0x7340a44AbD05280591377345d21792Cdc916A388';
 

@@ -4,12 +4,8 @@ import { initWasm } from '@resvg/resvg-wasm';
 import 'dotenv/config';
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
-import partsInfo from '../assets/babyping/parts.json' with {
-  type: 'json',
-};
-import legacyMetadatas from './legacy-metadatas/babyping-metadatas-legacy.json' with {
-  type: 'json',
-};
+import partsInfo from '../assets/babyping/parts.json' assert { type: 'json' };
+import legacyMetadatas from './legacy-metadatas/babyping-metadatas-legacy.json' assert { type: 'json' };
 
 const NFT_ADDRESS = '0x595b299Db9d83279d20aC37A85D36489987d7660';
 

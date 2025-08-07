@@ -4,12 +4,8 @@ import { initWasm } from '@resvg/resvg-wasm';
 import 'dotenv/config';
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
-import partsInfo from '../assets/kingcrowndao-kongz/parts.json' with {
-  type: 'json',
-};
-import legacyMetadatas from './legacy-metadatas/kingcrowndao-kongz-metadatas-legacy.json' with {
-  type: 'json',
-};
+import partsInfo from '../assets/kingcrowndao-kongz/parts.json' assert { type: 'json' };
+import legacyMetadatas from './legacy-metadatas/kingcrowndao-kongz-metadatas-legacy.json' assert { type: 'json' };
 
 const NFT_ADDRESS = '0xF967431fb8F5B4767567854dE5448D2EdC21a482';
 

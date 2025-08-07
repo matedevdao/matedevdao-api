@@ -1,9 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import sharp, { Metadata } from 'sharp';
-import parts from '../assets/sigor-sparrows/parts.json' with {
-  type: 'json',
-};
+import parts from '../assets/sigor-sparrows/parts.json' assert { type: 'json' };
 
 interface SpritesheetData {
   frames: {
