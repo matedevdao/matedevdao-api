@@ -1,7 +1,7 @@
 import { ImageCombiner } from '@commonmodule/image-combiner-cf';
 import { NFTData } from 'nft-data';
 import font from '../fonts/neodgm.woff2';
-import parts from './sigor-sparrows-parts.json';
+import parts from './sigor-sparrows-parts.json' assert { type: 'json' };
 
 export default class SigorSparrowImageGenerator {
   public static async generate(env: Env, url: string, data: NFTData) {

@@ -1,6 +1,6 @@
 import { kaiaClient } from '../kaia';
 import { TOKEN_IDS_RANGES } from './nft-constants';
-import ParsingNFTDataArtifact from './ParsingNFTData.json';
+import ParsingNFTDataArtifact from './ParsingNFTData.json' assert { type: 'json' };
 
 const PARSING_NFT_DATA_CONTRACT_ADDRESS =
   '0x8A98A038dcA75091225EE0a1A11fC20Aa23832A0';

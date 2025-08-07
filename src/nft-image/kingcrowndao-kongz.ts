@@ -1,6 +1,6 @@
 import { ImageCombiner } from '@commonmodule/image-combiner-cf';
 import { NFTData } from 'nft-data';
-import parts from './kingcrowndao-kongz-parts.json';
+import parts from './kingcrowndao-kongz-parts.json' assert { type: 'json' };
 
 export default class KCDKongImageGenerator {
   public static async generate(env: Env, url: string, data: NFTData) {

@@ -1,10 +1,10 @@
 import { OpenSeaMetadataConverter } from 'nft-data';
 import { NFTData } from '../types/nft';
 import { nftAddresses } from './nft-addresses';
-import DogeSoundClubBiasedMatesMetadata from './static-metadata/dogesoundclub-biased-mates-metadata.json';
-import DogeSoundClubEMatesMetadata from './static-metadata/dogesoundclub-e-mates-metadata.json';
-import DogeSoundClubMatesMetadata from './static-metadata/dogesoundclub-mates-metadata.json';
-import KingCrownDAOPixelKongzMetadata from './static-metadata/kingcrowndao-pixel-kongz-metadata.json';
+import DogeSoundClubBiasedMatesMetadata from './static-metadata/dogesoundclub-biased-mates-metadata.json' assert { type: 'json' };
+import DogeSoundClubEMatesMetadata from './static-metadata/dogesoundclub-e-mates-metadata.json' assert { type: 'json' };
+import DogeSoundClubMatesMetadata from './static-metadata/dogesoundclub-mates-metadata.json' assert { type: 'json' };
+import KingCrownDAOPixelKongzMetadata from './static-metadata/kingcrowndao-pixel-kongz-metadata.json' assert { type: 'json' };
 
 interface NFTRow {
   nft_address: string;

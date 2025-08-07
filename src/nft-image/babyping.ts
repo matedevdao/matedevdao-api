@@ -1,6 +1,6 @@
 import { ImageCombiner } from '@commonmodule/image-combiner-cf';
 import { NFTData } from 'nft-data';
-import parts from './babyping-parts.json';
+import parts from './babyping-parts.json' assert { type: 'json' };
 
 export default class BabyPingImageGenerator {
   public static async generate(env: Env, url: string, data: NFTData) {
