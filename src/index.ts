@@ -577,6 +577,6 @@ export default {
 	},
 
 	async scheduled(controller, env, ctx) {
-		await transferEventSyncer.run(env);
+		//await transferEventSyncer.run(env);
 	},
 } satisfies ExportedHandler<Env>;
